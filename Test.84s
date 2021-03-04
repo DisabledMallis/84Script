@@ -1,0 +1,9 @@
+entry
+{
+  display("Hello, World!");
+  display(Add(3,3));
+}
+int Add(int numA, int numB)
+{
+  return numA+numB;
+}
