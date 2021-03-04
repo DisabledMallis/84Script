@@ -13,8 +13,9 @@ class Entry
       Console.WriteLine("No file provided, assuming with name 'Main.84s'");
     }
     Console.WriteLine(filename);
+    Console.WriteLine("Compiling...")
     
   }
 
-  
+
 }
