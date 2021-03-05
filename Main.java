@@ -13,21 +13,21 @@ public class Main
         TiDecompiler decomp = new TiDecompiler(file);
         System.out.println(decomp.decompile());
         file.setFileDescriptor("Generated with 84Script v"+version);
-        byte[] newCode = new byte[]{
-            TiToken.LETTER_H.hex,
-            TiToken.LETTER_E.hex,
-            TiToken.LETTER_L.hex,
-            TiToken.LETTER_L.hex,
-            TiToken.LETTER_O.hex,
-            TiToken.COMMA.hex,
-            TiToken.BLANK.hex,
-            TiToken.LETTER_W.hex,
-            TiToken.LETTER_O.hex,
-            TiToken.LETTER_R.hex,
-            TiToken.LETTER_L.hex,
-            TiToken.LETTER_D.hex,
-            TiToken.EXCLAMATION_MARK.hex
-        };
+        TiCompiler compile = new TiCompiler();
+        compile.appendInstruction(TiToken.LETTER_H);
+        compile.appendInstruction(TiToken.LETTER_E);
+        compile.appendInstruction(TiToken.LETTER_L);
+        compile.appendInstruction(TiToken.LETTER_L);
+        compile.appendInstruction(TiToken.LETTER_O);
+        compile.appendInstruction(TiToken.COMMA);
+        compile.appendInstruction(TiToken.BLANK);
+        compile.appendInstruction(TiToken.LETTER_W);
+        compile.appendInstruction(TiToken.LETTER_O);
+        compile.appendInstruction(TiToken.LETTER_R);
+        compile.appendInstruction(TiToken.LETTER_L);
+        compile.appendInstruction(TiToken.LETTER_D);
+        compile.appendInstruction(TiToken.EXCLAMATION_MARK);
+        byte[] newCode = compile.compile();
         file.setProgramCode(newCode);
         byte[] newFile = file.generateNew();
         Files.write(Paths.get("New.8xp"), newFile);
