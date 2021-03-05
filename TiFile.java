@@ -1,13 +1,15 @@
 import java.io.FileInputStream;
 import java.lang.reflect.Field;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 public class TiFile {
     byte[] fileHeader; //8 bytes
     /* 3 Bytes */
     byte[] fileDescriptor; //40 bytes
-    /* 5 Bytes */
+    /* 3 Bytes */
     byte[] nameMeta; //4 bytes
+    byte[] queryBytes = { 0x0, 0x5 };
     byte[] programName; //9 bytes
     byte[] codeMeta; //4 bytes
     /* 1 Byte */
@@ -28,7 +30,8 @@ public class TiFile {
         fileHeader = fileStream.readNBytes(8);
         fileStream.skip(3);
         fileDescriptor = fileStream.readNBytes(40);
-        fileStream.skip(5);
+        fileStream.skip(3);
+        fileStream.skip(2); //These are the query bytes, they are always 0x0 and 0x5.
         nameMeta = fileStream.readNBytes(4);
         programName = fileStream.readNBytes(9);
         codeMeta = fileStream.readNBytes(4);
@@ -48,9 +51,14 @@ public class TiFile {
     {
         return new String(fileDescriptor);
     }
-    public int getCodeSizeFromNameMeta()
+    public void setFileDescriptor(String descriptor)
     {
-        return nameMeta[3];
+        fileDescriptor = new byte[40];
+        byte[] strBytes = descriptor.getBytes(Charset.forName("ASCII"));
+        for(int i = 0; i < strBytes.length; i++)
+        {
+            fileDescriptor[i] = strBytes[i];
+        }
     }
     public String getProgramName()
     {
@@ -67,6 +75,27 @@ public class TiFile {
     public byte[] getProgramCode()
     {
         return programCode;
+    }
+    public void setProgramCode(byte[] byteCode)
+    {
+        //Set the metadata lenghts
+        nameMeta[3] = (byte)(byteCode.length+2);
+        nameMeta[1] = (byte)byteCode.length;
+        codeMeta[1] = (byte)(byteCode.length+2);
+        codeMeta[3] = (byte)byteCode.length;
+
+        programCode = byteCode;
+
+        //Count new lines
+        byte lineCt = 1;
+        for(byte b : byteCode)
+        {
+            if(b == TiToken.NEWLINE.hex)
+            {
+                lineCt++;
+            }
+        }
+        lines = lineCt;
     }
     public int getLines()
     {
@@ -88,10 +117,15 @@ public class TiFile {
         {
             bytes.add(b);
         }
-        //Pad 5 bytes
-        for(byte b = 0; b < 5; b++) { bytes.add((byte)0); }
+        //Pad 3 bytes
+        for(byte b = 0; b < 3; b++) { bytes.add((byte)0); }
         //Add name metadata
         for(byte b : nameMeta)
+        {
+            bytes.add(b);
+        }
+        //Add query bytes
+        for(byte b : queryBytes)
         {
             bytes.add(b);
         }
