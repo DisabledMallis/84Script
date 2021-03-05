@@ -55,6 +55,15 @@ public enum TiToken {
     LETTER_X(0x58, "X"),
     LETTER_Y(0x59, "Y"),
     LETTER_Z(0x5A, "Z"),
+    EQUALS(0x6A, "="),
+    LESS_THAN(0x6B, "<"),
+    GREATER_THAN(0x6C, ">"),
+    LESS_THAN_OR_EQUAL(0x6D, "<="),
+    GREATER_THAN_OR_EQUAL(0x6E, ">="),
+    NOT_EQUAL(0x6F, "!="),
+    IF(0xCE, "IF "),
+    THEN(0xCF, "THEN "),
+    END(0xD4, "END "),
     DISP(0xDE, "DISP ");
 
 
