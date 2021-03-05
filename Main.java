@@ -10,6 +10,8 @@ public class Main
     {
         TiFile file = new TiFile("Test.8xp");
         System.out.println(file.toString());
+        TiDecompiler decomp = new TiDecompiler(file);
+        System.out.println(decomp.decompile());
         file.setFileDescriptor("Generated with 84Script v"+version);
         byte[] newCode = new byte[]{
             TiToken.LETTER_H.hex,

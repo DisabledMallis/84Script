@@ -16,7 +16,8 @@ public class TiDecompiler
     for(byte c : code)
     {
       TiToken token = TiToken.getToken(c);
-      
+      build.append(token.str);
     }
+    return build.toString();
   }
 }
