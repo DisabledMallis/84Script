@@ -1,7 +1,8 @@
 display("Hello, World!");
+var myNum = 10;
+#def Add(num numA, num numB)
+#{
+#  return numA+numB;
+#};
 display(Add(3,3));
 display(6+6);
-num Add(num numA, num numB)
-{
-  return numA+numB;
-}
