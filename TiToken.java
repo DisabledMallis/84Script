@@ -57,8 +57,6 @@ public enum TiToken {
     LETTER_Z(0x5A);
 
 
-
-
     byte hex;
     TiToken(int hex)
     {
