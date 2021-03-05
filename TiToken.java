@@ -54,7 +54,8 @@ public enum TiToken {
     LETTER_W(0x57, "W"),
     LETTER_X(0x58, "X"),
     LETTER_Y(0x59, "Y"),
-    LETTER_Z(0x5A, "Z");
+    LETTER_Z(0x5A, "Z"),
+    DISP(0xDE, "DISP ");
 
 
     byte hex;
