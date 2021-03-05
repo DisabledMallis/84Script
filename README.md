@@ -15,3 +15,13 @@ This section is about how the generated .8xp file(s) are structured programatica
 ## Variables
 * The list ``L1`` is the variable stack. This is sized as variables are created and destroyed via the call stack.
 * The list ``L2`` is used as a parameter stack for function calls. This is sized based on function calls, added to when a call begins, and removed once one completes. 
+
+## Visualization
+
+|    Start   |
+|  :-------: |
+|    Init    |
+| Func Table |
+|  Program   |
+
+Its quite a simple, yet effective structure.
