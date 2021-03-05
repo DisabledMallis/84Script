@@ -11,6 +11,7 @@ This section is about how the generated .8xp file(s) are structured programatica
 * ``I`` - The initialization register. Used for program initialization. Set to true after its used and reset to 0 once program execution has completed.
 * ``F`` - The function register. Used to determine which function is being invoked.
 * ``G`` - Calling register. Used to determine if a function is meant to be invoked.
+* ``C`` - Return register. The value a function returns.
 
 ## Variables
 * The list ``L1`` is the variable stack. This is sized as variables are created and destroyed via the call stack.
@@ -25,3 +26,6 @@ This section is about how the generated .8xp file(s) are structured programatica
 |  Program   |
 
 Its quite a simple, yet effective structure.
+
+## Limitations
+Due to the fact this only takes advantage of numerical variables within the calculator, you are only able to work with numbers and unchanging text. String operations (such as concatenation) are not possible. All variables are numerical, and are limited my the calculator's settings. 
