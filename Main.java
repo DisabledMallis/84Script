@@ -34,7 +34,8 @@ public class Main
 
         String code = Files.readString(Paths.get("Test.84s"));
         EFSCompiler efsCompiler = new EFSCompiler(code);
-        efsCompiler.compileBlock();
+        System.out.println(efsCompiler.code);
+        efsCompiler.compile();
 
         // String code = Files.readString(Paths.get("Test.84s"));
         // TICompiler compiler = new TICompiler(code);

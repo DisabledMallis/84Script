@@ -1,15 +1,15 @@
-def Add(num numA, num numB)
+def Add(numA, numB) #Function definition
 {
   return numA+numB;
 };
 
-__init
+__init #Initialization block
 {
   display("Initialization");
 };
 
 display("Hello, World!");
-var myNum = 10;
+var myNum = 10; #Create a variable named "myNum" with a value of 10.
 
 display(Add(3,3));
 display(6+6);

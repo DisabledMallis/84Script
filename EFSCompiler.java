@@ -8,12 +8,30 @@ public class EFSCompiler
   int index = 0;
   Scanner scan;
   EFSFunctionTable funcTable;
+  EFSVarTable varTable;
   public EFSCompiler(String code)
   {
-    this.code = code;
-    this.scan = new Scanner(code);
+    this.code = collapseCode(removeComments(code));
+    this.scan = new Scanner(this.code);
     funcTable = new EFSFunctionTable();
+    varTable = new EFSVarTable();
   }
+
+  public String removeComments(String code)
+  {
+    return code.replaceAll("(#.*)", "");
+  }
+
+  public String collapseCode(String code)
+  {
+    return code.replaceAll(" ", "").replaceAll("\r", "").replaceAll("\n", "");
+  }
+
+  public boolean blocksRemain()
+  {
+    return scan.hasNext();
+  }
+
   public String readBlock()
   {
     scan.useDelimiter(Pattern.compile("[;{]"));
@@ -21,20 +39,34 @@ public class EFSCompiler
     return theNext;
   }
 
-  public TiToken[] compileBlock()
+  public void parseBlock()
   {
     String block = readBlock();
     System.out.println(block);
-    //Is a func, add it to the table & compile its code
-    if(block.startsWith("def"))
+    //Is a var, add it to the table & compile its code
+    if(block.startsWith("var"))
     {
-      //TODO: Compile blocks until the next }
+      String[] tokens = block.replaceFirst("var", "").split("=");
+      String name = tokens[0];
+      double value = Double.parseDouble(tokens[1]);
+      varTable.addVar(name, value);
     }
-    return null;
   }
   public TiToken[] compile()
   {
     ArrayList<TiToken> tokens = new ArrayList<>();
+
+    while(blocksRemain())
+    {
+      parseBlock();
+    }
+
+    for(EFSVarTable.EFSVariable var : varTable.getVariables())
+    {
+      System.out.println("Got variable: " + var.name + " with base value: " + var.initVal);
+    }
+
+
     /*
     Initialization section
 
@@ -109,6 +141,12 @@ public class EFSCompiler
       END
     */
     scan.close();
-    return tokens;
+
+    TiToken[] retTokes = new TiToken[tokens.size()];
+    for(int i = 0; i < retTokes.length; i++)
+    {
+      retTokes[i] = tokens.get(i);
+    }
+    return retTokes;
   }
 }
