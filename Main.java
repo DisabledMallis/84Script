@@ -31,6 +31,11 @@ public class Main
         file.setProgramCode(newCode);
         byte[] newFile = file.generateNew();
         Files.write(Paths.get("New.8xp"), newFile);
+
+        String code = Files.readString(Paths.get("Test.84s"));
+        EFSCompiler efsCompiler = new EFSCompiler(code);
+        efsCompiler.compileBlock();
+
         // String code = Files.readString(Paths.get("Test.84s"));
         // TICompiler compiler = new TICompiler(code);
         // byte[] result = compiler.compile();

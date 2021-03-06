@@ -1,23 +1,37 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class EFSCompiler
 {
   String code;
   int index = 0;
   Scanner scan;
+  EFSFunctionTable funcTable;
   public EFSCompiler(String code)
   {
     this.code = code;
     this.scan = new Scanner(code);
+    funcTable = new EFSFunctionTable();
   }
   public String readBlock()
   {
-    scan.useDelimiter(";");
+    scan.useDelimiter(Pattern.compile("[;{]"));
     String theNext = scan.next();
     return theNext;
   }
 
+  public TiToken[] compileBlock()
+  {
+    String block = readBlock();
+    System.out.println(block);
+    //Is a func, add it to the table & compile its code
+    if(block.startsWith("def"))
+    {
+      //TODO: Compile blocks until the next }
+    }
+    return null;
+  }
   public TiToken[] compile()
   {
     ArrayList<TiToken> tokens = new ArrayList<>();

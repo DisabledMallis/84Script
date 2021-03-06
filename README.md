@@ -4,8 +4,30 @@ A C-like programming language that compiles to TI-BASIC
 # Why
 Idk why not, seems like a neat hobby project
 
+# Using 84Script
+84Script is quite simple to write code with, much like how TI-Basic itself is. If you're already farmiliar with a language such as Python, C, Java, etc. using 84Script should be quite simple.
+
+## Functions
+Functions can be made using the ``def`` keyword, similarly to Python.
+Parameters are only accessible to the current function. They may be passed down to other functions as well.
+Example:
+```
+def Add(numA, numB)
+{
+    return numA + numB;
+}
+```
+
+## Variables
+All variables are global in code executed after their initialization. They may be accessed and modified after their declaration, but not deleted. Keep this in mind when initializing them with repeating code. Variables are always numerical, other types of data, such as strings, are not possible for use with variables. Their numerical abilities are determined by the calculator's settings. If the calculator is in "Real" mode, only real numbers can be stored.
+Variables can be defined using the ``var`` keyword.
+Example:
+```
+var awesomeVariable = 2.33;
+```
+
 # Generated structure
-This section is about how the generated .8xp file(s) are structured programatically, and how they work.
+This section is about how the generated .8xp file(s) are structured programatically, and how they work. This is important for debugging your code when either you or the compiler makes a mistake.
 
 ## Program registers
 * ``I`` - The initialization register. Used for program initialization. Set to true after its used and reset to 0 once program execution has completed.
@@ -28,4 +50,4 @@ This section is about how the generated .8xp file(s) are structured programatica
 Its quite a simple, yet effective structure.
 
 ## Limitations
-Due to the fact this only takes advantage of numerical variables within the calculator, you are only able to work with numbers and unchanging text. String operations (such as concatenation) are not possible. All variables are numerical, and are limited my the calculator's settings. 
+Due to the fact this only takes advantage of numerical variables within the calculator, you are only able to work with numbers and unchanging text. String operations (such as concatenation) are not possible. All variables are numerical, and are limited my the calculator's settings.
