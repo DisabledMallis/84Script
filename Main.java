@@ -32,11 +32,6 @@ public class Main
         byte[] newFile = file.generateNew();
         Files.write(Paths.get("New.8xp"), newFile);
 
-        String code = Files.readString(Paths.get("Test.84s"));
-        EFSCompiler efsCompiler = new EFSCompiler(code);
-        System.out.println(efsCompiler.code);
-        efsCompiler.compile();
-
         // String code = Files.readString(Paths.get("Test.84s"));
         // TICompiler compiler = new TICompiler(code);
         // byte[] result = compiler.compile();
