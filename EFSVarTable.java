@@ -5,12 +5,10 @@ public class EFSVarTable
   public static class EFSVariable
   {
     String name;
-    double initVal;
 
     public EFSVariable(String name, double initVal)
     {
       this.name = name;
-      this.initVal = initVal;
     }
   }
   public ArrayList<EFSVariable> varPtrs;
