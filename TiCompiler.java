@@ -2,8 +2,6 @@ import java.util.ArrayList;
 
 public class TiCompiler {
     ArrayList<TiToken> tokens;
-    private static final String compilerVersion = "0.0.1";
-    private static final String fileType = "**TI83F*";
     public TiCompiler()
     {
         tokens = new ArrayList<>();
@@ -11,6 +9,10 @@ public class TiCompiler {
     public void appendInstruction(TiToken token)
     {
         tokens.add(token);
+    }
+    public TiToken[] getTokens()
+    {
+        return tokens;
     }
     public byte[] compile()
     {

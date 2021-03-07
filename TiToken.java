@@ -1,4 +1,10 @@
 public enum TiToken {
+    LIST_SUBSCRIPT_1(0x0, "1"),
+    LIST_SUBSCRIPT_2(0x1, "2"),
+    LIST_SUBSCRIPT_3(0x2, "3"),
+    LIST_SUBSCRIPT_4(0x3, "4"),
+    LIST_SUBSCRIPT_5(0x4, "5"),
+    LIST_SUBSCRIPT_6(0x5, "6"),
     TO_DMS(0x1, "TO_DMS"),
     TO_DEC(0x2, ">DEC"),
     TO_FRAC(0x3, ">FRAC"),
@@ -55,12 +61,17 @@ public enum TiToken {
     LETTER_X(0x58, "X"),
     LETTER_Y(0x59, "Y"),
     LETTER_Z(0x5A, "Z"),
+    LIST(0x5D, "List"),
     EQUALS(0x6A, "="),
     LESS_THAN(0x6B, "<"),
     GREATER_THAN(0x6C, ">"),
     LESS_THAN_OR_EQUAL(0x6D, "<="),
     GREATER_THAN_OR_EQUAL(0x6E, ">="),
     NOT_EQUAL(0x6F, "!="),
+    ADD(0x70, "+"),
+    SUBTRACT(0x71, "-"),
+    MULTIPLY(0x80, "*"),
+    DIVIDE(0x81, "/"),
     IF(0xCE, "IF "),
     THEN(0xCF, "THEN "),
     END(0xD4, "END "),
@@ -81,6 +92,28 @@ public enum TiToken {
     byte getByte()
     {
         return this.hex;
+    };
+    public static TiToken getTokenByName(String token)
+    {
+      for(TiToken t : TiToken.values())
+      {
+        if(t.toString().equals(token))
+        {
+          return t;
+        }
+      }
+      return null;
+    };
+    public static TiToken getToken(String token)
+    {
+      for(TiToken t : TiToken.values())
+      {
+        if(t.str.equals(token))
+        {
+          return t;
+        }
+      }
+      return null;
     };
     public static TiToken getToken(byte token)
     {

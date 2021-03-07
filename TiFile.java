@@ -1,16 +1,19 @@
 import java.io.FileInputStream;
-import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 public class TiFile {
     byte[] fileHeader; //8 bytes
+    private final int FILE_HEADER_SIZE = 8;
     /* 3 Bytes */
     byte[] fileDescriptor; //40 bytes
+    private final int FILE_DESCRIPTOR_SIZE = 40;
     /* 3 Bytes */
     byte[] nameMeta; //4 bytes
+    private final int META_SIZE = 4;
     byte[] queryBytes = { 0x0, 0x5 };
     byte[] programName; //9 bytes
+    private final int PROG_NAME_SIZE = 9;
     byte[] codeMeta; //4 bytes
     /* 1 Byte */
     byte[] programCode; //Flexible
@@ -21,7 +24,12 @@ public class TiFile {
 
     public TiFile(String fileDescriptor, String programName, byte[] programCode)
     {
-        this.fileHeader = new byte[8];
+        this.fileHeader = "**TI83F*".getBytes(Charset.forName("ASCII"));
+        this.fileDescriptor = fileDescriptor.getBytes(Charset.forName("ASCII"));
+        this.programName = programName.getBytes(Charset.forName("ASCII"));
+        this.nameMeta = new byte[4];
+        this.codeMeta = new byte[4];
+        this.setProgramCode(programCode);
 
     }
     public TiFile(String path) throws Exception
@@ -106,23 +114,32 @@ public class TiFile {
     {
         ArrayList<Byte> bytes = new ArrayList<>();
         //Add file header
-        for(byte b : fileHeader)
+        for(int i = 0; i < FILE_HEADER_SIZE; i++)
         {
-            bytes.add(b);
+            if(this.fileHeader.length <= i)
+                bytes.add((byte)0);
+            else
+                bytes.add(this.fileHeader[i]);
         }
         //Pad 3 bytes
         for(byte b = 0; b < 3; b++) { bytes.add((byte)0); }
         //Add file descriptor
-        for(byte b : fileDescriptor)
+        for(int i = 0; i < FILE_DESCRIPTOR_SIZE; i++)
         {
-            bytes.add(b);
+            if(this.fileDescriptor.length <= i)
+                bytes.add((byte)0);
+            else
+                bytes.add(this.fileDescriptor[i]);
         }
         //Pad 3 bytes
         for(byte b = 0; b < 3; b++) { bytes.add((byte)0); }
         //Add name metadata
-        for(byte b : nameMeta)
+        for(int i = 0; i < META_SIZE; i++)
         {
-            bytes.add(b);
+            if(this.nameMeta.length <= i)
+                bytes.add((byte)0);
+            else
+                bytes.add(this.nameMeta[i]);
         }
         //Add query bytes
         for(byte b : queryBytes)
@@ -130,14 +147,17 @@ public class TiFile {
             bytes.add(b);
         }
         //Add program name
-        for(byte b : programName)
+        for(int i = 0; i < PROG_NAME_SIZE; i++)
         {
-            bytes.add(b);
+            if(this.programName.length <= i)
+                bytes.add((byte)0);
+            else
+                bytes.add(this.programName[i]);
         }
         //Add code meta
-        for(byte b : codeMeta)
+        for(int i = 0; i < META_SIZE; i++)
         {
-            bytes.add(b);
+            bytes.add(codeMeta[i]);
         }
         //Pad 1 byte
         for(byte b = 0; b < 1; b++) { bytes.add((byte)0); }

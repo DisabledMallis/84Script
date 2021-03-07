@@ -8,12 +8,9 @@ public class Main
     public static final String version = "0.0.1"; 
     public static void main(String[] args) throws Exception
     {
-        TiFile file = new TiFile("Test.8xp");
-        System.out.println(file.toString());
-        TiDecompiler decomp = new TiDecompiler(file);
-        System.out.println(decomp.decompile());
-        file.setFileDescriptor("Generated with 84Script v"+version);
         TiCompiler compile = new TiCompiler();
+        compile.appendInstruction(TiToken.LIST);
+        compile.appendInstruction(TiToken.LIST_SUBSCRIPT_1);
         compile.appendInstruction(TiToken.LETTER_H);
         compile.appendInstruction(TiToken.LETTER_E);
         compile.appendInstruction(TiToken.LETTER_L);
@@ -28,7 +25,7 @@ public class Main
         compile.appendInstruction(TiToken.LETTER_D);
         compile.appendInstruction(TiToken.EXCLAMATION_MARK);
         byte[] newCode = compile.compile();
-        file.setProgramCode(newCode);
+        TiFile file = new TiFile("Generated with 84Script v"+version, "Swag", newCode);
         byte[] newFile = file.generateNew();
         Files.write(Paths.get("New.8xp"), newFile);
 
