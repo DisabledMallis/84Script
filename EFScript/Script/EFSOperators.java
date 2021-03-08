@@ -1,3 +1,5 @@
+package EFScript.Script;
+
 public enum EFSOperators implements EFSToken
 {
     ADD("+"),

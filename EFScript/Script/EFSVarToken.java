@@ -1,3 +1,5 @@
+package EFScript.Script;
+
 public class EFSVarToken implements EFSToken {
 
     String name;

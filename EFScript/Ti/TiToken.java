@@ -1,3 +1,5 @@
+package EFScript.Ti;
+
 public enum TiToken {
     LIST_SUBSCRIPT_1(0x0, "1"),
     LIST_SUBSCRIPT_2(0x1, "2"),

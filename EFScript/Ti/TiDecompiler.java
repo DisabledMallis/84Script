@@ -1,3 +1,5 @@
+package EFScript.Ti;
+
 public class TiDecompiler
 {
   byte[] code;

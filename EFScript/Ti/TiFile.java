@@ -1,3 +1,5 @@
+package EFScript.Ti;
+
 import java.io.FileInputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
