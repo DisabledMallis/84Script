@@ -1,6 +1,6 @@
 package EFScript;
 
-public class Log
+public class Logger
 {
     public static void Log(Object toLog)
     {

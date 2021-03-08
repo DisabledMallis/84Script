@@ -3,6 +3,7 @@ package EFScript;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import EFScript.Script.EFSCompiler;
 import EFScript.Ti.TiCompiler;
 import EFScript.Ti.TiFile;
 import EFScript.Ti.TiToken;
@@ -33,8 +34,8 @@ public class Main
         byte[] newFile = file.generateNew();
         Files.write(Paths.get("New.8xp"), newFile);
 
-        // String code = Files.readString(Paths.get("Test.84s"));
-        // TICompiler compiler = new TICompiler(code);
-        // byte[] result = compiler.compile();
+        String code = Files.readString(Paths.get("Test.84s"));
+        EFSCompiler compiler = new EFSCompiler(code);
+        byte[] result = compiler.compile();
     }
 }

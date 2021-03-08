@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
+import EFScript.Logger;
+
 public class TiFile {
     byte[] fileHeader; //8 bytes
     private final int FILE_HEADER_SIZE = 8;
@@ -26,7 +28,7 @@ public class TiFile {
 
     public TiFile(String fileDescriptor, String programName, byte[] programCode)
     {
-        Log.Log("Generating new .8xp file");
+        Logger.Log("Initialized new TiFile from scratch");
         this.fileHeader = "**TI83F*".getBytes(Charset.forName("ASCII"));
         this.fileDescriptor = fileDescriptor.getBytes(Charset.forName("ASCII"));
         this.programName = programName.getBytes(Charset.forName("ASCII"));
@@ -37,7 +39,7 @@ public class TiFile {
     }
     public TiFile(String path) throws Exception
     {
-        Log.Log("Reading existing .8xp file \""+path+"\"");
+        Logger.Log("Reading existing .8xp file \""+path+"\"");
         FileInputStream fileStream = new FileInputStream(path);
         fileHeader = fileStream.readNBytes(8);
         fileStream.skip(3);
@@ -116,7 +118,7 @@ public class TiFile {
 
     public byte[] generateNew()
     {
-        Log.Log("Generating new .8xp file");
+        Logger.Log("Generating new .8xp file");
         ArrayList<Byte> bytes = new ArrayList<>();
         //Add file header
         for(int i = 0; i < FILE_HEADER_SIZE; i++)
@@ -182,6 +184,7 @@ public class TiFile {
         {
             prim[i] = bytes.get(i);
         }
+        Logger.Log("Generated new .8xp file");
         return prim;
     }
 

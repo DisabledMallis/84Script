@@ -1,3 +1,0 @@
-var myNum = 10;
-var yourNum = 7;
-var ourNum = myNum + yourNum;
