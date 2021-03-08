@@ -12,6 +12,7 @@ public class Main
     public static final String version = "0.0.1"; 
     public static void main(String[] args) throws Exception
     {
+        System.out.println("Hello");
         TiCompiler compile = new TiCompiler();
         compile.appendInstruction(TiToken.LIST);
         compile.appendInstruction(TiToken.LIST_SUBSCRIPT_1);

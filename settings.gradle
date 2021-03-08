@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'EFScript'
-include('app')
+include('84Script')
