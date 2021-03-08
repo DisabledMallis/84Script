@@ -1,5 +1,7 @@
 package EFScript.Script;
 
+import EFScript.Ti.TiToken;
+
 public enum EFSOperators implements EFSToken
 {
     ADD("+"),

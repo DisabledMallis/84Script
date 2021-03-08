@@ -1,5 +1,8 @@
 package EFScript.Script;
 
+import EFScript.Ti.TiCompiler;
+import EFScript.Ti.TiToken;
+
 public class EFSVarToken implements EFSToken {
 
     String name;

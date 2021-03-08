@@ -1,0 +1,13 @@
+plugins {
+    id 'application'
+}
+
+dependencies {
+}
+
+sourceCompatibility = 11
+
+application {
+    // Define the main class for the application.
+    mainClass = 'EFScript.Main'
+}

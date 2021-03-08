@@ -3,6 +3,10 @@ package EFScript;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import EFScript.Ti.TiCompiler;
+import EFScript.Ti.TiFile;
+import EFScript.Ti.TiToken;
+
 public class Main
 {
     public static final String version = "0.0.1"; 
