@@ -26,6 +26,7 @@ public class TiFile {
 
     public TiFile(String fileDescriptor, String programName, byte[] programCode)
     {
+        Log.Log("Generating new .8xp file");
         this.fileHeader = "**TI83F*".getBytes(Charset.forName("ASCII"));
         this.fileDescriptor = fileDescriptor.getBytes(Charset.forName("ASCII"));
         this.programName = programName.getBytes(Charset.forName("ASCII"));
@@ -36,6 +37,7 @@ public class TiFile {
     }
     public TiFile(String path) throws Exception
     {
+        Log.Log("Reading existing .8xp file \""+path+"\"");
         FileInputStream fileStream = new FileInputStream(path);
         fileHeader = fileStream.readNBytes(8);
         fileStream.skip(3);
@@ -114,6 +116,7 @@ public class TiFile {
 
     public byte[] generateNew()
     {
+        Log.Log("Generating new .8xp file");
         ArrayList<Byte> bytes = new ArrayList<>();
         //Add file header
         for(int i = 0; i < FILE_HEADER_SIZE; i++)
