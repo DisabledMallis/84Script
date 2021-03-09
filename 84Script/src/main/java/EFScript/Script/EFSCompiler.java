@@ -2,7 +2,6 @@ package EFScript.Script;
 
 import EFScript.Logger;
 import EFScript.Ti.TiCompiler;
-import EFScript.Ti.TiToken;
 
 public class EFSCompiler {
     String efsCode = "";
@@ -46,7 +45,7 @@ public class EFSCompiler {
     {
         TiCompiler compiler = new TiCompiler();
 
-        
+
 
         return compiler.compile();
     }
