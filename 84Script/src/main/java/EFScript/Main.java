@@ -35,7 +35,7 @@ public class Main
         Files.write(Paths.get("New.8xp"), newFile);
 
         String code = Files.readString(Paths.get("Test.84s"));
-        EFSCompiler compiler = new EFSCompiler(code);
-        byte[] result = compiler.compile();
+        CompileJS compiler = new CompileJS();
+		byte[] compiled = compiler.compile();
     }
 }

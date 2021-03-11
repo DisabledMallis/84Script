@@ -9,9 +9,9 @@ import jdk.nashorn.internal.runtime.ErrorManager;
 import jdk.nashorn.internal.runtime.Source;
 import jdk.nashorn.internal.runtime.options.Options;
 
-public class ParseJS
+public class CompileJS
 {
-	public ParseJS(String code)
+	public CompileJS(String code)
 	{
 		Options options = new Options("nashorn");
 		options.set("anon.functions", false);
@@ -30,5 +30,10 @@ public class ParseJS
 		{
 			
 		}
+	}
+
+	public byte[] compile()
+	{
+		return new byte[0];
 	}
 }
