@@ -2,7 +2,13 @@ plugins {
     id 'application'
 }
 
+repositories {
+    mavenCentral()
+}
 dependencies {
+    implementation group: 'org.antlr', name: 'antlr4-runtime', version: '4.9.1'
+    implementation group: 'org.antlr', name: 'antlr4', version: '4.9.1'
+
 }
 
 sourceCompatibility = 11
@@ -10,4 +16,16 @@ sourceCompatibility = 11
 application {
     // Define the main class for the application.
     mainClass = 'EFScript.Main'
+    
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java"]
+        }
+        resources {
+            srcDirs = ["src/main/resources"]
+        }
+    }
 }

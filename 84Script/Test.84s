@@ -1,23 +1,13 @@
-def Add(numA, numB)
+def QuadraticPos(a, b, c)
 {
-    return numA + numB;
+    //Quadratic formula here
+    return v;
 }
-var myNum = 10;
-var yourNum = 7;
-var ourNum = myNum + yourNum;
-var sweet = Add(myNum + yourNum);
-if(sweet == ourNum)
-{
-    display("They equal");
-    display(sweet);
-}
-var check = 0;
-while(check < 100)
-{
-    display(check);
-    check++;
-}
-for(i, 0, 100)
-{
-    display(i);
-}
+
+input("Enter A", a);
+input("Enter B", b);
+input("Enter C", c);
+display("First result");
+display(QuadraticPos(a,b,c));
+display("Second result");
+display(QuadraticNeg(a,b,c));

@@ -5,6 +5,11 @@
 # Ignore Gradle build output directory
 build
 
-.settings
-.vscode
+.settings/
+.vscode/
 buildSrc/
+.antlr/
+*.classpath
+.classpath
+*.project
+.project
