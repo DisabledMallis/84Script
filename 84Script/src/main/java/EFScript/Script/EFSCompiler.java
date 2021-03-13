@@ -1,5 +1,7 @@
 package EFScript.Script;
 
+import org.antlr.v4.runtime.LexerInterpreter;
+import org.antlr.v4.tool.Grammar;
 import org.antlr.v4.tool.LexerGrammar;
 
 public class EFSCompiler
