@@ -1,13 +1,1 @@
-def QuadraticPos(a, b, c)
-{
-    //Quadratic formula here
-    return v;
-}
-
-input("Enter A", a);
-input("Enter B", b);
-input("Enter C", c);
-display("First result");
-display(QuadraticPos(a,b,c));
-display("Second result");
-display(QuadraticNeg(a,b,c));
+var x = 13;
