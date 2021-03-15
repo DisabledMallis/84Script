@@ -1,5 +1,7 @@
 package EFScript.Script;
 
+import EFScript.Logger;
+
 import java.nio.file.Paths;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.ParserInterpreter;
@@ -24,7 +26,7 @@ public class EFSCompiler
 	{
 		try {
 			ParseTree tree = parse("Test.84s", "EFScript.g4", "script");
-			System.out.println(tree);
+			Logger.Log(tree);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

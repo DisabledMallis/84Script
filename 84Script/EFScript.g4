@@ -1,8 +1,7 @@
 grammar EFScript;
 
 script
-	: (Function)*
-	| (Statement)*
+	: Statement
 	;
 
 Function
