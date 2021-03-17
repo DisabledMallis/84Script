@@ -26,7 +26,7 @@ public class EFSCompiler
 	{
 		try {
 			ParseTree tree = parse("Test.84s", "EFScript.g4", "script");
-			Logger.Log(tree);
+			Logger.Log(tree.toStringTree());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

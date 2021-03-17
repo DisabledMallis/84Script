@@ -1,50 +1,62 @@
 grammar EFScript;
 
 script
-	: Statement
+	: statement* EOF
 	;
 
-Function
-	: DEF IDENTIFIER OPEN_BRACKET (',' IDENTIFIER)* Statement
+function
+	: DEF identifier OPEN_BRACKET (',' identifier)* statement
 	;
 
-Statement
-	: OPEN_CURLEY Statement CLOSE_CURLEY
-	| IF OPEN_BRACKET Expression CLOSE_BRACKET Statement
-	| WHILE OPEN_BRACKET Expression CLOSE_BRACKET Statement
-	| FOR OPEN_BRACKET Expression CLOSE_BRACKET Statement
-	| VAR IDENTIFIER ASSIGN Expression END_STMT
-	| Expression END_STMT
+statement
+	: OPEN_CURLEY statement CLOSE_CURLEY
+	| identifier ASSIGN expression
+	| identifier ADDASSIGN value
+	| identifier SUBASSIGN value
+	| identifier MULASSIGN value
+	| identifier DIVASSIGN value
+	| identifier INCREMENT
+	| identifier DECREMENT
+	| IF OPEN_BRACKET boolexpr CLOSE_BRACKET statement
+	| WHILE OPEN_BRACKET boolexpr CLOSE_BRACKET statement
+	| FOR OPEN_BRACKET boolexpr CLOSE_BRACKET statement
+	| VAR identifier ASSIGN expression END_STMT
+	| expression END_STMT
 	| END_STMT
 	;
 
-Expression 
-	: IDENTIFIER
+//Expression
+expression 
+	: identifier
 	| NUMBER
 	| TEXT
-	| MethodCall
+	| methodcall
 	| PI
 	| E
-	| IDENTIFIER INCREMENT
-	| IDENTIFIER DECREMENT
-	| IDENTIFIER ADD VALUE
-	| IDENTIFIER SUB VALUE
-	| IDENTIFIER MUL VALUE
-	| IDENTIFIER DIV VALUE
-	| IDENTIFIER ASSIGN Expression
-	| IDENTIFIER ADDASSIGN VALUE
-	| IDENTIFIER SUBASSIGN VALUE
-	| IDENTIFIER MULASSIGN VALUE
-	| IDENTIFIER DIVASSIGN VALUE
-	| OPEN_BRACKET Expression CLOSE_BRACKET
+	| identifier ADD value
+	| identifier SUB value
+	| identifier MUL value
+	| identifier DIV value
+	| OPEN_BRACKET expression CLOSE_BRACKET
 	;
 
-MethodCall
-	: IDENTIFIER OPEN_BRACKET MethodParams CLOSE_BRACKET
+//Boolean expression
+boolexpr
+	: identifier
+	| identifier GREATER_THAN expression
+	| identifier LESS_THAN expression
+	| identifier EQUAL_TO expression
+	| identifier NOT_EQUAL_TO expression
 	;
 
-MethodParams
-	: Expression (',' Expression)*
+
+
+methodcall
+	: identifier OPEN_BRACKET methodparams CLOSE_BRACKET
+	;
+
+methodparams
+	: expression (',' expression)*
 	;
 
 //Syntax operators
@@ -65,6 +77,12 @@ SUB : '-';
 MUL : '*';
 DIV : '/';
 
+//Boolean operators
+GREATER_THAN : '>';
+LESS_THAN : '<';
+EQUAL_TO : '==';
+NOT_EQUAL_TO : '!=';
+
 //Assignment operators
 ASSIGN : '=';
 ADDASSIGN : '+=';
@@ -84,13 +102,22 @@ FOR : 'for';
 WHILE : 'while';
 RETURN : 'return';
 
-VALUE
-	: IDENTIFIER
+value
+	: identifier
 	| NUMBER
 	;
 
-IDENTIFIER : [A-Za-z];
-NUMBER : [0-9.];
+identifier
+	: IDENTIFIER
+	;
+
+IDENTIFIER : [a-zA-Z][a-zA-Z0-9_]*;
+NUMBER
+   : '-'? INT ('.' [0-9] +)?
+   ;
+fragment INT
+   : '0' | [1-9] [0-9]*
+   ;
 TEXT : '"' ~ ["\r\n]* '"';
 
 //Stuff we wanna ignore

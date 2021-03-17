@@ -29,7 +29,7 @@ public class Main
         compile.appendInstruction(TiToken.LETTER_L);
         compile.appendInstruction(TiToken.LETTER_D);
         compile.appendInstruction(TiToken.EXCLAMATION_MARK);
-        byte[] newCode = compile.compile();
+        byte[] newCode = "Hey".getBytes();//compile.compile();
         TiFile file = new TiFile("Generated with 84Script v"+version, "Swag", newCode);
         byte[] newFile = file.generateNew();
         Files.write(Paths.get("New.8xp"), newFile);
