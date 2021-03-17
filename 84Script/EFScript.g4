@@ -12,34 +12,66 @@ function
 
 statement
 	: OPEN_CURLEY statement CLOSE_CURLEY
-	| identifier ASSIGN expression
-	| identifier ADDASSIGN value
-	| identifier SUBASSIGN value
-	| identifier MULASSIGN value
-	| identifier DIVASSIGN value
-	| identifier INCREMENT
-	| identifier DECREMENT
-	| IF OPEN_BRACKET boolexpr CLOSE_BRACKET statement
-	| WHILE OPEN_BRACKET boolexpr CLOSE_BRACKET statement
-	| FOR OPEN_BRACKET boolexpr CLOSE_BRACKET statement
-	| FOR OPEN_BRACKET identifier ',' value ',' value CLOSE_BRACKET statement
-	| VAR identifier ASSIGN expression END_STMT
-	| RETURN expression END_STMT
+	| assign_stmt
+	| add_assign_stmt
+	| sub_assign_stmt
+	| mul_assign_stmt
+	| div_assign_stmt
+	| inc_stmt
+	| dec_stmt
+	| if_stmt
+	| while_stmt
+	| var_stmt
+	| return_stmt
 	| expression END_STMT
 	| END_STMT
 	;
 
+assign_stmt
+	: identifier ASSIGN expression END_STMT
+	;
+add_assign_stmt
+	: identifier ADDASSIGN value END_STMT
+	;
+sub_assign_stmt
+	: identifier SUBASSIGN value END_STMT
+	;
+mul_assign_stmt
+	: identifier MULASSIGN value END_STMT
+	;
+div_assign_stmt
+	: identifier DIVASSIGN value END_STMT
+	;
+inc_stmt
+	: identifier INCREMENT END_STMT
+	;
+dec_stmt
+	: identifier DECREMENT END_STMT
+	;
+if_stmt
+	: IF OPEN_BRACKET boolexpr CLOSE_BRACKET statement
+	;
+while_stmt
+	: WHILE OPEN_BRACKET boolexpr CLOSE_BRACKET statement
+	;
+var_stmt
+	: VAR identifier ASSIGN expression END_STMT
+	;
+return_stmt
+	: RETURN expression END_STMT
+	;
+
 //Expression
 expression 
-	| OPEN_BRACKET expression CLOSE_BRACKET
+	: OPEN_BRACKET expression CLOSE_BRACKET
+	| value ADD value
+	| value SUB value
+	| value MUL value
+	| value DIV value
 	| identifier
 	| NUMBER
 	| TEXT
 	| methodcall
-	| identifier ADD value
-	| identifier SUB value
-	| identifier MUL value
-	| identifier DIV value
 	;
 
 //Boolean expression
@@ -97,7 +129,6 @@ DECREMENT : '--';
 DEF : 'def';
 VAR : 'var';
 IF : 'if';
-FOR : 'for';
 WHILE : 'while';
 RETURN : 'return';
 TRUE : 'true';

@@ -1,12 +1,12 @@
-package EFScript;
+package com.EFScript;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import EFScript.Script.EFSCompiler;
-import EFScript.Ti.TiCompiler;
-import EFScript.Ti.TiFile;
-import EFScript.Ti.TiToken;
+import com.EFScript.Script.EFSCompiler;
+import com.EFScript.Ti.TiCompiler;
+import com.EFScript.Ti.TiFile;
+import com.EFScript.Ti.TiToken;
 
 public class Main
 {

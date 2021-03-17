@@ -1,6 +1,6 @@
-package EFScript.Script;
+package com.EFScript.Script;
 
-import EFScript.Logger;
+import com.EFScript.Logger;
 
 import java.nio.file.Paths;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -9,7 +9,6 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.LexerInterpreter;
 import org.antlr.v4.tool.Grammar;
-import org.antlr.v4.tool.LexerGrammar;
 
 public class EFSCompiler
 {
@@ -26,7 +25,11 @@ public class EFSCompiler
 	{
 		try {
 			ParseTree tree = parse("Test.84s", "EFScript.g4", "script");
-			Logger.Log(tree.toStringTree());
+			for(int i = 0; i < tree.getChildCount(); i++)
+			{
+				Logger.Log(tree.getChild(i).getPayload());
+			}
+			Logger.Log(tree.getPayload());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

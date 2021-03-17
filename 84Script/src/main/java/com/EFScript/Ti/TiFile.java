@@ -1,10 +1,10 @@
-package EFScript.Ti;
+package com.EFScript.Ti;
 
 import java.io.FileInputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-import EFScript.Logger;
+import com.EFScript.Logger;
 
 public class TiFile {
     byte[] fileHeader; //8 bytes

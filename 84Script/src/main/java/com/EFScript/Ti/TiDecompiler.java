@@ -1,6 +1,6 @@
-package EFScript.Ti;
+package com.EFScript.Ti;
 
-import EFScript.Logger;
+import com.EFScript.Logger;
 
 public class TiDecompiler
 {

@@ -13,3 +13,5 @@ buildSrc/
 .classpath
 *.project
 .project
+bin/
+build/
