@@ -1,5 +1,13 @@
-var x = 13;
+var x = 4*pi;
 if(x > 3)
 {
 	var y = 4;
+}
+while(true)
+{
+	display("Hey");
+}
+for(num, 0, 100)
+{
+	display(num);
 }
