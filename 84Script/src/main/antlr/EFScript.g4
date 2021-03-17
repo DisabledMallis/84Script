@@ -1,5 +1,10 @@
 grammar EFScript;
 
+@header {
+package com.EFScript.Antlr;
+} 
+
+
 script
 	: function*
 	| statement*

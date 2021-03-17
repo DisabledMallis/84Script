@@ -15,3 +15,5 @@ buildSrc/
 .project
 bin/
 build/
+*.interp
+*.tokens
