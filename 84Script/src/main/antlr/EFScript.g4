@@ -143,6 +143,13 @@ BASIC_STMT_KEYWORD : '__tibasic';
 //TI-Basic tokens
 TI_TOKEN
 	: '->'
+	| 'Disp'
+	| 'Output'
+	| OPEN_BRACKET
+	| CLOSE_BRACKET
+	| OPEN_CURLEY
+	| CLOSE_CURLEY
+	| IDENTIFIER
 	| IF
 	| WHILE
 	| NUMBER
