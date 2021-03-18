@@ -65,6 +65,13 @@ var_stmt
 return_stmt
 	: RETURN expression END_STMT
 	;
+//TI-Basic statement, inspired by the C++ __asm statement
+basic_stmt
+	: BASIC_STMT_KEYWORD
+	| OPEN_CURLEY
+	| (TI_TOKEN)*
+	| CLOSE_CURLEY
+	;
 
 //Expression
 expression 
@@ -75,7 +82,7 @@ expression
 	| value DIV value
 	| identifier
 	| NUMBER
-	| TEXT
+	| QUOTED_TEXT
 	| methodcall
 	;
 
@@ -130,6 +137,18 @@ DIVASSIGN : '/=';
 INCREMENT : '++';
 DECREMENT : '--';
 
+//EFScript keywords
+ALIAS : 'alias'; //Used to create an alias for a TI-Basic variable token
+BASIC_STMT_KEYWORD : '__tibasic';
+//TI-Basic tokens
+TI_TOKEN
+	: '->'
+	| IF
+	| WHILE
+	| NUMBER
+	;
+
+
 //Basic keywords & concepts
 DEF : 'def';
 VAR : 'var';
@@ -163,7 +182,8 @@ E : 'e';
 fragment INT
    : '0' | [1-9] [0-9]*
    ;
-TEXT : '"' ~ ["\r\n]* '"';
+QUOTED_TEXT : '"' TEXT '"';
+TEXT : ~ ["\r\n]*;
 
 //Stuff we wanna ignore
 LINECOMMENT : '//' ~[\r\n]* -> skip;
