@@ -1,5 +1,7 @@
 package com.EFScript.Ti;
 
+import com.EFScript.Logger;
+
 public enum TiToken {
     LIST_SUBSCRIPT_1(0x0, "1"),
     LIST_SUBSCRIPT_2(0x1, "2"),
@@ -127,5 +129,14 @@ public enum TiToken {
         }
       }
       return null;
+    };
+    public static TiToken getListSubscript(int index)
+    {
+      TiToken t = TiToken.valueOf("LIST_SUBSCRIPT_"+index));
+      if(t == null)
+      {
+        Logger.Log("No such list "+index);
+      }
+      return t;
     };
 }

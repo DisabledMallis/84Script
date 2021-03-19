@@ -27,6 +27,8 @@ import com.EFScript.Antlr.EFScriptParser.Sub_assign_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.ValueContext;
 import com.EFScript.Antlr.EFScriptParser.Var_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.While_stmtContext;
+import com.EFScript.Ti.TiCompiler;
+import com.EFScript.Ti.TiToken;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -37,6 +39,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class EFSCompiler implements EFScriptListener
 {
+	private TiCompiler compTokens = new TiCompiler();
 	private ArrayList<String> varIdentifiers = new ArrayList<>();
 
 	public EFSCompiler(String code)
@@ -74,6 +77,7 @@ public class EFSCompiler implements EFScriptListener
 			}
 			current++;
 		}
+		Logger.Log("Could not find var \""+var+"\"");
 		return -1;
 	}
 
@@ -166,6 +170,10 @@ public class EFSCompiler implements EFScriptListener
 
 	@Override
 	public void enterInc_stmt(Inc_stmtContext ctx) {
+		String identifier = ctx.identifier().getText();
+		int index = getVarIndex(identifier);
+		TiToken listSub = TiToken.getListSubscript(index);
+		
 	}
 
 	@Override
