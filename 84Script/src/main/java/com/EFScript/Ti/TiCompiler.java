@@ -11,6 +11,13 @@ public class TiCompiler {
         tokens = new ArrayList<>();
         Logger.Log("Initialized new TiCompiler...");
     }
+	public void appendInstruction(TiToken[] tokens)
+	{
+		for(TiToken token : tokens)
+		{
+			appendInstruction(token);
+		}
+	}
     public void appendInstruction(TiToken token)
     {
         tokens.add(token);

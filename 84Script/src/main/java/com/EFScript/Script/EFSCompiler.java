@@ -28,6 +28,7 @@ import com.EFScript.Antlr.EFScriptParser.ValueContext;
 import com.EFScript.Antlr.EFScriptParser.Var_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.While_stmtContext;
 import com.EFScript.Ti.TiCompiler;
+import com.EFScript.Ti.TiDecompiler;
 import com.EFScript.Ti.TiToken;
 
 import org.antlr.v4.runtime.CharStreams;
@@ -172,8 +173,24 @@ public class EFSCompiler implements EFScriptListener
 	public void enterInc_stmt(Inc_stmtContext ctx) {
 		String identifier = ctx.identifier().getText();
 		int index = getVarIndex(identifier);
-		TiToken listSub = TiToken.getListSubscript(index);
-		
+		TiToken listSub = TiToken.getListSubscript(1);
+		compTokens.appendInstruction(TiToken.LIST);
+		compTokens.appendInstruction(listSub);
+		compTokens.appendInstruction(TiToken.OPEN_BRACKET);
+		compTokens.appendInstruction(TiToken.getNumber(index));
+		compTokens.appendInstruction(TiToken.CLOSE_BRACKET);
+		compTokens.appendInstruction(TiToken.ADD);
+		compTokens.appendInstruction(TiToken.NUM_1);
+		compTokens.appendInstruction(TiToken.STORE);
+		compTokens.appendInstruction(TiToken.LIST);
+		compTokens.appendInstruction(listSub);
+		compTokens.appendInstruction(TiToken.OPEN_BRACKET);
+		compTokens.appendInstruction(TiToken.getNumber(index));
+		compTokens.appendInstruction(TiToken.CLOSE_BRACKET);
+
+		byte[] compiled = compTokens.compile();
+		TiDecompiler decomp = new TiDecompiler(compiled);
+		Logger.Log(decomp.decompile());
 	}
 
 	@Override

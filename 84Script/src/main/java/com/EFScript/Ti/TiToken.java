@@ -2,6 +2,9 @@ package com.EFScript.Ti;
 
 import com.EFScript.Logger;
 
+import java.lang.Integer;
+import java.util.ArrayList;
+
 public enum TiToken {
     LIST_SUBSCRIPT_1(0x0, "1"),
     LIST_SUBSCRIPT_2(0x1, "2"),
@@ -82,8 +85,8 @@ public enum TiToken {
     DISP(0xDE, "DISP ");
 
 
-    byte hex;
-    String str;
+    public byte hex;
+    public String str;
     TiToken(int hex, String strRep)
     {
         this((byte)hex, strRep);
@@ -132,11 +135,40 @@ public enum TiToken {
     };
     public static TiToken getListSubscript(int index)
     {
-      TiToken t = TiToken.valueOf("LIST_SUBSCRIPT_"+index));
+      TiToken t = TiToken.valueOf("LIST_SUBSCRIPT_"+index);
       if(t == null)
       {
         Logger.Log("No such list "+index);
       }
       return t;
+    };
+	public static TiToken[] getNumber(int num)
+    {
+		if(num > 9 && num > -1)
+		{
+			ArrayList<TiToken> tokens = new ArrayList<>();
+			String numStr = ""+num;
+			for(int i = 0; i < numStr.length(); i++)
+			{
+				char c = numStr.charAt(i);
+				TiToken[] tkns = getNumber(Integer.parseInt(c+""));
+				for(TiToken tke : tkns)
+				{
+					tokens.add(tke);
+				}
+			}
+			TiToken[] arr = new TiToken[tokens.size()];
+			for(int i = 0; i < arr.length; i++)
+			{
+				arr[i] = tokens.get(i);
+			}
+			return arr;
+		}
+		if(num < 10 && num > -1)
+		{
+			TiToken[] token = new TiToken[]{TiToken.valueOf("NUM_"+num)};
+			return token;
+		}
+		return null;
     };
 }

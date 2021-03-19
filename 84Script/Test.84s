@@ -1,5 +1,5 @@
 var x = 4*pi;
-g++;
+x++;
 //Epic comment
 if(x > 3)
 {
