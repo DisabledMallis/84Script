@@ -38,13 +38,11 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-public class EFSCompiler implements EFScriptListener
-{
+public class EFSCompiler implements EFScriptListener {
 	private TiCompiler compTokens = new TiCompiler();
 	private ArrayList<String> varIdentifiers = new ArrayList<>();
 
-	public EFSCompiler(String code)
-	{
+	public EFSCompiler(String code) {
 		EFScriptLexer lexer = new EFScriptLexer(CharStreams.fromString(code));
 		EFScriptParser parser = new EFScriptParser(new CommonTokenStream(lexer));
 		ScriptContext context = parser.script();
@@ -53,37 +51,31 @@ public class EFSCompiler implements EFScriptListener
 		walker.walk(this, context);
 
 		int varCount = varIdentifiers.size();
-		Logger.Log("VarAmt: "+varCount);
+		Logger.Log("VarAmt: " + varCount);
 	}
 
-	public void addVar(String var)
-	{
-		for(String ident : varIdentifiers)
-		{
-			if(var.equals(ident))
-			{
-				Logger.Log("Identifier "+var+" is already defined!");
+	public void addVar(String var) {
+		for (String ident : varIdentifiers) {
+			if (var.equals(ident)) {
+				Logger.Log("Identifier " + var + " is already defined!");
 			}
 		}
 		varIdentifiers.add(var);
 	}
-	public int getVarIndex(String var)
-	{
+
+	public int getVarIndex(String var) {
 		int current = 0;
-		for(String ident : varIdentifiers)
-		{
-			if(ident.equals(var))
-			{
+		for (String ident : varIdentifiers) {
+			if (ident.equals(var)) {
 				return current;
 			}
 			current++;
 		}
-		Logger.Log("Could not find var \""+var+"\"");
+		Logger.Log("Could not find var \"" + var + "\"");
 		return -1;
 	}
 
-	public byte[] compile()
-	{
+	public byte[] compile() {
 		return new byte[0];
 	}
 
@@ -106,6 +98,73 @@ public class EFSCompiler implements EFScriptListener
 	@Override
 	public void enterScript(ScriptContext ctx) {
 		Logger.Log("Compiling...");
+		//Initialization section
+		//Basically just reset the registers
+		//(And hope I=0, otherwise the program will be die)
+		/*
+			If I=0
+			Then
+			0→G
+			0→F
+			0→C
+			1→I
+			End
+		*/
+		//IF I=0
+		//Then
+		compTokens.appendInstruction(TiToken.IF);
+		compTokens.appendInstruction(TiToken.LETTER_I);
+		compTokens.appendInstruction(TiToken.EQUALS);
+		compTokens.appendInstruction(TiToken.NUM_0);
+		compTokens.appendInstruction(TiToken.NEWLINE);
+		compTokens.appendInstruction(TiToken.THEN);
+		compTokens.appendInstruction(TiToken.NEWLINE);
+		/*
+			0→G
+			0→F
+			0→C
+			1→I
+		*/
+		//0→G
+		compTokens.appendInstruction(TiToken.NUM_0);
+		compTokens.appendInstruction(TiToken.STORE);
+		compTokens.appendInstruction(TiToken.LETTER_G);
+		compTokens.appendInstruction(TiToken.NEWLINE);
+		//0→F
+		compTokens.appendInstruction(TiToken.NUM_0);
+		compTokens.appendInstruction(TiToken.STORE);
+		compTokens.appendInstruction(TiToken.LETTER_F);
+		compTokens.appendInstruction(TiToken.NEWLINE);
+		//0→C
+		compTokens.appendInstruction(TiToken.NUM_0);
+		compTokens.appendInstruction(TiToken.STORE);
+		compTokens.appendInstruction(TiToken.LETTER_C);
+		compTokens.appendInstruction(TiToken.NEWLINE);
+		//1→I
+		compTokens.appendInstruction(TiToken.NUM_1);
+		compTokens.appendInstruction(TiToken.STORE);
+		compTokens.appendInstruction(TiToken.LETTER_I);
+		compTokens.appendInstruction(TiToken.NEWLINE);
+		//END
+		compTokens.appendInstruction(TiToken.END);
+		compTokens.appendInstruction(TiToken.NEWLINE);
+
+		//Function table
+		/*
+			//G determines if a func is called
+			If G>0	-|---------------Only this part can really be pre-generated
+			Then	-|
+			//F is which function
+			If F=0
+			Then
+			//L₂ is the parameter stack
+			L₂(1)+L₂(2)→C
+
+			End
+
+			End
+		*/
+
 	}
 
 	@Override
@@ -187,6 +246,8 @@ public class EFSCompiler implements EFScriptListener
 		compTokens.appendInstruction(TiToken.OPEN_BRACKET);
 		compTokens.appendInstruction(TiToken.getNumber(index));
 		compTokens.appendInstruction(TiToken.CLOSE_BRACKET);
+		compTokens.appendInstruction(TiToken.NEWLINE);
+
 
 		byte[] compiled = compTokens.compile();
 		TiDecompiler decomp = new TiDecompiler(compiled);

@@ -1,7 +1,14 @@
+
 var x = 4*pi;
+x++;
 x++;
 //Epic comment
 if(x > 3)
 {
 	var y = 4;
+	y++;
+}
+def Crud(nerd, nerd2)
+{
+	//OK
 }

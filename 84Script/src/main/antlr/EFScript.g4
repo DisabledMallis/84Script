@@ -6,8 +6,7 @@ package com.EFScript.Antlr;
 
 
 script
-	: function*
-	| statement*
+	: (function)* statement*
 	| EOF
 	;
 
@@ -16,7 +15,7 @@ function
 	;
 
 statement
-	: OPEN_CURLEY statement CLOSE_CURLEY
+	: OPEN_CURLEY (statement)* CLOSE_CURLEY
 	| assign_stmt
 	| add_assign_stmt
 	| sub_assign_stmt
