@@ -42,6 +42,8 @@ public class EFSCompiler implements EFScriptListener {
 	private TiCompiler compTokens = new TiCompiler();
 	private ArrayList<String> varIdentifiers = new ArrayList<>();
 
+	boolean funcDefComplete = false;
+
 	public EFSCompiler(String code) {
 		EFScriptLexer lexer = new EFScriptLexer(CharStreams.fromString(code));
 		EFScriptParser parser = new EFScriptParser(new CommonTokenStream(lexer));
@@ -152,7 +154,7 @@ public class EFSCompiler implements EFScriptListener {
 		//Function table
 		/*
 			//G determines if a func is called
-			If G>0	-|---------------Only this part can really be pre-generated
+			If G>0	-|---------------Funcs must be defined at thr top of the script
 			Then	-|
 			//F is which function
 			If F=0
@@ -174,6 +176,11 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void enterFunction(FunctionContext ctx) {
+		if(funcDefComplete)
+		{
+			Logger.Log("Functions must be defined before all statements. Make sure your functions are before any statements.");
+			return;
+		}
 	}
 
 	@Override
@@ -182,6 +189,7 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void enterStatement(StatementContext ctx) {
+		funcDefComplete = true;
 	}
 
 	@Override
@@ -249,9 +257,9 @@ public class EFSCompiler implements EFScriptListener {
 		compTokens.appendInstruction(TiToken.NEWLINE);
 
 
-		byte[] compiled = compTokens.compile();
-		TiDecompiler decomp = new TiDecompiler(compiled);
-		Logger.Log(decomp.decompile());
+		//byte[] compiled = compTokens.compile();
+		//TiDecompiler decomp = new TiDecompiler(compiled);
+		//Logger.Log(decomp.decompile());
 	}
 
 	@Override

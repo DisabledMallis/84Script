@@ -8,6 +8,7 @@ if(x > 3)
 	var y = 4;
 	y++;
 }
+//This should throw an error, functions *must* be defined at the top
 def Crud(nerd, nerd2)
 {
 	//OK
