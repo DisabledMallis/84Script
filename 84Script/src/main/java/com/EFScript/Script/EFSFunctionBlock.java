@@ -2,15 +2,22 @@ package com.EFScript.Script;
 
 import java.util.ArrayList;
 
+import com.EFScript.Antlr.EFScriptParser.FunctionContext;
 import com.EFScript.Ti.TiToken;
 
 //A class for compiled & compiling functions
 public class EFSFunctionBlock {
 	ArrayList<TiToken> tokens;
+	public EFSFunctionBlock(FunctionContext ctx)
+	{
+		
+	}
 	public EFSFunctionBlock()
 	{
 		tokens = new ArrayList<>();
 	}
+
+	
 
 	public TiToken[] getCompiled()
 	{
