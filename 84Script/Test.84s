@@ -1,13 +1,16 @@
+//Awesome func
 def Crud(nerd, nerd2)
 {
 	//OK
 }
-def Another(hey, you)
-{
-	
-}
 var x = 4*pi;
 x++;
+//Func defs can happen anywhere
+//However they are always going to be accessible everywhere in the script.
+def Another(hey, you)
+{
+	Another(1,2);
+}
 x++;
 //Epic comment
 if(x > 3)
