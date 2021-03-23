@@ -6,12 +6,17 @@ package com.EFScript.Antlr;
 
 
 script
-	: (function)* statement*
+	: code*
 	| EOF
 	;
 
+code
+	: function
+	| statement
+	;
+
 function
-	: DEF identifier OPEN_BRACKET identifier* (',' identifier)* CLOSE_BRACKET statement
+	: 'def' identifier OPEN_BRACKET identifier* (',' identifier)* CLOSE_BRACKET statement
 	;
 
 statement

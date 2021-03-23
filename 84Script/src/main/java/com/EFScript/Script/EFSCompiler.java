@@ -10,6 +10,7 @@ import com.EFScript.Antlr.EFScriptParser;
 import com.EFScript.Antlr.EFScriptParser.Add_assign_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.Assign_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.BoolexprContext;
+import com.EFScript.Antlr.EFScriptParser.CodeContext;
 import com.EFScript.Antlr.EFScriptParser.Dec_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.Div_assign_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.ExpressionContext;
@@ -176,11 +177,6 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void enterFunction(FunctionContext ctx) {
-		if(funcDefComplete)
-		{
-			Logger.Log("Functions must be defined before all statements. Make sure your functions are before any statements.");
-			return;
-		}
 	}
 
 	@Override
@@ -189,7 +185,6 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void enterStatement(StatementContext ctx) {
-		funcDefComplete = true;
 	}
 
 	@Override
@@ -354,5 +349,17 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void exitIdentifier(IdentifierContext ctx) {
+	}
+
+	@Override
+	public void enterCode(CodeContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exitCode(CodeContext ctx) {
+		// TODO Auto-generated method stub
+		
 	}
 }

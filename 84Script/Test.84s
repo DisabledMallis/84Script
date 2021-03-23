@@ -1,4 +1,11 @@
-
+def Crud(nerd, nerd2)
+{
+	//OK
+}
+def Another(hey, you)
+{
+	
+}
 var x = 4*pi;
 x++;
 x++;
@@ -7,9 +14,4 @@ if(x > 3)
 {
 	var y = 4;
 	y++;
-}
-//This should throw an error, functions *must* be defined at the top
-def Crud(nerd, nerd2)
-{
-	//OK
 }

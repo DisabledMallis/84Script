@@ -20,6 +20,16 @@ public interface EFScriptListener extends ParseTreeListener {
 	 */
 	void exitScript(EFScriptParser.ScriptContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link EFScriptParser#code}.
+	 * @param ctx the parse tree
+	 */
+	void enterCode(EFScriptParser.CodeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EFScriptParser#code}.
+	 * @param ctx the parse tree
+	 */
+	void exitCode(EFScriptParser.CodeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link EFScriptParser#function}.
 	 * @param ctx the parse tree
 	 */
