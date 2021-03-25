@@ -12,7 +12,6 @@ public class EFSVarBlock extends EFSGenericStmtBlock<Var_stmtContext>{
 
 	@Override
 	public TiToken[] compile() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

@@ -1,12 +1,15 @@
 package com.EFScript.Script;
 
+import com.EFScript.Antlr.EFScriptParser.Add_assign_stmtContext;
+import com.EFScript.Antlr.EFScriptParser.Assign_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.Dec_stmtContext;
+import com.EFScript.Antlr.EFScriptParser.Div_assign_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.If_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.Inc_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.StatementContext;
+import com.EFScript.Antlr.EFScriptParser.Mul_assign_stmtContext;
+import com.EFScript.Antlr.EFScriptParser.Return_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.Var_stmtContext;
 import com.EFScript.Antlr.EFScriptParser.While_stmtContext;
-import com.EFScript.Ti.TiToken;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
@@ -33,12 +36,26 @@ public class EFSGenStmt {
 		{
 			return new EFSWhileBlock((While_stmtContext)ctx);
 		}
-		ctx.assign_stmt();
-		ctx.return_stmt();
-		ctx.add_assign_stmt();
-		ctx.div_assign_stmt();
-		ctx.mul_assign_stmt();
-		ctx.END_STMT();
+		if(ctx instanceof Assign_stmtContext)
+		{
+			return new EFSAssignBlock((Assign_stmtContext)ctx);
+		}
+		if(ctx instanceof Return_stmtContext)
+		{
+			return new EFSReturnBlock((Return_stmtContext)ctx);
+		}
+		if(ctx instanceof Add_assign_stmtContext)
+		{
+			return new EFSAddAssignBlock((Add_assign_stmtContext)ctx);
+		}
+		if(ctx instanceof Div_assign_stmtContext)
+		{
+			return new EFSDivAssignBlock((Div_assign_stmtContext)ctx);
+		}
+		if(ctx instanceof Mul_assign_stmtContext)
+		{
+			return new EFSMulAssignBlock((Mul_assign_stmtContext)ctx);
+		}
 
 		return null;
 	}

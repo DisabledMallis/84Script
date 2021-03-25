@@ -6,11 +6,10 @@ public class EFSScriptBlock implements IBlock {
 
 	public EFSScriptBlock()
 	{
-		
+
 	}
 	@Override
 	public TiToken[] compile() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
