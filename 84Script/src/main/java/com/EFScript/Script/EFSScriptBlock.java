@@ -1,6 +1,6 @@
-package com.EFScript.Script;
+package com.efscript.script;
 
-import com.EFScript.Ti.TiToken;
+import com.efscript.ti.TiToken;
 
 public class EFSScriptBlock implements IBlock {
 

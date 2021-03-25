@@ -22,7 +22,7 @@ sourceCompatibility = 11
 
 application {
     // Define the main class for the application.
-    mainClass = 'com.EFScript.Main'
+    mainClass = 'com.efscript.Main'
 }
 
 sourceSets {

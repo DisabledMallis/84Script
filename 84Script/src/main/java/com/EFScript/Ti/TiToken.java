@@ -1,6 +1,6 @@
-package com.EFScript.Ti;
+package com.efscript.ti;
 
-import com.EFScript.Logger;
+import com.efscript.Logger;
 
 import java.lang.Integer;
 import java.util.ArrayList;

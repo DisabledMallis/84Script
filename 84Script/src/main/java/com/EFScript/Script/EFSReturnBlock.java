@@ -1,7 +1,7 @@
-package com.EFScript.Script;
+package com.efscript.script;
 
-import com.EFScript.Antlr.EFScriptParser.Return_stmtContext;
-import com.EFScript.Ti.TiToken;
+import com.efscript.antlr.EFScriptParser.Return_stmtContext;
+import com.efscript.ti.TiToken;
 
 public class EFSReturnBlock extends EFSGenericStmtBlock<Return_stmtContext> {
 
@@ -13,5 +13,4 @@ public class EFSReturnBlock extends EFSGenericStmtBlock<Return_stmtContext> {
 	public TiToken[] compile() {
 		return null;
 	}
-	
 }

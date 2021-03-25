@@ -1,7 +1,7 @@
-package com.EFScript.Script;
+package com.efscript.script;
 
-import com.EFScript.Antlr.EFScriptParser.While_stmtContext;
-import com.EFScript.Ti.TiToken;
+import com.efscript.antlr.EFScriptParser.While_stmtContext;
+import com.efscript.ti.TiToken;
 
 public class EFSWhileBlock extends EFSGenericStmtBlock<While_stmtContext> {
 

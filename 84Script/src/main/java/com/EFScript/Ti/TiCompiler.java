@@ -1,8 +1,8 @@
-package com.EFScript.Ti;
+package com.efscript.ti;
 
 import java.util.ArrayList;
 
-import com.EFScript.Logger;
+import com.efscript.Logger;
 
 public class TiCompiler {
     ArrayList<TiToken> tokens;

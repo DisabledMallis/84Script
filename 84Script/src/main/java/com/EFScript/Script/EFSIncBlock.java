@@ -1,7 +1,7 @@
-package com.EFScript.Script;
+package com.efscript.script;
 
-import com.EFScript.Antlr.EFScriptParser.Inc_stmtContext;
-import com.EFScript.Ti.TiToken;
+import com.efscript.antlr.EFScriptParser.Inc_stmtContext;
+import com.efscript.ti.TiToken;
 
 public class EFSIncBlock extends EFSGenericStmtBlock<Inc_stmtContext> {
 

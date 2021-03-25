@@ -1,6 +1,6 @@
-package com.EFScript.Ti;
+package com.efscript.ti;
 
-import com.EFScript.Logger;
+import com.efscript.Logger;
 
 public class TiDecompiler {
 	byte[] code;

@@ -1,36 +1,34 @@
-package com.EFScript.Script;
+package com.efscript.script;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import com.EFScript.Logger;
-import com.EFScript.Antlr.EFScriptLexer;
-import com.EFScript.Antlr.EFScriptListener;
-import com.EFScript.Antlr.EFScriptParser;
-import com.EFScript.Antlr.EFScriptParser.Add_assign_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Assign_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.BoolexprContext;
-import com.EFScript.Antlr.EFScriptParser.CodeContext;
-import com.EFScript.Antlr.EFScriptParser.Dec_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Div_assign_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.ExpressionContext;
-import com.EFScript.Antlr.EFScriptParser.FunctionContext;
-import com.EFScript.Antlr.EFScriptParser.IdentifierContext;
-import com.EFScript.Antlr.EFScriptParser.If_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Inc_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.MethodcallContext;
-import com.EFScript.Antlr.EFScriptParser.MethodparamsContext;
-import com.EFScript.Antlr.EFScriptParser.Mul_assign_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Return_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.ScriptContext;
-import com.EFScript.Antlr.EFScriptParser.StatementContext;
-import com.EFScript.Antlr.EFScriptParser.Sub_assign_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.ValueContext;
-import com.EFScript.Antlr.EFScriptParser.Var_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.While_stmtContext;
-import com.EFScript.Ti.TiCompiler;
-import com.EFScript.Ti.TiDecompiler;
-import com.EFScript.Ti.TiToken;
+import com.efscript.Logger;
+import com.efscript.antlr.EFScriptLexer;
+import com.efscript.antlr.EFScriptListener;
+import com.efscript.antlr.EFScriptParser;
+import com.efscript.antlr.EFScriptParser.Add_assign_stmtContext;
+import com.efscript.antlr.EFScriptParser.Assign_stmtContext;
+import com.efscript.antlr.EFScriptParser.BoolexprContext;
+import com.efscript.antlr.EFScriptParser.CodeContext;
+import com.efscript.antlr.EFScriptParser.Dec_stmtContext;
+import com.efscript.antlr.EFScriptParser.Div_assign_stmtContext;
+import com.efscript.antlr.EFScriptParser.ExpressionContext;
+import com.efscript.antlr.EFScriptParser.FunctionContext;
+import com.efscript.antlr.EFScriptParser.IdentifierContext;
+import com.efscript.antlr.EFScriptParser.If_stmtContext;
+import com.efscript.antlr.EFScriptParser.Inc_stmtContext;
+import com.efscript.antlr.EFScriptParser.MethodcallContext;
+import com.efscript.antlr.EFScriptParser.MethodparamsContext;
+import com.efscript.antlr.EFScriptParser.Mul_assign_stmtContext;
+import com.efscript.antlr.EFScriptParser.Return_stmtContext;
+import com.efscript.antlr.EFScriptParser.ScriptContext;
+import com.efscript.antlr.EFScriptParser.StatementContext;
+import com.efscript.antlr.EFScriptParser.Sub_assign_stmtContext;
+import com.efscript.antlr.EFScriptParser.ValueContext;
+import com.efscript.antlr.EFScriptParser.Var_stmtContext;
+import com.efscript.antlr.EFScriptParser.While_stmtContext;
+import com.efscript.ti.TiCompiler;
+import com.efscript.ti.TiToken;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -101,6 +99,7 @@ public class EFSCompiler implements EFScriptListener {
 	@Override
 	public void enterScript(ScriptContext ctx) {
 		Logger.Log("Compiling...");
+		//TODO: Relocate this shit
 		//Initialization section
 		//Basically just reset the registers
 		//(And hope I=0, otherwise the program will be die)

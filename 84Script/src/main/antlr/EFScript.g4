@@ -1,7 +1,7 @@
 grammar EFScript;
 
 @header {
-package com.EFScript.Antlr;
+package com.efscript.antlr;
 } 
 
 

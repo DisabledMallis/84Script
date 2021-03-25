@@ -1,15 +1,15 @@
-package com.EFScript.Script;
+package com.efscript.script;
 
-import com.EFScript.Antlr.EFScriptParser.Add_assign_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Assign_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Dec_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Div_assign_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.If_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Inc_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Mul_assign_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Return_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.Var_stmtContext;
-import com.EFScript.Antlr.EFScriptParser.While_stmtContext;
+import com.efscript.antlr.EFScriptParser.Add_assign_stmtContext;
+import com.efscript.antlr.EFScriptParser.Assign_stmtContext;
+import com.efscript.antlr.EFScriptParser.Dec_stmtContext;
+import com.efscript.antlr.EFScriptParser.Div_assign_stmtContext;
+import com.efscript.antlr.EFScriptParser.If_stmtContext;
+import com.efscript.antlr.EFScriptParser.Inc_stmtContext;
+import com.efscript.antlr.EFScriptParser.Mul_assign_stmtContext;
+import com.efscript.antlr.EFScriptParser.Return_stmtContext;
+import com.efscript.antlr.EFScriptParser.Var_stmtContext;
+import com.efscript.antlr.EFScriptParser.While_stmtContext;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 

@@ -1,6 +1,6 @@
 // Generated from EFScript.g4 by ANTLR 4.9.1
 
-package com.EFScript.Antlr;
+package com.efscript.antlr;
 
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 

@@ -1,4 +1,4 @@
-package com.EFScript;
+package com.efscript;
 
 public class Logger
 {

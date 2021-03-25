@@ -1,7 +1,7 @@
-package com.EFScript.Script;
+package com.efscript.script;
 
-import com.EFScript.Antlr.EFScriptParser.Assign_stmtContext;
-import com.EFScript.Ti.TiToken;
+import com.efscript.antlr.EFScriptParser.Assign_stmtContext;
+import com.efscript.ti.TiToken;
 
 public class EFSAssignBlock extends EFSGenericStmtBlock<Assign_stmtContext> {
 
@@ -11,7 +11,6 @@ public class EFSAssignBlock extends EFSGenericStmtBlock<Assign_stmtContext> {
 
 	@Override
 	public TiToken[] compile() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	

@@ -1,12 +1,12 @@
-package com.EFScript;
+package com.efscript;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.EFScript.Script.EFSCompiler;
-import com.EFScript.Ti.TiCompiler;
-import com.EFScript.Ti.TiFile;
-import com.EFScript.Ti.TiToken;
+import com.efscript.script.EFSCompiler;
+import com.efscript.ti.TiCompiler;
+import com.efscript.ti.TiFile;
+import com.efscript.ti.TiToken;
 
 public class Main {
 	public static final String version = "0.0.1";
