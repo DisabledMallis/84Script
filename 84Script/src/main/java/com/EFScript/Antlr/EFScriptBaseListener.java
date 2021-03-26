@@ -54,6 +54,18 @@ public class EFScriptBaseListener implements EFScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFunc_params(EFScriptParser.Func_paramsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunc_params(EFScriptParser.Func_paramsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStatement(EFScriptParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}

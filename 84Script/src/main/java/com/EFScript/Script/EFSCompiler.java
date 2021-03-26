@@ -13,6 +13,7 @@ import com.efscript.antlr.EFScriptParser.CodeContext;
 import com.efscript.antlr.EFScriptParser.Dec_stmtContext;
 import com.efscript.antlr.EFScriptParser.Div_assign_stmtContext;
 import com.efscript.antlr.EFScriptParser.ExpressionContext;
+import com.efscript.antlr.EFScriptParser.Func_paramsContext;
 import com.efscript.antlr.EFScriptParser.FunctionContext;
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
 import com.efscript.antlr.EFScriptParser.If_stmtContext;
@@ -40,6 +41,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 public class EFSCompiler implements EFScriptListener {
 	private TiCompiler compTokens = new TiCompiler();
 	private ArrayList<String> varIdentifiers = new ArrayList<>();
+	private ArrayList<EFSFunctionBlock> funcBlocks = new ArrayList<>();
 
 	boolean funcDefComplete = false;
 
@@ -176,6 +178,8 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void enterFunction(FunctionContext ctx) {
+		EFSFunctionBlock funcBlock = new EFSFunctionBlock(ctx);
+		funcBlocks.add(funcBlock);
 	}
 
 	@Override
@@ -357,6 +361,18 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void exitCode(CodeContext ctx) {
+		
+	}
+
+	@Override
+	public void enterFunc_params(Func_paramsContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void exitFunc_params(Func_paramsContext ctx) {
+		// TODO Auto-generated method stub
 		
 	}
 }

@@ -1,8 +1,8 @@
 //Awesome func
-def Crud(nerd, nerd2)
-{
-	//OK
+def Crud(nerd, nerd2) {
+	return nerd+nerd2;
 }
+
 var x = 4*pi;
 x++;
 //Func defs can happen anywhere

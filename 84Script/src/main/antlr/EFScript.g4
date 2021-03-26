@@ -16,7 +16,10 @@ code
 	;
 
 function
-	: 'def' identifier OPEN_BRACKET identifier* (',' identifier)* CLOSE_BRACKET statement
+	: 'def' identifier OPEN_BRACKET func_params CLOSE_BRACKET statement
+	;
+func_params
+	: identifier* (',' identifier)*
 	;
 
 statement

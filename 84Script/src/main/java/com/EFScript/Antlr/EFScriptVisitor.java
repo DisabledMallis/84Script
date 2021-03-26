@@ -31,6 +31,12 @@ public interface EFScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunction(EFScriptParser.FunctionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link EFScriptParser#func_params}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunc_params(EFScriptParser.Func_paramsContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link EFScriptParser#statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
