@@ -15,7 +15,7 @@ dependencies {
 generateGrammarSource {
     maxHeapSize = "64m"
     arguments += ["-visitor", "-long-messages"]
-    outputDirectory = file("src/main/java/com/EFScript/Antlr")
+    outputDirectory = file("src/main/java/com/efscript/antlr")
 }
 
 sourceCompatibility = 11
