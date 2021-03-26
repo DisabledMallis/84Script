@@ -5,11 +5,11 @@ import com.efscript.script.IBlock;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
-public class EFSExpressionBlock implements IBlock {
+public class EFSExpressionBlock<T extends ExpressionContext> implements IBlock {
 
 	//The context
-	private ExpressionContext ctx;
-	public EFSExpressionBlock(ExpressionContext ctx)
+	private T ctx;
+	public EFSExpressionBlock(T ctx)
 	{
 		this.ctx = ctx;
 	}
