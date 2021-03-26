@@ -1203,11 +1203,8 @@ public class EFScriptParser extends Parser {
 			return getRuleContext(ExpressionContext.class,0);
 		}
 		public TerminalNode CLOSE_BRACKET() { return getToken(EFScriptParser.CLOSE_BRACKET, 0); }
-		public List<ValueContext> value() {
-			return getRuleContexts(ValueContext.class);
-		}
-		public ValueContext value(int i) {
-			return getRuleContext(ValueContext.class,i);
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
 		}
 		public TerminalNode ADD() { return getToken(EFScriptParser.ADD, 0); }
 		public TerminalNode SUB() { return getToken(EFScriptParser.SUB, 0); }
@@ -1244,7 +1241,7 @@ public class EFScriptParser extends Parser {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
 		enterRule(_localctx, 32, RULE_expression);
 		try {
-			setState(181);
+			setState(182);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 			case 1:
@@ -1266,7 +1263,7 @@ public class EFScriptParser extends Parser {
 				setState(162);
 				match(ADD);
 				setState(163);
-				value();
+				expression();
 				}
 				break;
 			case 3:
@@ -1277,7 +1274,7 @@ public class EFScriptParser extends Parser {
 				setState(166);
 				match(SUB);
 				setState(167);
-				value();
+				expression();
 				}
 				break;
 			case 4:
@@ -1288,7 +1285,7 @@ public class EFScriptParser extends Parser {
 				setState(170);
 				match(MUL);
 				setState(171);
-				value();
+				expression();
 				}
 				break;
 			case 5:
@@ -1299,34 +1296,41 @@ public class EFScriptParser extends Parser {
 				setState(174);
 				match(DIV);
 				setState(175);
-				value();
+				expression();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(177);
-				identifier();
+				value();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(178);
-				match(NUMBER);
+				identifier();
 				}
 				break;
 			case 8:
 				enterOuterAlt(_localctx, 8);
 				{
 				setState(179);
-				match(QUOTED_TEXT);
+				match(NUMBER);
 				}
 				break;
 			case 9:
 				enterOuterAlt(_localctx, 9);
 				{
 				setState(180);
+				match(QUOTED_TEXT);
+				}
+				break;
+			case 10:
+				enterOuterAlt(_localctx, 10);
+				{
+				setState(181);
 				methodcall();
 				}
 				break;
@@ -1379,71 +1383,71 @@ public class EFScriptParser extends Parser {
 		BoolexprContext _localctx = new BoolexprContext(_ctx, getState());
 		enterRule(_localctx, 34, RULE_boolexpr);
 		try {
-			setState(202);
+			setState(203);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(183);
+				setState(184);
 				identifier();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(184);
+				setState(185);
 				match(TRUE);
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(185);
+				setState(186);
 				match(FALSE);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(186);
-				identifier();
 				setState(187);
-				match(GREATER_THAN);
+				identifier();
 				setState(188);
+				match(GREATER_THAN);
+				setState(189);
 				expression();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(190);
-				identifier();
 				setState(191);
-				match(LESS_THAN);
+				identifier();
 				setState(192);
+				match(LESS_THAN);
+				setState(193);
 				expression();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(194);
-				identifier();
 				setState(195);
-				match(EQUAL_TO);
+				identifier();
 				setState(196);
+				match(EQUAL_TO);
+				setState(197);
 				expression();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(198);
-				identifier();
 				setState(199);
-				match(NOT_EQUAL_TO);
+				identifier();
 				setState(200);
+				match(NOT_EQUAL_TO);
+				setState(201);
 				expression();
 				}
 				break;
@@ -1494,13 +1498,13 @@ public class EFScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(204);
-			identifier();
 			setState(205);
-			match(OPEN_BRACKET);
+			identifier();
 			setState(206);
-			methodparams();
+			match(OPEN_BRACKET);
 			setState(207);
+			methodparams();
+			setState(208);
 			match(CLOSE_BRACKET);
 			}
 		}
@@ -1548,21 +1552,21 @@ public class EFScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(209);
+			setState(210);
 			expression();
-			setState(214);
+			setState(215);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__0) {
 				{
 				{
-				setState(210);
-				match(T__0);
 				setState(211);
+				match(T__0);
+				setState(212);
 				expression();
 				}
 				}
-				setState(216);
+				setState(217);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1607,20 +1611,20 @@ public class EFScriptParser extends Parser {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
 		enterRule(_localctx, 40, RULE_value);
 		try {
-			setState(219);
+			setState(220);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case IDENTIFIER:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(217);
+				setState(218);
 				identifier();
 				}
 				break;
 			case NUMBER:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(218);
+				setState(219);
 				match(NUMBER);
 				}
 				break;
@@ -1666,7 +1670,7 @@ public class EFScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(221);
+			setState(222);
 			match(IDENTIFIER);
 			}
 		}
@@ -1682,7 +1686,7 @@ public class EFScriptParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3&\u00e2\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3&\u00e3\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\3\2\7\2\60\n\2\f\2"+
@@ -1694,16 +1698,16 @@ public class EFScriptParser extends Parser {
 		"\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\16\3\16\3\16\3\16\3\16\3\16\3\17\3\17\3"+
 		"\17\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\20\3\21\3\21\3\21\3\21\3"+
 		"\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3"+
-		"\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u00b8\n\22\3\23"+
+		"\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u00b9\n\22"+
 		"\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23"+
-		"\3\23\3\23\3\23\3\23\5\23\u00cd\n\23\3\24\3\24\3\24\3\24\3\24\3\25\3\25"+
-		"\3\25\7\25\u00d7\n\25\f\25\16\25\u00da\13\25\3\26\3\26\5\26\u00de\n\26"+
-		"\3\27\3\27\3\27\2\2\30\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,"+
-		"\2\2\2\u00ee\2\65\3\2\2\2\49\3\2\2\2\6;\3\2\2\2\bE\3\2\2\2\nf\3\2\2\2"+
-		"\fh\3\2\2\2\16m\3\2\2\2\20r\3\2\2\2\22w\3\2\2\2\24|\3\2\2\2\26\u0081\3"+
-		"\2\2\2\30\u0085\3\2\2\2\32\u0089\3\2\2\2\34\u008f\3\2\2\2\36\u0095\3\2"+
-		"\2\2 \u009b\3\2\2\2\"\u00b7\3\2\2\2$\u00cc\3\2\2\2&\u00ce\3\2\2\2(\u00d3"+
-		"\3\2\2\2*\u00dd\3\2\2\2,\u00df\3\2\2\2.\60\5\4\3\2/.\3\2\2\2\60\63\3\2"+
+		"\3\23\3\23\3\23\3\23\3\23\5\23\u00ce\n\23\3\24\3\24\3\24\3\24\3\24\3\25"+
+		"\3\25\3\25\7\25\u00d8\n\25\f\25\16\25\u00db\13\25\3\26\3\26\5\26\u00df"+
+		"\n\26\3\27\3\27\3\27\2\2\30\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \""+
+		"$&(*,\2\2\2\u00f0\2\65\3\2\2\2\49\3\2\2\2\6;\3\2\2\2\bE\3\2\2\2\nf\3\2"+
+		"\2\2\fh\3\2\2\2\16m\3\2\2\2\20r\3\2\2\2\22w\3\2\2\2\24|\3\2\2\2\26\u0081"+
+		"\3\2\2\2\30\u0085\3\2\2\2\32\u0089\3\2\2\2\34\u008f\3\2\2\2\36\u0095\3"+
+		"\2\2\2 \u009b\3\2\2\2\"\u00b8\3\2\2\2$\u00cd\3\2\2\2&\u00cf\3\2\2\2(\u00d4"+
+		"\3\2\2\2*\u00de\3\2\2\2,\u00e0\3\2\2\2.\60\5\4\3\2/.\3\2\2\2\60\63\3\2"+
 		"\2\2\61/\3\2\2\2\61\62\3\2\2\2\62\66\3\2\2\2\63\61\3\2\2\2\64\66\7\2\2"+
 		"\3\65\61\3\2\2\2\65\64\3\2\2\2\66\3\3\2\2\2\67:\5\6\4\28:\5\n\6\29\67"+
 		"\3\2\2\298\3\2\2\2:\5\3\2\2\2;<\7\30\2\2<=\5,\27\2=>\7\4\2\2>?\5\b\5\2"+
@@ -1728,30 +1732,30 @@ public class EFScriptParser extends Parser {
 		"\3\2\2\2\u0095\u0096\7\31\2\2\u0096\u0097\5,\27\2\u0097\u0098\7\21\2\2"+
 		"\u0098\u0099\5\"\22\2\u0099\u009a\7\b\2\2\u009a\37\3\2\2\2\u009b\u009c"+
 		"\7\34\2\2\u009c\u009d\5\"\22\2\u009d\u009e\7\b\2\2\u009e!\3\2\2\2\u009f"+
-		"\u00a0\7\4\2\2\u00a0\u00a1\5\"\22\2\u00a1\u00a2\7\5\2\2\u00a2\u00b8\3"+
-		"\2\2\2\u00a3\u00a4\5*\26\2\u00a4\u00a5\7\t\2\2\u00a5\u00a6\5*\26\2\u00a6"+
-		"\u00b8\3\2\2\2\u00a7\u00a8\5*\26\2\u00a8\u00a9\7\n\2\2\u00a9\u00aa\5*"+
-		"\26\2\u00aa\u00b8\3\2\2\2\u00ab\u00ac\5*\26\2\u00ac\u00ad\7\13\2\2\u00ad"+
-		"\u00ae\5*\26\2\u00ae\u00b8\3\2\2\2\u00af\u00b0\5*\26\2\u00b0\u00b1\7\f"+
-		"\2\2\u00b1\u00b2\5*\26\2\u00b2\u00b8\3\2\2\2\u00b3\u00b8\5,\27\2\u00b4"+
-		"\u00b8\7 \2\2\u00b5\u00b8\7#\2\2\u00b6\u00b8\5&\24\2\u00b7\u009f\3\2\2"+
-		"\2\u00b7\u00a3\3\2\2\2\u00b7\u00a7\3\2\2\2\u00b7\u00ab\3\2\2\2\u00b7\u00af"+
-		"\3\2\2\2\u00b7\u00b3\3\2\2\2\u00b7\u00b4\3\2\2\2\u00b7\u00b5\3\2\2\2\u00b7"+
-		"\u00b6\3\2\2\2\u00b8#\3\2\2\2\u00b9\u00cd\5,\27\2\u00ba\u00cd\7\35\2\2"+
-		"\u00bb\u00cd\7\36\2\2\u00bc\u00bd\5,\27\2\u00bd\u00be\7\r\2\2\u00be\u00bf"+
-		"\5\"\22\2\u00bf\u00cd\3\2\2\2\u00c0\u00c1\5,\27\2\u00c1\u00c2\7\16\2\2"+
-		"\u00c2\u00c3\5\"\22\2\u00c3\u00cd\3\2\2\2\u00c4\u00c5\5,\27\2\u00c5\u00c6"+
-		"\7\17\2\2\u00c6\u00c7\5\"\22\2\u00c7\u00cd\3\2\2\2\u00c8\u00c9\5,\27\2"+
-		"\u00c9\u00ca\7\20\2\2\u00ca\u00cb\5\"\22\2\u00cb\u00cd\3\2\2\2\u00cc\u00b9"+
-		"\3\2\2\2\u00cc\u00ba\3\2\2\2\u00cc\u00bb\3\2\2\2\u00cc\u00bc\3\2\2\2\u00cc"+
-		"\u00c0\3\2\2\2\u00cc\u00c4\3\2\2\2\u00cc\u00c8\3\2\2\2\u00cd%\3\2\2\2"+
-		"\u00ce\u00cf\5,\27\2\u00cf\u00d0\7\4\2\2\u00d0\u00d1\5(\25\2\u00d1\u00d2"+
-		"\7\5\2\2\u00d2\'\3\2\2\2\u00d3\u00d8\5\"\22\2\u00d4\u00d5\7\3\2\2\u00d5"+
-		"\u00d7\5\"\22\2\u00d6\u00d4\3\2\2\2\u00d7\u00da\3\2\2\2\u00d8\u00d6\3"+
-		"\2\2\2\u00d8\u00d9\3\2\2\2\u00d9)\3\2\2\2\u00da\u00d8\3\2\2\2\u00db\u00de"+
-		"\5,\27\2\u00dc\u00de\7 \2\2\u00dd\u00db\3\2\2\2\u00dd\u00dc\3\2\2\2\u00de"+
-		"+\3\2\2\2\u00df\u00e0\7\37\2\2\u00e0-\3\2\2\2\r\61\659ELSf\u00b7\u00cc"+
-		"\u00d8\u00dd";
+		"\u00a0\7\4\2\2\u00a0\u00a1\5\"\22\2\u00a1\u00a2\7\5\2\2\u00a2\u00b9\3"+
+		"\2\2\2\u00a3\u00a4\5*\26\2\u00a4\u00a5\7\t\2\2\u00a5\u00a6\5\"\22\2\u00a6"+
+		"\u00b9\3\2\2\2\u00a7\u00a8\5*\26\2\u00a8\u00a9\7\n\2\2\u00a9\u00aa\5\""+
+		"\22\2\u00aa\u00b9\3\2\2\2\u00ab\u00ac\5*\26\2\u00ac\u00ad\7\13\2\2\u00ad"+
+		"\u00ae\5\"\22\2\u00ae\u00b9\3\2\2\2\u00af\u00b0\5*\26\2\u00b0\u00b1\7"+
+		"\f\2\2\u00b1\u00b2\5\"\22\2\u00b2\u00b9\3\2\2\2\u00b3\u00b9\5*\26\2\u00b4"+
+		"\u00b9\5,\27\2\u00b5\u00b9\7 \2\2\u00b6\u00b9\7#\2\2\u00b7\u00b9\5&\24"+
+		"\2\u00b8\u009f\3\2\2\2\u00b8\u00a3\3\2\2\2\u00b8\u00a7\3\2\2\2\u00b8\u00ab"+
+		"\3\2\2\2\u00b8\u00af\3\2\2\2\u00b8\u00b3\3\2\2\2\u00b8\u00b4\3\2\2\2\u00b8"+
+		"\u00b5\3\2\2\2\u00b8\u00b6\3\2\2\2\u00b8\u00b7\3\2\2\2\u00b9#\3\2\2\2"+
+		"\u00ba\u00ce\5,\27\2\u00bb\u00ce\7\35\2\2\u00bc\u00ce\7\36\2\2\u00bd\u00be"+
+		"\5,\27\2\u00be\u00bf\7\r\2\2\u00bf\u00c0\5\"\22\2\u00c0\u00ce\3\2\2\2"+
+		"\u00c1\u00c2\5,\27\2\u00c2\u00c3\7\16\2\2\u00c3\u00c4\5\"\22\2\u00c4\u00ce"+
+		"\3\2\2\2\u00c5\u00c6\5,\27\2\u00c6\u00c7\7\17\2\2\u00c7\u00c8\5\"\22\2"+
+		"\u00c8\u00ce\3\2\2\2\u00c9\u00ca\5,\27\2\u00ca\u00cb\7\20\2\2\u00cb\u00cc"+
+		"\5\"\22\2\u00cc\u00ce\3\2\2\2\u00cd\u00ba\3\2\2\2\u00cd\u00bb\3\2\2\2"+
+		"\u00cd\u00bc\3\2\2\2\u00cd\u00bd\3\2\2\2\u00cd\u00c1\3\2\2\2\u00cd\u00c5"+
+		"\3\2\2\2\u00cd\u00c9\3\2\2\2\u00ce%\3\2\2\2\u00cf\u00d0\5,\27\2\u00d0"+
+		"\u00d1\7\4\2\2\u00d1\u00d2\5(\25\2\u00d2\u00d3\7\5\2\2\u00d3\'\3\2\2\2"+
+		"\u00d4\u00d9\5\"\22\2\u00d5\u00d6\7\3\2\2\u00d6\u00d8\5\"\22\2\u00d7\u00d5"+
+		"\3\2\2\2\u00d8\u00db\3\2\2\2\u00d9\u00d7\3\2\2\2\u00d9\u00da\3\2\2\2\u00da"+
+		")\3\2\2\2\u00db\u00d9\3\2\2\2\u00dc\u00df\5,\27\2\u00dd\u00df\7 \2\2\u00de"+
+		"\u00dc\3\2\2\2\u00de\u00dd\3\2\2\2\u00df+\3\2\2\2\u00e0\u00e1\7\37\2\2"+
+		"\u00e1-\3\2\2\2\r\61\659ELSf\u00b8\u00cd\u00d9\u00de";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

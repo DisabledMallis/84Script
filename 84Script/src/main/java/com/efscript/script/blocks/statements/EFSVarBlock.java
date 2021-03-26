@@ -1,4 +1,4 @@
-package com.efscript.script.blocks;
+package com.efscript.script.blocks.statements;
 
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
 import com.efscript.antlr.EFScriptParser.Var_stmtContext;

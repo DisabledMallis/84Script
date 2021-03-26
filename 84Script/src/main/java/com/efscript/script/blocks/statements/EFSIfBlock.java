@@ -1,4 +1,4 @@
-package com.efscript.script.blocks;
+package com.efscript.script.blocks.statements;
 
 import com.efscript.antlr.EFScriptParser.If_stmtContext;
 import com.efscript.script.EFSGenericStmtBlock;

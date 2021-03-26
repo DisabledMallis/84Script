@@ -76,10 +76,11 @@ return_stmt
 //Expression
 expression 
 	: OPEN_BRACKET expression CLOSE_BRACKET
-	| value ADD value
-	| value SUB value
-	| value MUL value
-	| value DIV value
+	| value ADD expression
+	| value SUB expression
+	| value MUL expression
+	| value DIV expression
+	| value
 	| identifier
 	| NUMBER
 	| QUOTED_TEXT

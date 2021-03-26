@@ -10,20 +10,20 @@ import com.efscript.antlr.EFScriptParser.Mul_assign_stmtContext;
 import com.efscript.antlr.EFScriptParser.Return_stmtContext;
 import com.efscript.antlr.EFScriptParser.Var_stmtContext;
 import com.efscript.antlr.EFScriptParser.While_stmtContext;
-import com.efscript.script.blocks.EFSAddAssignBlock;
-import com.efscript.script.blocks.EFSAssignBlock;
-import com.efscript.script.blocks.EFSDecBlock;
-import com.efscript.script.blocks.EFSDivAssignBlock;
-import com.efscript.script.blocks.EFSIfBlock;
-import com.efscript.script.blocks.EFSIncBlock;
-import com.efscript.script.blocks.EFSMulAssignBlock;
-import com.efscript.script.blocks.EFSReturnBlock;
-import com.efscript.script.blocks.EFSVarBlock;
-import com.efscript.script.blocks.EFSWhileBlock;
+import com.efscript.script.blocks.statements.EFSAddAssignBlock;
+import com.efscript.script.blocks.statements.EFSAssignBlock;
+import com.efscript.script.blocks.statements.EFSDecBlock;
+import com.efscript.script.blocks.statements.EFSDivAssignBlock;
+import com.efscript.script.blocks.statements.EFSIfBlock;
+import com.efscript.script.blocks.statements.EFSIncBlock;
+import com.efscript.script.blocks.statements.EFSMulAssignBlock;
+import com.efscript.script.blocks.statements.EFSReturnBlock;
+import com.efscript.script.blocks.statements.EFSVarBlock;
+import com.efscript.script.blocks.statements.EFSWhileBlock;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
-public abstract class EFSGenericStmtBlock<T extends ParserRuleContext> implements IBlock {
+public abstract class EFSGenericStmtBlock<T extends ParserRuleContext> extends CompilerAccessor implements IBlock {
 
 	//Create the appropriate block
 	public static EFSGenericStmtBlock<?> getAppropriate(ParserRuleContext ctx)
@@ -76,11 +76,6 @@ public abstract class EFSGenericStmtBlock<T extends ParserRuleContext> implement
 	public EFSGenericStmtBlock(T ctx)
 	{
 		this.ctx = ctx;
-	}
-
-	public EFSCompiler currentCompiler()
-	{
-		return EFSCompiler.currentCompiler();
 	}
 
 	public T getCtx()
