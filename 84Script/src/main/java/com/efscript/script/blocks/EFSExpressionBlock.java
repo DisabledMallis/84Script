@@ -6,7 +6,6 @@ import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
 public class EFSExpressionBlock<T extends ExpressionContext> implements IBlock {
-
 	//The context
 	private T ctx;
 	public EFSExpressionBlock(T ctx)
@@ -18,6 +17,8 @@ public class EFSExpressionBlock<T extends ExpressionContext> implements IBlock {
 	@Override
 	public TiToken[] compile() {
 		TiCompiler compiler = new TiCompiler();
+
+
 
 		return compiler.getTokens();
 	}
