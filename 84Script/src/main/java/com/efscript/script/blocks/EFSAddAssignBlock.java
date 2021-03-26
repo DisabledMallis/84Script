@@ -1,10 +1,11 @@
-package com.efscript.script;
+package com.efscript.script.blocks;
 
 import com.efscript.antlr.EFScriptParser.Add_assign_stmtContext;
+import com.efscript.script.EFSGenericStmtBlock;
 import com.efscript.ti.TiToken;
 
 public class EFSAddAssignBlock extends EFSGenericStmtBlock<Add_assign_stmtContext> {
-	EFSAddAssignBlock(Add_assign_stmtContext ctx) {
+	public EFSAddAssignBlock(Add_assign_stmtContext ctx) {
 		super(ctx);
 	}
 

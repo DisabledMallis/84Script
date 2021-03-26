@@ -1,11 +1,12 @@
-package com.efscript.script;
+package com.efscript.script.blocks;
 
 import com.efscript.antlr.EFScriptParser.Return_stmtContext;
+import com.efscript.script.EFSGenericStmtBlock;
 import com.efscript.ti.TiToken;
 
 public class EFSReturnBlock extends EFSGenericStmtBlock<Return_stmtContext> {
 
-	EFSReturnBlock(Return_stmtContext ctx) {
+	public EFSReturnBlock(Return_stmtContext ctx) {
 		super(ctx);
 	}
 

@@ -10,6 +10,16 @@ import com.efscript.antlr.EFScriptParser.Mul_assign_stmtContext;
 import com.efscript.antlr.EFScriptParser.Return_stmtContext;
 import com.efscript.antlr.EFScriptParser.Var_stmtContext;
 import com.efscript.antlr.EFScriptParser.While_stmtContext;
+import com.efscript.script.blocks.EFSAddAssignBlock;
+import com.efscript.script.blocks.EFSAssignBlock;
+import com.efscript.script.blocks.EFSDecBlock;
+import com.efscript.script.blocks.EFSDivAssignBlock;
+import com.efscript.script.blocks.EFSIfBlock;
+import com.efscript.script.blocks.EFSIncBlock;
+import com.efscript.script.blocks.EFSMulAssignBlock;
+import com.efscript.script.blocks.EFSReturnBlock;
+import com.efscript.script.blocks.EFSVarBlock;
+import com.efscript.script.blocks.EFSWhileBlock;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
