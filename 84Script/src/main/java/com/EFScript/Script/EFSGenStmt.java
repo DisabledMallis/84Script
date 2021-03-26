@@ -14,8 +14,10 @@ import com.efscript.antlr.EFScriptParser.While_stmtContext;
 import org.antlr.v4.runtime.ParserRuleContext;
 
 public class EFSGenStmt {
+	//Create the appropriate block
 	public static EFSGenericStmtBlock<?> getAppropriate(ParserRuleContext ctx)
 	{
+		//Check what kind of context it is, and create that type of block.
 		if(ctx instanceof If_stmtContext)
 		{
 			return new EFSIfBlock((If_stmtContext)ctx);

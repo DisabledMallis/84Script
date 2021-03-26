@@ -3,7 +3,7 @@ def Crud(nerd, nerd2) {
 	return nerd+nerd2;
 }
 
-var x = 4*pi;
+var x = Crud(3,2);
 x++;
 //Func defs can happen anywhere
 //However they are always going to be accessible everywhere in the script.

@@ -4,10 +4,15 @@ import org.antlr.v4.runtime.ParserRuleContext;
 
 public abstract class EFSGenericStmtBlock<T extends ParserRuleContext> implements IBlock {
 
-	T ctx;
+	private T ctx;
 	EFSGenericStmtBlock(T ctx)
 	{
 		this.ctx = ctx;
+	}
+
+	public EFSCompiler currentCompiler()
+	{
+		return EFSCompiler.currentCompiler();
 	}
 
 	public T getCtx()

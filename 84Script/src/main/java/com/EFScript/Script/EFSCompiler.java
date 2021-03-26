@@ -39,24 +39,56 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class EFSCompiler implements EFScriptListener {
-	private TiCompiler compTokens = new TiCompiler();
+	//Compiler instance
+	private static EFSCompiler instance;
+	public static EFSCompiler currentCompiler()
+	{
+		return instance;
+	}
+	public static EFSCompiler compileCode(String code)
+	{
+		if(instance != null)
+		{
+			Logger.Log("CRITICAL: Compiler is already compiling a script, please do not compile multiple in the same process!");
+			return null;
+		}
+		instance = new EFSCompiler(code);
+		return currentCompiler();
+	}
+
+	//Ti-Basic compiler
+	private TiCompiler compTokens;
+	//Vars & Func blocks and other shit
 	private ArrayList<String> varIdentifiers = new ArrayList<>();
 	private ArrayList<EFSFunctionBlock> funcBlocks = new ArrayList<>();
 
-	boolean funcDefComplete = false;
-
-	public EFSCompiler(String code) {
+	//Initialize the compiler
+	private EFSCompiler(String code) {
+		Logger.Log("Parsing script...");
+		//Parser & Lexer contexts
 		EFScriptLexer lexer = new EFScriptLexer(CharStreams.fromString(code));
 		EFScriptParser parser = new EFScriptParser(new CommonTokenStream(lexer));
+		//Get the script context
 		ScriptContext context = parser.script();
 
+		//Walk through the parse tree
+		//This is what causes the other funcs
+		//in EFScriptListener to be called
 		ParseTreeWalker walker = new ParseTreeWalker();
 		walker.walk(this, context);
 
+		//Some testing crap
+		//TODO: Remove when not useful anymore
 		int varCount = varIdentifiers.size();
 		Logger.Log("VarAmt: " + varCount);
+		Logger.Log("Parsed!");
 	}
 
+	/*
+		Funcs for managing vars 
+		and creating references
+		to them
+	*/
 	public void addVar(String var) {
 		for (String ident : varIdentifiers) {
 			if (var.equals(ident)) {
@@ -65,7 +97,6 @@ public class EFSCompiler implements EFScriptListener {
 		}
 		varIdentifiers.add(var);
 	}
-
 	public int getVarIndex(String var) {
 		int current = 0;
 		for (String ident : varIdentifiers) {
@@ -78,30 +109,13 @@ public class EFSCompiler implements EFScriptListener {
 		return -1;
 	}
 
+	//The func that will compile the script start to finish
 	public byte[] compile() {
-		return new byte[0];
-	}
-
-	@Override
-	public void visitTerminal(TerminalNode node) {
-	}
-
-	@Override
-	public void visitErrorNode(ErrorNode node) {
-	}
-
-	@Override
-	public void enterEveryRule(ParserRuleContext ctx) {
-	}
-
-	@Override
-	public void exitEveryRule(ParserRuleContext ctx) {
-	}
-
-	@Override
-	public void enterScript(ScriptContext ctx) {
 		Logger.Log("Compiling...");
-		//TODO: Relocate this shit
+
+		//Create compiler instance
+		compTokens = new TiCompiler();
+
 		//Initialization section
 		//Basically just reset the registers
 		//(And hope I=0, otherwise the program will be die)
@@ -168,12 +182,34 @@ public class EFSCompiler implements EFScriptListener {
 
 			End
 		*/
+		Logger.Log("Compiled!");
+		return new byte[0];
+	}
 
+	@Override
+	public void visitTerminal(TerminalNode node) {
+	}
+
+	@Override
+	public void visitErrorNode(ErrorNode node) {
+	}
+
+	@Override
+	public void enterEveryRule(ParserRuleContext ctx) {
+	}
+
+	@Override
+	public void exitEveryRule(ParserRuleContext ctx) {
+	}
+
+	@Override
+	public void enterScript(ScriptContext ctx) {
+		Logger.Log("First token reached!");
 	}
 
 	@Override
 	public void exitScript(ScriptContext ctx) {
-		Logger.Log("Compiled script!");
+		Logger.Log("Exit token reached!");
 	}
 
 	@Override
@@ -236,6 +272,8 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void enterInc_stmt(Inc_stmtContext ctx) {
+		//TODO: Relocate or remove
+		/*
 		String identifier = ctx.identifier().getText();
 		int index = getVarIndex(identifier);
 		TiToken listSub = TiToken.getListSubscript(1);
@@ -258,6 +296,7 @@ public class EFSCompiler implements EFScriptListener {
 		//byte[] compiled = compTokens.compile();
 		//TiDecompiler decomp = new TiDecompiler(compiled);
 		//Logger.Log(decomp.decompile());
+		*/
 	}
 
 	@Override
