@@ -2,12 +2,12 @@ package com.efscript.script.blocks.statements;
 
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
 import com.efscript.antlr.EFScriptParser.Var_stmtContext;
-import com.efscript.script.EFSGenericStmtBlock;
+import com.efscript.script.blocks.EFSStatementBlock;
 import com.efscript.script.blocks.EFSVarToken;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
-public class EFSVarBlock extends EFSGenericStmtBlock<Var_stmtContext>{
+public class EFSVarBlock extends EFSStatementBlock<Var_stmtContext>{
 	public EFSVarBlock(Var_stmtContext ctx)
 	{
 		super(ctx);

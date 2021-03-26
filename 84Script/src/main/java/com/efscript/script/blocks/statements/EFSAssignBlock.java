@@ -1,10 +1,10 @@
 package com.efscript.script.blocks.statements;
 
 import com.efscript.antlr.EFScriptParser.Assign_stmtContext;
-import com.efscript.script.EFSGenericStmtBlock;
+import com.efscript.script.blocks.EFSStatementBlock;
 import com.efscript.ti.TiToken;
 
-public class EFSAssignBlock extends EFSGenericStmtBlock<Assign_stmtContext> {
+public class EFSAssignBlock extends EFSStatementBlock<Assign_stmtContext> {
 
 	public EFSAssignBlock(Assign_stmtContext ctx) {
 		super(ctx);

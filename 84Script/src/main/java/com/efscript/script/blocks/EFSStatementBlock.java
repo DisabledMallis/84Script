@@ -1,4 +1,4 @@
-package com.efscript.script;
+package com.efscript.script.blocks;
 
 import com.efscript.antlr.EFScriptParser.Add_assign_stmtContext;
 import com.efscript.antlr.EFScriptParser.Assign_stmtContext;
@@ -10,6 +10,8 @@ import com.efscript.antlr.EFScriptParser.Mul_assign_stmtContext;
 import com.efscript.antlr.EFScriptParser.Return_stmtContext;
 import com.efscript.antlr.EFScriptParser.Var_stmtContext;
 import com.efscript.antlr.EFScriptParser.While_stmtContext;
+import com.efscript.script.CompilerAccessor;
+import com.efscript.script.IBlock;
 import com.efscript.script.blocks.statements.EFSAddAssignBlock;
 import com.efscript.script.blocks.statements.EFSAssignBlock;
 import com.efscript.script.blocks.statements.EFSDecBlock;
@@ -23,10 +25,10 @@ import com.efscript.script.blocks.statements.EFSWhileBlock;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
-public abstract class EFSGenericStmtBlock<T extends ParserRuleContext> extends CompilerAccessor implements IBlock {
+public abstract class EFSStatementBlock<T extends ParserRuleContext> extends CompilerAccessor implements IBlock {
 
 	//Create the appropriate block
-	public static EFSGenericStmtBlock<?> getAppropriate(ParserRuleContext ctx)
+	public static EFSStatementBlock<?> getAppropriate(ParserRuleContext ctx)
 	{
 		//Check what kind of context it is, and create that type of block.
 		if(ctx instanceof If_stmtContext)
@@ -73,7 +75,7 @@ public abstract class EFSGenericStmtBlock<T extends ParserRuleContext> extends C
 	}
 	
 	private T ctx;
-	public EFSGenericStmtBlock(T ctx)
+	public EFSStatementBlock(T ctx)
 	{
 		this.ctx = ctx;
 	}

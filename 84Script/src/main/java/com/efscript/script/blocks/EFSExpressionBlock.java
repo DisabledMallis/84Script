@@ -21,5 +21,4 @@ public class EFSExpressionBlock<T extends ExpressionContext> implements IBlock {
 
 		return compiler.getTokens();
 	}
-	
 }
