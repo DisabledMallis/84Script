@@ -6,6 +6,7 @@ import java.util.List;
 import com.efscript.antlr.EFScriptParser.Func_paramsContext;
 import com.efscript.antlr.EFScriptParser.FunctionContext;
 import com.efscript.antlr.EFScriptParser.StatementContext;
+import com.efscript.script.EFSGenericStmtBlock;
 import com.efscript.ti.TiToken;
 
 public class EFSFunctionBlock implements IBlock {
@@ -29,7 +30,7 @@ public class EFSFunctionBlock implements IBlock {
 			for(StatementContext leCtx : stmtCtx.statement())
 			{
 				//Store the code block(s)
-				EFSGenericStmtBlock<?> stmtBlock = EFSGenStmt.getAppropriate(leCtx);
+				EFSGenericStmtBlock<?> stmtBlock = EFSGenericStmtBlock.getAppropriate(leCtx);
 				this.blocks.add(stmtBlock);
 			}
 			return;
@@ -37,7 +38,7 @@ public class EFSFunctionBlock implements IBlock {
 		//If not, must be a single statement, therefore we
 		//can just create the appropriate block
 		//and store that.
-		EFSGenericStmtBlock<?> stmtBlock = EFSGenStmt.getAppropriate(stmtCtx);
+		EFSGenericStmtBlock<?> stmtBlock = EFSGenericStmtBlock.getAppropriate(stmtCtx);
 		this.blocks.add(stmtBlock);
 		return;
 	}
