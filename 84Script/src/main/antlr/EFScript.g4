@@ -80,10 +80,8 @@ expression
 	| value SUB expression
 	| value MUL expression
 	| value DIV expression
-	| boolexpr
 	| value
-	| identifier
-	| NUMBER
+	| boolexpr
 	| QUOTED_TEXT
 	| methodcall
 	;
