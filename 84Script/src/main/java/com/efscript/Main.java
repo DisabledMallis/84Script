@@ -9,9 +9,13 @@ import com.efscript.ti.TiFile;
 import com.efscript.ti.TiToken;
 
 public class Main {
+	// EFSCompiler version
 	public static final String version = "0.0.1";
 
+	// Entry function
 	public static void main(String[] args) throws Exception {
+		// Testing compilation shit
+		// TODO: Remove when done
 		TiCompiler compile = new TiCompiler();
 		compile.appendInstruction(TiToken.LIST);
 		compile.appendInstruction(TiToken.LIST_SUBSCRIPT_1);
@@ -33,6 +37,7 @@ public class Main {
 		byte[] newFile = file.generateNew();
 		Files.write(Paths.get("New.8xp"), newFile);
 
+		// Compile "Test.84s"
 		String code = Files.readString(Paths.get("Test.84s"));
 		EFSCompiler compiler = EFSCompiler.compileCode(code);
 		byte[] compiled = compiler.compile();

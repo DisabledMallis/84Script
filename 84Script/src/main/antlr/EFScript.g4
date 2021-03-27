@@ -74,7 +74,7 @@ return_stmt
 	;
 
 //Expression
-expression 
+expression
 	: OPEN_BRACKET expression CLOSE_BRACKET
 	| value ADD expression
 	| value SUB expression
