@@ -9,8 +9,8 @@ public class EFSVarToken extends CompilerAccessor implements IBlock {
 
 	private String identifier;
 	private int refIndex;
-	public EFSVarToken(String identifier)
-	{
+
+	public EFSVarToken(String identifier) {
 		this.identifier = identifier;
 		this.refIndex = this.currentCompiler().getVarIndex(identifier);
 	}
@@ -25,5 +25,5 @@ public class EFSVarToken extends CompilerAccessor implements IBlock {
 		comp.appendInstruction(TiToken.CLOSE_BRACKET);
 		return comp.getTokens();
 	}
-	
+
 }

@@ -31,14 +31,34 @@ public class TiCompiler {
         }
         return ret;
     }
+
     public byte[] compile()
     {
         Logger.Log("Compiling tokens...");
-        byte[] compiled = new byte[tokens.size()];
+		//Calculate the size
+		int size = 0;
+		for(TiToken token : tokens)
+		{
+			size += token.length;
+		}
+		//Allocate a byte array of size
+        byte[] compiled = new byte[size];
+		//Loop through
         for(int i = 0; i < compiled.length; i++)
         {
-          compiled[i] = tokens.get(i).hex;
+			//Get the current token
+			TiToken current = tokens.get(i);
+			//Set the first byte
+			compiled[i] = current.hex_high;
+			//Check for a second byte
+			if(current.length > 1)
+			{
+				//Set the second byte
+				i++;
+				compiled[i] = current.hex_low;
+			}
         }
+		//Done
         Logger.Log("Tokens compiled");
         return compiled;
     }

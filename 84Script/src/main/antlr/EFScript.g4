@@ -76,10 +76,10 @@ return_stmt
 //Expression
 expression
 	: OPEN_BRACKET expression CLOSE_BRACKET
-	| value ADD expression
-	| value SUB expression
-	| value MUL expression
-	| value DIV expression
+	| expression ADD expression
+	| expression SUB expression
+	| expression MUL expression
+	| expression DIV expression
 	| value
 	| boolexpr
 	| QUOTED_TEXT
@@ -149,7 +149,7 @@ FALSE : 'false';
 
 value
 	: identifier
-	| NUMBER
+	| number
 	;
 
 identifier
@@ -157,11 +157,17 @@ identifier
 	;
 
 IDENTIFIER : [a-zA-Z][a-zA-Z0-9_]*;
-NUMBER
-   : '-'? INT ('.' [0-9] +)?
+number
+   : NUMBER
    | PI
    | E
    ;
+
+
+//Numbers
+NUMBER
+	: '-'? INT ('.' [0-9] +)?
+	;
 
 //Mathematic constants
 PI : 'pi';

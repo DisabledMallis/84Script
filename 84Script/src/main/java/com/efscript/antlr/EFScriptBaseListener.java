@@ -277,6 +277,18 @@ public class EFScriptBaseListener implements EFScriptListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitIdentifier(EFScriptParser.IdentifierContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNumber(EFScriptParser.NumberContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNumber(EFScriptParser.NumberContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

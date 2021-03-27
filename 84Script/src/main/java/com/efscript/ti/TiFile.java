@@ -104,7 +104,7 @@ public class TiFile {
         byte lineCt = 1;
         for(byte b : byteCode)
         {
-            if(b == TiToken.NEWLINE.hex)
+            if(b == TiToken.NEWLINE.hex_high) //newline is 1 byte, so hex_high has that byte
             {
                 lineCt++;
             }

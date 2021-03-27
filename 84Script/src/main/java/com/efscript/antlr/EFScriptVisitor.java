@@ -144,4 +144,10 @@ public interface EFScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIdentifier(EFScriptParser.IdentifierContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link EFScriptParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumber(EFScriptParser.NumberContext ctx);
 }

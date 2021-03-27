@@ -14,6 +14,7 @@ public class TiDecompiler {
 		this.code = code;
 	}
 
+	//TODO: support 2 byte tokens
 	public String decompile() {
 		Logger.Log("Decompiling tokens...");
 		StringBuilder build = new StringBuilder();

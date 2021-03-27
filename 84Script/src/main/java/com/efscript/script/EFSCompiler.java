@@ -21,6 +21,7 @@ import com.efscript.antlr.EFScriptParser.Inc_stmtContext;
 import com.efscript.antlr.EFScriptParser.MethodcallContext;
 import com.efscript.antlr.EFScriptParser.MethodparamsContext;
 import com.efscript.antlr.EFScriptParser.Mul_assign_stmtContext;
+import com.efscript.antlr.EFScriptParser.NumberContext;
 import com.efscript.antlr.EFScriptParser.Return_stmtContext;
 import com.efscript.antlr.EFScriptParser.ScriptContext;
 import com.efscript.antlr.EFScriptParser.StatementContext;
@@ -411,6 +412,16 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void exitFunc_params(Func_paramsContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void enterNumber(NumberContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void exitNumber(NumberContext ctx) {
 		// TODO Auto-generated method stub
 		
 	}

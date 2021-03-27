@@ -79,27 +79,44 @@ public enum TiToken {
 	SUBTRACT(0x71, "-"),
 	MULTIPLY(0x80, "*"),
 	DIVIDE(0x81, "/"),
+	CONST_PI(0xAC, "pi"),
+	CONST_E(0xBB, 0x31, "e"),
 	IF(0xCE, "IF "),
 	THEN(0xCF, "THEN "),
 	END(0xD4, "END "),
 	DISP(0xDE, "DISP ");
 
-	public byte hex;
+	public byte length;
+	public byte hex_high;
+	public byte hex_low;
 	public String str;
 
+	//1 byte tokens
 	TiToken(int hex, String strRep) {
-		this((byte) hex, strRep);
+		this(hex, 0, strRep);
+		this.length = 1;
 	};
-
-	TiToken(byte hex, String strRep) {
-		this.hex = hex;
+	//2 byte tokens
+	TiToken(int hex_high, int hex_low, String strRep) {
+		this((byte)hex_high, (byte)hex_low, strRep);
+	};
+	//2 byte tokens
+	TiToken(byte hex_high, byte hex_low, String strRep) {
+		this.hex_high = hex_high;
+		this.hex_low = hex_low;
+		this.length = 2;
 		this.str = strRep;
 	};
 
-	byte getByte() {
-		return this.hex;
+	//Get the first byte
+	byte getHighByte() {
+		return this.hex_high;
+	};
+	byte getLowByte() {
+		return this.hex_low;
 	};
 
+	//Get a token by its *enum* name
 	public static TiToken getTokenByName(String token) {
 		for (TiToken t : TiToken.values()) {
 			if (t.toString().equals(token)) {
@@ -109,6 +126,7 @@ public enum TiToken {
 		return null;
 	};
 
+	//Get a token by its *string* representation
 	public static TiToken getToken(String token) {
 		for (TiToken t : TiToken.values()) {
 			if (t.str.equals(token)) {
@@ -118,15 +136,32 @@ public enum TiToken {
 		return null;
 	};
 
+	//Get a single byte token
 	public static TiToken getToken(byte token) {
+		byte[] arr = new byte[2];
+		arr[0] = token;
+		arr[1] = 0;
+		return getToken(arr);
+	};
+	//Get a 2 byte token
+	public static TiToken getToken(byte hex_high, byte hex_low) {
+		byte[] arr = new byte[2];
+		arr[0] = hex_high;
+		arr[1] = hex_low;
+		return getToken(arr);
+	}
+	//Get a token by its byte(s)
+	public static TiToken getToken(byte[] token) {
 		for (TiToken t : TiToken.values()) {
-			if (t.hex == token) {
+			if (t.hex_high == token[0] && t.hex_low == token[1]) {
 				return t;
 			}
 		}
 		return null;
 	};
 
+	//Get a list subscript byte
+	//Deprecated, 2 byte tokens will be supported soon.
 	public static TiToken getListSubscript(int index) {
 		TiToken t = TiToken.valueOf("LIST_SUBSCRIPT_" + index);
 		if (t == null) {
@@ -135,6 +170,7 @@ public enum TiToken {
 		return t;
 	};
 
+	//Generate tokens for a number (can be greater than 9)
 	public static TiToken[] getNumber(int num) {
 		if (num > 9 && num > -1) {
 			ArrayList<TiToken> tokens = new ArrayList<>();
