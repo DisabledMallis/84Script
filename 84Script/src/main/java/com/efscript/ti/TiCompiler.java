@@ -43,11 +43,13 @@ public class TiCompiler {
 		}
 		//Allocate a byte array of size
         byte[] compiled = new byte[size];
+		//Compensate for jumped bytes
+		int jumped = 0;
 		//Loop through
         for(int i = 0; i < compiled.length; i++)
         {
 			//Get the current token
-			TiToken current = tokens.get(i);
+			TiToken current = tokens.get(i-jumped);
 			//Set the first byte
 			compiled[i] = current.hex_high;
 			//Check for a second byte
@@ -55,6 +57,7 @@ public class TiCompiler {
 			{
 				//Set the second byte
 				i++;
+				jumped++;
 				compiled[i] = current.hex_low;
 			}
         }

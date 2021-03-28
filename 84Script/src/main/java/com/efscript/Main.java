@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 
 import com.efscript.script.EFSCompiler;
 import com.efscript.ti.TiCompiler;
+import com.efscript.ti.TiDecompiler;
 import com.efscript.ti.TiFile;
 import com.efscript.ti.TiToken;
 
@@ -17,7 +18,7 @@ public class Main {
 		// Testing compilation shit
 		// TODO: Remove when done
 		TiCompiler compile = new TiCompiler();
-		compile.appendInstruction(TiToken.LIST);
+		compile.appendInstruction(TiToken.CONST_E);
 		compile.appendInstruction(TiToken.LIST_SUBSCRIPT_1);
 		compile.appendInstruction(TiToken.LETTER_H);
 		compile.appendInstruction(TiToken.LETTER_E);
@@ -32,7 +33,11 @@ public class Main {
 		compile.appendInstruction(TiToken.LETTER_L);
 		compile.appendInstruction(TiToken.LETTER_D);
 		compile.appendInstruction(TiToken.EXCLAMATION_MARK);
-		byte[] newCode = "Hey".getBytes();// compile.compile();
+		byte[] newCode = compile.compile();
+		TiDecompiler decomp = new TiDecompiler(newCode);
+		String dcode = decomp.decompile();
+		Logger.Log(dcode);
+
 		TiFile file = new TiFile("Generated with 84Script v" + version, "Swag", newCode);
 		byte[] newFile = file.generateNew();
 		Files.write(Paths.get("New.8xp"), newFile);
