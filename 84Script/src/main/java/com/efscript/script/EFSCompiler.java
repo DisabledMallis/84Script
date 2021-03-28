@@ -40,56 +40,54 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class EFSCompiler implements EFScriptListener {
-	//Compiler instance
+	// Compiler instance
 	private static EFSCompiler instance;
-	public static EFSCompiler currentCompiler()
-	{
+
+	public static EFSCompiler currentCompiler() {
 		return instance;
 	}
-	public static EFSCompiler compileCode(String code)
-	{
-		if(instance != null)
-		{
-			Logger.Log("CRITICAL: Compiler is already compiling a script, please do not compile multiple in the same process!");
+
+	public static EFSCompiler compileCode(String code) {
+		if (instance != null) {
+			Logger.Log(
+					"CRITICAL: Compiler is already compiling a script, please do not compile multiple in the same process!");
 			return null;
 		}
 		instance = new EFSCompiler(code);
 		return currentCompiler();
 	}
 
-	//Ti-Basic compiler
+	// Ti-Basic compiler
 	private TiCompiler compTokens;
-	//Vars & Func blocks and other shit
+	// Vars & Func blocks and other shit
 	private ArrayList<String> varIdentifiers = new ArrayList<>();
 	private ArrayList<EFSFunctionBlock> funcBlocks = new ArrayList<>();
 
-	//Initialize the compiler
+	// Initialize the compiler
 	private EFSCompiler(String code) {
 		Logger.Log("Parsing script...");
-		//Parser & Lexer contexts
+		// Parser & Lexer contexts
 		EFScriptLexer lexer = new EFScriptLexer(CharStreams.fromString(code));
 		EFScriptParser parser = new EFScriptParser(new CommonTokenStream(lexer));
-		//Get the script context
+		// Get the script context
 		ScriptContext context = parser.script();
 
-		//Walk through the parse tree
-		//This is what causes the other funcs
-		//in EFScriptListener to be called
+		// Walk through the parse tree
+		// This is what causes the other funcs
+		// in EFScriptListener to be called
 		ParseTreeWalker walker = new ParseTreeWalker();
 		walker.walk(this, context);
 
-		//Some testing crap
-		//TODO: Remove when not useful anymore
+		// Some testing crap
+		// TODO: Remove when not useful anymore
 		int varCount = varIdentifiers.size();
 		Logger.Log("VarAmt: " + varCount);
 		Logger.Log("Parsed!");
 	}
 
 	/*
-		Funcs for managing vars 
-		and creating references
-		to them
-	*/
+	 * Funcs for managing vars and creating references to them
+	 */
 	public void addVar(String var) {
 		for (String ident : varIdentifiers) {
 			if (var.equals(ident)) {
@@ -98,6 +96,7 @@ public class EFSCompiler implements EFScriptListener {
 		}
 		varIdentifiers.add(var);
 	}
+
 	public int getVarIndex(String var) {
 		int current = 0;
 		for (String ident : varIdentifiers) {
@@ -110,27 +109,21 @@ public class EFSCompiler implements EFScriptListener {
 		return -1;
 	}
 
-	//The func that will compile the script start to finish
+	// The func that will compile the script start to finish
 	public byte[] compile() {
 		Logger.Log("Compiling...");
 
-		//Create compiler instance
+		// Create compiler instance
 		compTokens = new TiCompiler();
 
-		//Initialization section
-		//Basically just reset the registers
-		//(And hope I=0, otherwise the program will be die)
+		// Initialization section
+		// Basically just reset the registers
+		// (And hope I=0, otherwise the program will be die)
 		/*
-			If I=0
-			Then
-			0→G
-			0→F
-			0→C
-			1→I
-			End
-		*/
-		//IF I=0
-		//Then
+		 * If I=0 Then 0→G 0→F 0→C 1→I End
+		 */
+		// IF I=0
+		// Then
 		compTokens.appendInstruction(TiToken.IF);
 		compTokens.appendInstruction(TiToken.LETTER_I);
 		compTokens.appendInstruction(TiToken.EQUALS);
@@ -139,50 +132,42 @@ public class EFSCompiler implements EFScriptListener {
 		compTokens.appendInstruction(TiToken.THEN);
 		compTokens.appendInstruction(TiToken.NEWLINE);
 		/*
-			0→G
-			0→F
-			0→C
-			1→I
-		*/
-		//0→G
+		 * 0→G 0→F 0→C 1→I
+		 */
+		// 0→G
 		compTokens.appendInstruction(TiToken.NUM_0);
 		compTokens.appendInstruction(TiToken.STORE);
 		compTokens.appendInstruction(TiToken.LETTER_G);
 		compTokens.appendInstruction(TiToken.NEWLINE);
-		//0→F
+		// 0→F
 		compTokens.appendInstruction(TiToken.NUM_0);
 		compTokens.appendInstruction(TiToken.STORE);
 		compTokens.appendInstruction(TiToken.LETTER_F);
 		compTokens.appendInstruction(TiToken.NEWLINE);
-		//0→C
+		// 0→C
 		compTokens.appendInstruction(TiToken.NUM_0);
 		compTokens.appendInstruction(TiToken.STORE);
 		compTokens.appendInstruction(TiToken.LETTER_C);
 		compTokens.appendInstruction(TiToken.NEWLINE);
-		//1→I
+		// 1→I
 		compTokens.appendInstruction(TiToken.NUM_1);
 		compTokens.appendInstruction(TiToken.STORE);
 		compTokens.appendInstruction(TiToken.LETTER_I);
 		compTokens.appendInstruction(TiToken.NEWLINE);
-		//END
+		// END
 		compTokens.appendInstruction(TiToken.END);
 		compTokens.appendInstruction(TiToken.NEWLINE);
 
-		//Function table
+		// Function table
 		/*
-			//G determines if a func is called
-			If G>0	-|---------------Funcs must be defined at thr top of the script
-			Then	-|
-			//F is which function
-			If F=0
-			Then
-			//L₂ is the parameter stack
-			L₂(1)+L₂(2)→C
-
-			End
-
-			End
-		*/
+		 * //G determines if a func is called If G>0 -|---------------Funcs must be
+		 * defined at thr top of the script Then -| //F is which function If F=0 Then
+		 * //L₂ is the parameter stack L₂(1)+L₂(2)→C
+		 * 
+		 * End
+		 * 
+		 * End
+		 */
 		Logger.Log("Compiled!");
 		return new byte[0];
 	}
@@ -273,31 +258,29 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void enterInc_stmt(Inc_stmtContext ctx) {
-		//TODO: Relocate or remove
+		// TODO: Relocate or remove
 		/*
-		String identifier = ctx.identifier().getText();
-		int index = getVarIndex(identifier);
-		TiToken listSub = TiToken.getListSubscript(1);
-		compTokens.appendInstruction(TiToken.LIST);
-		compTokens.appendInstruction(listSub);
-		compTokens.appendInstruction(TiToken.OPEN_BRACKET);
-		compTokens.appendInstruction(TiToken.getNumber(index));
-		compTokens.appendInstruction(TiToken.CLOSE_BRACKET);
-		compTokens.appendInstruction(TiToken.ADD);
-		compTokens.appendInstruction(TiToken.NUM_1);
-		compTokens.appendInstruction(TiToken.STORE);
-		compTokens.appendInstruction(TiToken.LIST);
-		compTokens.appendInstruction(listSub);
-		compTokens.appendInstruction(TiToken.OPEN_BRACKET);
-		compTokens.appendInstruction(TiToken.getNumber(index));
-		compTokens.appendInstruction(TiToken.CLOSE_BRACKET);
-		compTokens.appendInstruction(TiToken.NEWLINE);
-
-
-		//byte[] compiled = compTokens.compile();
-		//TiDecompiler decomp = new TiDecompiler(compiled);
-		//Logger.Log(decomp.decompile());
-		*/
+		 * String identifier = ctx.identifier().getText(); int index =
+		 * getVarIndex(identifier); TiToken listSub = TiToken.getListSubscript(1);
+		 * compTokens.appendInstruction(TiToken.LIST);
+		 * compTokens.appendInstruction(listSub);
+		 * compTokens.appendInstruction(TiToken.OPEN_BRACKET);
+		 * compTokens.appendInstruction(TiToken.getNumber(index));
+		 * compTokens.appendInstruction(TiToken.CLOSE_BRACKET);
+		 * compTokens.appendInstruction(TiToken.ADD);
+		 * compTokens.appendInstruction(TiToken.NUM_1);
+		 * compTokens.appendInstruction(TiToken.STORE);
+		 * compTokens.appendInstruction(TiToken.LIST);
+		 * compTokens.appendInstruction(listSub);
+		 * compTokens.appendInstruction(TiToken.OPEN_BRACKET);
+		 * compTokens.appendInstruction(TiToken.getNumber(index));
+		 * compTokens.appendInstruction(TiToken.CLOSE_BRACKET);
+		 * compTokens.appendInstruction(TiToken.NEWLINE);
+		 * 
+		 * 
+		 * //byte[] compiled = compTokens.compile(); //TiDecompiler decomp = new
+		 * TiDecompiler(compiled); //Logger.Log(decomp.decompile());
+		 */
 	}
 
 	@Override
@@ -396,33 +379,35 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void enterCode(CodeContext ctx) {
-		
+
 	}
 
 	@Override
 	public void exitCode(CodeContext ctx) {
-		
+
 	}
 
 	@Override
 	public void enterFunc_params(Func_paramsContext ctx) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void exitFunc_params(Func_paramsContext ctx) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void enterNumber(NumberContext ctx) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	@Override
 	public void exitNumber(NumberContext ctx) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

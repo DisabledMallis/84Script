@@ -91,16 +91,18 @@ public enum TiToken {
 	public byte hex_low;
 	public String str;
 
-	//1 byte tokens
+	// 1 byte tokens
 	TiToken(int hex, String strRep) {
 		this(hex, 0, strRep);
 		this.length = 1;
 	};
-	//2 byte tokens
+
+	// 2 byte tokens
 	TiToken(int hex_high, int hex_low, String strRep) {
-		this((byte)hex_high, (byte)hex_low, strRep);
+		this((byte) hex_high, (byte) hex_low, strRep);
 	};
-	//2 byte tokens
+
+	// 2 byte tokens
 	TiToken(byte hex_high, byte hex_low, String strRep) {
 		this.hex_high = hex_high;
 		this.hex_low = hex_low;
@@ -108,29 +110,27 @@ public enum TiToken {
 		this.str = strRep;
 	};
 
-	//Get the first byte
+	// Get the first byte
 	byte getHighByte() {
 		return this.hex_high;
 	};
+
 	byte getLowByte() {
 		return this.hex_low;
 	};
 
-	//Check if a byte needs a second
-	public static boolean isLong(byte b)
-	{
+	// Check if a byte needs a second
+	public static boolean isLong(byte b) {
 		TiToken[] allTokens = values();
-		for(TiToken tokes : allTokens)
-		{
-			if(tokes.hex_high == b)
-			{
+		for (TiToken tokes : allTokens) {
+			if (tokes.hex_high == b) {
 				return tokes.length > 1;
 			}
 		}
 		return false;
 	}
 
-	//Get a token by its *enum* name
+	// Get a token by its *enum* name
 	public static TiToken getTokenByName(String token) {
 		for (TiToken t : TiToken.values()) {
 			if (t.toString().equals(token)) {
@@ -140,7 +140,7 @@ public enum TiToken {
 		return null;
 	};
 
-	//Get a token by its *string* representation
+	// Get a token by its *string* representation
 	public static TiToken getToken(String token) {
 		for (TiToken t : TiToken.values()) {
 			if (t.str.equals(token)) {
@@ -150,21 +150,23 @@ public enum TiToken {
 		return null;
 	};
 
-	//Get a single byte token
+	// Get a single byte token
 	public static TiToken getToken(byte token) {
 		byte[] arr = new byte[2];
 		arr[0] = token;
 		arr[1] = 0;
 		return getToken(arr);
 	};
-	//Get a 2 byte token
+
+	// Get a 2 byte token
 	public static TiToken getToken(byte hex_high, byte hex_low) {
 		byte[] arr = new byte[2];
 		arr[0] = hex_high;
 		arr[1] = hex_low;
 		return getToken(arr);
 	}
-	//Get a token by its byte(s)
+
+	// Get a token by its byte(s)
 	public static TiToken getToken(byte[] token) {
 		for (TiToken t : TiToken.values()) {
 			if (t.hex_high == token[0] && t.hex_low == token[1]) {
@@ -174,8 +176,8 @@ public enum TiToken {
 		return null;
 	};
 
-	//Get a list subscript byte
-	//Deprecated, 2 byte tokens will be supported soon.
+	// Get a list subscript byte
+	// Deprecated, 2 byte tokens will be supported soon.
 	public static TiToken getListSubscript(int index) {
 		TiToken t = TiToken.valueOf("LIST_SUBSCRIPT_" + index);
 		if (t == null) {
@@ -184,50 +186,50 @@ public enum TiToken {
 		return t;
 	};
 
-	//Generate tokens for a number (can be greater than 9)
+	// Generate tokens for a number (can be greater than 9)
 	public static TiToken[] getNumber(int num) {
-		//If the num is more than 9, we gotta deal with that
-		//Also if its less than 0, we cant do anything with that.
-		//Only 0-9 we can actually get a token from
+		// If the num is more than 9, we gotta deal with that
+		// Also if its less than 0, we cant do anything with that.
+		// Only 0-9 we can actually get a token from
 		if (num > 9 && num > -1) {
-			//Create an arraylist, we need this for multiple tokens
+			// Create an arraylist, we need this for multiple tokens
 			ArrayList<TiToken> tokens = new ArrayList<>();
-			//Make the number into a string
+			// Make the number into a string
 			String numStr = "" + num;
-			//Iterate the characters
+			// Iterate the characters
 			for (int i = 0; i < numStr.length(); i++) {
-				//Get a single char num
+				// Get a single char num
 				char c = numStr.charAt(i);
-				//Parse it, and get the token for the single digit recursively
+				// Parse it, and get the token for the single digit recursively
 				TiToken[] tkns = getNumber(Integer.parseInt(c + ""));
-				//Add the tokens to the arraylist
+				// Add the tokens to the arraylist
 				for (TiToken tke : tkns) {
 					tokens.add(tke);
 				}
 			}
-			//Create a native array
+			// Create a native array
 			TiToken[] arr = new TiToken[tokens.size()];
-			//Add tokens from the ArrayList to the returning array
+			// Add tokens from the ArrayList to the returning array
 			for (int i = 0; i < arr.length; i++) {
 				arr[i] = tokens.get(i);
 			}
-			//Return the final array
+			// Return the final array
 			return arr;
 		}
-		//If its less than 10 & greater than 0, we can get a token
+		// If its less than 10 & greater than 0, we can get a token
 		if (num < 10 && num > -1) {
-			//Create a token array to return the single num
+			// Create a token array to return the single num
 			TiToken[] token = new TiToken[] { TiToken.valueOf("NUM_" + num) };
-			//Return it
+			// Return it
 			return token;
 		}
-		//Probably num<0, we cant use it, return null and hope
-		//Everything doesnt crash and burn 
-		//Also we cant just throw an exception to stop 
-		//execution here because then every function above
-		//will also need to throw it or catch it
-		//BUT null exceptions can be a lazy way to just make
-		//everything burn
+		// Probably num<0, we cant use it, return null and hope
+		// Everything doesnt crash and burn
+		// Also we cant just throw an exception to stop
+		// execution here because then every function above
+		// will also need to throw it or catch it
+		// BUT null exceptions can be a lazy way to just make
+		// everything burn
 		return null;
 	};
 }
