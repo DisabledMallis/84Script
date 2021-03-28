@@ -1,6 +1,8 @@
 # 84Script
 A C-like programming language that compiles to TI-BASIC
 
+[Discord](https://discord.gg/rGyzCDaD6W)
+
 # Why
 Idk why not, seems like a neat hobby project
 
