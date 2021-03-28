@@ -14,12 +14,21 @@ public class TiDecompiler {
 		this.code = code;
 	}
 
-	//TODO: support 2 byte tokens
 	public String decompile() {
 		Logger.Log("Decompiling tokens...");
 		StringBuilder build = new StringBuilder();
-		for (byte c : code) {
-			TiToken token = TiToken.getToken(c);
+		for (int i = 0; i < code.length; i++) {
+			TiToken token;
+			if(TiToken.isLong(code[i]))
+			{
+				byte high = code[i];
+				i++;
+				byte low = code[i+1];
+				token = TiToken.getToken(high, low);
+			}
+			else{
+				token = TiToken.getToken(code[i]);
+			}
 			build.append(token.str);
 		}
 		Logger.Log("Decompiled tokens");

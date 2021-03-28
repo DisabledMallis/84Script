@@ -116,6 +116,20 @@ public enum TiToken {
 		return this.hex_low;
 	};
 
+	//Check if a byte needs a second
+	public static boolean isLong(byte b)
+	{
+		TiToken[] allTokens = values();
+		for(TiToken tokes : allTokens)
+		{
+			if(tokes.hex_high == b)
+			{
+				return tokes.length > 1;
+			}
+		}
+		return false;
+	}
+
 	//Get a token by its *enum* name
 	public static TiToken getTokenByName(String token) {
 		for (TiToken t : TiToken.values()) {
