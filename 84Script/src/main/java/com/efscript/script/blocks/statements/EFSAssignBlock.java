@@ -3,7 +3,7 @@ package com.efscript.script.blocks.statements;
 import com.efscript.antlr.EFScriptParser.Assign_stmtContext;
 import com.efscript.antlr.EFScriptParser.ExpressionContext;
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
-import com.efscript.script.blocks.EFSExpressionBlock;
+import com.efscript.script.blocks.EFSGenericExpression;
 import com.efscript.script.blocks.EFSStatementBlock;
 import com.efscript.script.blocks.EFSVarToken;
 import com.efscript.ti.TiCompiler;
@@ -29,7 +29,7 @@ public class EFSAssignBlock extends EFSStatementBlock<Assign_stmtContext> {
 		// Expression to evaluate & store
 		ExpressionContext eCtx = aCtx.expression();
 		// Create an expression block instance
-		EFSExpressionBlock<ExpressionContext> exprBlock = new EFSExpressionBlock<ExpressionContext>(eCtx);
+		EFSGenericExpression<ExpressionContext> exprBlock = new EFSGenericExpression<ExpressionContext>(eCtx);
 		// Compile it
 		minComp.appendInstruction(exprBlock.compile());
 		// Store token

@@ -1,20 +1,19 @@
-package com.efscript.script.blocks;
+package com.efscript.script.blocks.expressions;
 
 import com.efscript.antlr.EFScriptParser.BoolexprContext;
 import com.efscript.antlr.EFScriptParser.ExpressionContext;
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
 import com.efscript.antlr.EFScriptParser.NumberContext;
 import com.efscript.antlr.EFScriptParser.ValueContext;
-import com.efscript.script.IBlock;
+import com.efscript.script.blocks.EFSGenericExpression;
+import com.efscript.script.blocks.EFSVarToken;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
-public class EFSExpressionBlock<T extends ExpressionContext> implements IBlock {
-	// The context
-	private T ctx;
+public class EFSExpressionBlock extends EFSGenericExpression<ExpressionContext> {
 
-	public EFSExpressionBlock(T ctx) {
-		this.ctx = ctx;
+	public EFSExpressionBlock(ExpressionContext ctx) {
+		super(ctx);
 	}
 
 	// Compile the context to Ti-Basic tokens
@@ -22,13 +21,14 @@ public class EFSExpressionBlock<T extends ExpressionContext> implements IBlock {
 	public TiToken[] compile() {
 		TiCompiler compiler = new TiCompiler();
 
+		ExpressionContext ctx = this.getCtx();
 		// Check if its a bracket expression,
 		// if so, we need to compile the inner expression
 		// and we can do this recursively
 		boolean isBrack = ctx.OPEN_BRACKET() == null;
 		if (isBrack) {
 			// Create a new block on the current expression
-			EFSExpressionBlock<ExpressionContext> block = new EFSExpressionBlock<ExpressionContext>(ctx.expression(0));
+			EFSExpressionBlock block = new EFSExpressionBlock(this.getCtx().expression(0));
 			// Append tokens
 			compiler.appendInstruction(TiToken.OPEN_BRACKET);
 			compiler.appendInstruction(block.compile());
@@ -80,17 +80,8 @@ public class EFSExpressionBlock<T extends ExpressionContext> implements IBlock {
 			if (isBoolExpr) {
 				// Get the boolexpr context
 				BoolexprContext bectx = ctx.boolexpr();
-				// If is the true keyword
-				boolean isTrue = bectx.TRUE() != null;
-				if (isTrue) {
-					// 1 is the same as 'true'
-					compiler.appendInstruction(TiToken.NUM_1);
-				}
-				boolean isFalse = bectx.TRUE() != null;
-				if (isFalse) {
-					// 0 is the same as 'false'
-					compiler.appendInstruction(TiToken.NUM_0);
-				}
+				EFSBoolexprBlock bExpr = new EFSBoolexprBlock(bectx);
+				compiler.appendInstruction(bExpr.compile());
 			} else {
 				// Check what type of expression it is
 				boolean isAdd = ctx.ADD() != null;
@@ -100,8 +91,7 @@ public class EFSExpressionBlock<T extends ExpressionContext> implements IBlock {
 
 				// Create a new block on the current expression
 				// Also compile it so that way operations can be done later
-				EFSExpressionBlock<ExpressionContext> first_block = new EFSExpressionBlock<ExpressionContext>(
-						ctx.expression(0));
+				EFSExpressionBlock first_block = new EFSExpressionBlock(ctx.expression(0));
 				compiler.appendInstruction(first_block.compile());
 
 				// Basic mathematical operations
@@ -115,8 +105,7 @@ public class EFSExpressionBlock<T extends ExpressionContext> implements IBlock {
 					compiler.appendInstruction(TiToken.DIVIDE);
 
 				// The second expression block
-				EFSExpressionBlock<ExpressionContext> second_block = new EFSExpressionBlock<ExpressionContext>(
-						ctx.expression(1));
+				EFSExpressionBlock second_block = new EFSExpressionBlock(this.getCtx().expression(1));
 				compiler.appendInstruction(second_block.compile());
 			}
 
