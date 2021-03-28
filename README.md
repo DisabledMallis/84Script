@@ -47,7 +47,7 @@ Key:
 			✅ - Division expression
 			❌ - Method call expression
 		🔄 - Statements
-			❌ - Assign statement
+			✅ - Assign statement
 			❌ - Add assign statement
 			❌ - Subtract assign statement
 			❌ - Multiply assign statement
