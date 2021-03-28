@@ -22,7 +22,6 @@ Key:
 	🔄 - Antlr
 		🔄 - Complete antlr grammar for 84Script
 		✅ - Java code generation
-	🔄 - Parsing & Lexing
 	🔄 - Compilation
 		🔄 - EFSCompiler.java
 		✅ - EFS Statement Block
@@ -59,7 +58,7 @@ Key:
 			❌ - While statement
 			✅ - Var statement
 			❌ - Return statement
-			
+	❌ - 8xp from 84Script generation
 ```
 
 # Using 84Script
