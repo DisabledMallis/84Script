@@ -107,4 +107,7 @@ This section is about how the generated .8xp file(s) are structured programatica
 Its quite a simple, yet effective structure.
 
 ## Limitations
-Due to the fact this only takes advantage of numerical variables within the calculator, you are only able to work with numbers and unchanging text. String operations (such as concatenation) are not possible. All variables are numerical, and are limited my the calculator's settings.
+84Script is limited by a number of factors, all of which are limitations of Ti-Basic.
+* Only 6 strings can be stored at a time
+* You can only concatenate strings
+* All numeric vars are restricted by calculator settings
