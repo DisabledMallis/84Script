@@ -4,6 +4,64 @@ A C-like programming language that compiles to TI-BASIC
 # Why
 Idk why not, seems like a neat hobby project
 
+# Roadmap
+Current progress of the project, shows what is currently done and what needs to be done.
+
+Key:
+✅ - Completed
+🔄 - In progress
+❌ - Incomplete
+
+```
+🔄 - TI-Basic
+	✅ - 8xp file reading/generation
+	✅ - Ti token compilation
+	✅ - Ti token decompilation (for debugging)
+	🔄 - Complete Ti token enum
+🔄 - 84Script
+	🔄 - Antlr
+		🔄 - Complete antlr grammar for 84Script
+		✅ - Java code generation
+	🔄 - Parsing & Lexing
+	🔄 - Compilation
+		🔄 - EFSCompiler.java
+		✅ - EFS Statement Block
+		❌ - EFS Script Block
+		🔄 - Expressions
+			✅ - Bracket expressions "(<expression>)"
+			✅ - Identifier expression
+			❌ - Number expression
+			✅ - Constant expression (pi, e, ...)
+			🔄 - Boolean expression
+				✅ - True
+				✅ - False
+				❌ - Greater than
+				❌ - Less than
+				❌ - Equal to
+				❌ - Not equal
+				❌ - Greater than or equal to
+				❌ - Less than or equal to
+			❌ - Text expression
+			✅ - Add expression
+			✅ - Subtract expression
+			✅ - Multiplication expression
+			✅ - Division expression
+			❌ - Method call expression
+		🔄 - Statements
+			❌ - Assign statement
+			❌ - Add assign statement
+			❌ - Subtract assign statement
+			❌ - Multiply assign statement
+			❌ - Divide assign statement
+			✅ - Increment statement
+			✅ - Decrement statement
+			❌ - If statement
+			❌ - While statement
+			✅ - Var statement
+			❌ - Return statement
+			
+```
+
 # Using 84Script
 84Script is quite simple to write code with, much like how TI-Basic itself is. If you're already farmiliar with a language such as Python, C, Java, etc. using 84Script should be quite simple.
 
