@@ -3,17 +3,19 @@ package com.efscript.ti;
 import com.efscript.Logger;
 
 public class TiDecompiler {
+	//Bytes for the bytecode
 	byte[] code;
-
+	//Decompile a TiFile
 	public TiDecompiler(TiFile source) {
-		code = source.programCode;
+		this(source.getProgramCode());
+	}
+	//Decompile bytecode directly
+	public TiDecompiler(byte[] code) {
+		this.code = code;
 		Logger.Log("Initialized new TiDecompiler");
 	}
 
-	public TiDecompiler(byte[] code) {
-		this.code = code;
-	}
-
+	//Decompile the bytecode to a string
 	public String decompile() {
 		Logger.Log("Decompiling tokens...");
 		StringBuilder build = new StringBuilder();

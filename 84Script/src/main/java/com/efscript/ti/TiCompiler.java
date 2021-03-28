@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import com.efscript.Logger;
 
 public class TiCompiler {
+	//List for tokens
     ArrayList<TiToken> tokens;
     public TiCompiler()
     {
         tokens = new ArrayList<>();
         Logger.Log("Initialized new TiCompiler...");
     }
+	//Append a collection of tokens
 	public void appendInstruction(TiToken[] tokens)
 	{
 		for(TiToken token : tokens)
@@ -18,10 +20,12 @@ public class TiCompiler {
 			appendInstruction(token);
 		}
 	}
+	//Append a single token
     public void appendInstruction(TiToken token)
     {
         tokens.add(token);
     }
+	//Get the tokens (not compiled)
     public TiToken[] getTokens()
     {
         TiToken[] ret = new TiToken[tokens.size()];
@@ -32,6 +36,7 @@ public class TiCompiler {
         return ret;
     }
 
+	//Compile tokens to bytecode
     public byte[] compile()
     {
         Logger.Log("Compiling tokens...");

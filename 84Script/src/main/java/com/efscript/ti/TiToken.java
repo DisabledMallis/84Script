@@ -186,26 +186,48 @@ public enum TiToken {
 
 	//Generate tokens for a number (can be greater than 9)
 	public static TiToken[] getNumber(int num) {
+		//If the num is more than 9, we gotta deal with that
+		//Also if its less than 0, we cant do anything with that.
+		//Only 0-9 we can actually get a token from
 		if (num > 9 && num > -1) {
+			//Create an arraylist, we need this for multiple tokens
 			ArrayList<TiToken> tokens = new ArrayList<>();
+			//Make the number into a string
 			String numStr = "" + num;
+			//Iterate the characters
 			for (int i = 0; i < numStr.length(); i++) {
+				//Get a single char num
 				char c = numStr.charAt(i);
+				//Parse it, and get the token for the single digit recursively
 				TiToken[] tkns = getNumber(Integer.parseInt(c + ""));
+				//Add the tokens to the arraylist
 				for (TiToken tke : tkns) {
 					tokens.add(tke);
 				}
 			}
+			//Create a native array
 			TiToken[] arr = new TiToken[tokens.size()];
+			//Add tokens from the ArrayList to the returning array
 			for (int i = 0; i < arr.length; i++) {
 				arr[i] = tokens.get(i);
 			}
+			//Return the final array
 			return arr;
 		}
+		//If its less than 10 & greater than 0, we can get a token
 		if (num < 10 && num > -1) {
+			//Create a token array to return the single num
 			TiToken[] token = new TiToken[] { TiToken.valueOf("NUM_" + num) };
+			//Return it
 			return token;
 		}
+		//Probably num<0, we cant use it, return null and hope
+		//Everything doesnt crash and burn 
+		//Also we cant just throw an exception to stop 
+		//execution here because then every function above
+		//will also need to throw it or catch it
+		//BUT null exceptions can be a lazy way to just make
+		//everything burn
 		return null;
 	};
 }
