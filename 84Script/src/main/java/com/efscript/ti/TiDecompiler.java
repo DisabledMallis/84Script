@@ -23,7 +23,7 @@ public class TiDecompiler {
 			{
 				byte high = code[i];
 				i++;
-				byte low = code[i+1];
+				byte low = code[i];
 				token = TiToken.getToken(high, low);
 			}
 			else{
