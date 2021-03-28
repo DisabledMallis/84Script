@@ -106,7 +106,7 @@ This section is about how the generated .8xp file(s) are structured programatica
 
 Its quite a simple, yet effective structure.
 
-## Limitations
+# Limitations
 84Script is limited by a number of factors, all of which are limitations of Ti-Basic.
 * Only 6 strings can be stored at a time
 * You can only concatenate strings
