@@ -11,7 +11,7 @@ import com.efscript.ti.TiFile;
 public class Main {
 	// EFSCompiler version
 	public static final String version = "0.0.1";
-	public static final String fileDesc = "Compiled with 84Script. http://efscript.com";
+	public static final String fileDesc = "Compiled with 84Script ("+version+")";
 
 	// Entry function
 	public static void main(String[] args) throws Exception {
