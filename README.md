@@ -27,7 +27,7 @@ Key:
 	🔄 - Compilation
 		🔄 - EFSCompiler.java
 		✅ - EFS Statement Block
-		❌ - EFS Script Block
+		🔄 - EFS Script Block
 		❌ - Include other files
 		🔄 - Expressions
 			✅ - Bracket expressions "(<expression>)"
@@ -51,8 +51,8 @@ Key:
 			❌ - Method call expression
 		🔄 - Statements
 			✅ - Assign statement
-			❌ - Add assign statement
-			❌ - Subtract assign statement
+			✅ - Add assign statement
+			✅ - Subtract assign statement
 			❌ - Multiply assign statement
 			❌ - Divide assign statement
 			✅ - Increment statement
@@ -66,7 +66,7 @@ Key:
 				❌ - TiBasic parser & lexer
 				❌ - TiBasic compiler
 	❌ - STIL (Standard TI Library)
-	❌ - 8xp from 84Script generation
+	🔄 - 8xp from 84Script generation
 ```
 
 # Using 84Script
