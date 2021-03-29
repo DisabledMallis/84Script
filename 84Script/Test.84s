@@ -1,4 +1,9 @@
-var x = 43643.000000053298798375982;
+def Add(num, ber)
+{
+	num+ber;
+}
+
+var x = 64;
 var y = 55;
 
 var z = x+y;

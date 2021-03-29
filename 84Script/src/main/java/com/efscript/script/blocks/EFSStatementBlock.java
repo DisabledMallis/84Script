@@ -12,7 +12,9 @@ import com.efscript.antlr.EFScriptParser.Return_stmtContext;
 import com.efscript.antlr.EFScriptParser.StatementContext;
 import com.efscript.antlr.EFScriptParser.Var_stmtContext;
 import com.efscript.antlr.EFScriptParser.While_stmtContext;
+import com.efscript.script.ABlock;
 import com.efscript.script.IBlock;
+import com.efscript.script.blocks.expressions.EFSExpressionBlock;
 import com.efscript.script.blocks.statements.EFSAddAssignBlock;
 import com.efscript.script.blocks.statements.EFSAssignBlock;
 import com.efscript.script.blocks.statements.EFSDecBlock;
@@ -27,10 +29,10 @@ import com.efscript.script.blocks.statements.EFSWhileBlock;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
-public abstract class EFSStatementBlock<T extends ParserRuleContext> implements IBlock {
+public abstract class EFSStatementBlock<T extends ParserRuleContext> extends ABlock<T> {
 
 	// Create the appropriate block
-	public static EFSStatementBlock<?> getAppropriate(StatementContext ctx) {
+	public static EFSStatementBlock<?> getAppropriate(StatementContext ctx) throws Exception {
 		// Check what kind of context it is
 		boolean isIf = ctx.if_stmt() != null;
 		boolean isDec = ctx.dec_stmt() != null;
@@ -43,6 +45,7 @@ public abstract class EFSStatementBlock<T extends ParserRuleContext> implements 
 		boolean isSubAssign = ctx.add_assign_stmt() != null;
 		boolean isMulAssign = ctx.add_assign_stmt() != null;
 		boolean isDivAssign = ctx.add_assign_stmt() != null;
+		boolean isExpression = ctx.expression() != null;
 
 		// create that type of block.
 		if (isIf) {
@@ -78,22 +81,13 @@ public abstract class EFSStatementBlock<T extends ParserRuleContext> implements 
 		if (isDivAssign) {
 			return new EFSDivAssignBlock(ctx.div_assign_stmt());
 		}
-		try {
-			throw new Exception("Unknown statement!");
-		} catch (Exception e) {
-			Logger.Log(ctx.getText());
+		if (isExpression) {
+			return new EFSExpressionBlock(ctx.expression());
 		}
-		return null;
+		throw new Exception("Unknown statement! Very bad");
 	}
-
-	private T ctx;
 
 	public EFSStatementBlock(T ctx) {
-		this.ctx = ctx;
+		super(ctx);
 	}
-
-	public T getCtx() {
-		return this.ctx;
-	}
-
 }

@@ -17,15 +17,15 @@ public class EFSFunctionBlock implements IBlock {
 	Func_paramsContext parameters;
 
 	// Create a func block from a context
-	public EFSFunctionBlock(FunctionContext ctx) {
+	public EFSFunctionBlock(FunctionContext ctx) throws Exception {
 		// Init vars
 		this.parameters = ctx.func_params();
 		this.blocks = new ArrayList<>();
 
-		// Try getting a sub context
+		boolean isCurl = ctx.statement().OPEN_CURLEY() != null;
 		StatementContext stmtCtx = ctx.statement();
 		// If successful
-		if (stmtCtx != null) {
+		if (isCurl) {
 			// Iterate sub-contexts
 			for (StatementContext leCtx : stmtCtx.statement()) {
 				// Store the code block(s)
@@ -41,7 +41,7 @@ public class EFSFunctionBlock implements IBlock {
 		// and store that.
 		EFSStatementBlock<?> stmtBlock = EFSStatementBlock.getAppropriate(stmtCtx);
 		if (stmtBlock == null)
-			Logger.Log("Null single Stmt");
+			throw new Exception("Null statement? Very bad");
 		this.blocks.add(stmtBlock);
 		return;
 	}
@@ -52,8 +52,7 @@ public class EFSFunctionBlock implements IBlock {
 
 		for (EFSStatementBlock<?> block : this.blocks) {
 			if (block == null) {
-				Logger.Log("Null block... what?");
-				return null;
+				throw new Exception("A code block for a function was null? ");
 			}
 			comp.appendInstruction(block.compile());
 		}
