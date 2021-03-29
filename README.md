@@ -28,6 +28,7 @@ Key:
 		🔄 - EFSCompiler.java
 		✅ - EFS Statement Block
 		❌ - EFS Script Block
+		❌ - Include other files
 		🔄 - Expressions
 			✅ - Bracket expressions "(<expression>)"
 			✅ - Identifier expression
@@ -64,6 +65,7 @@ Key:
 				❌ - TiBasic grammar
 				❌ - TiBasic parser & lexer
 				❌ - TiBasic compiler
+	❌ - STIL (Standard TI Library)
 	❌ - 8xp from 84Script generation
 ```
 
