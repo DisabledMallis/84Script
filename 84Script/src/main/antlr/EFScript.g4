@@ -88,13 +88,17 @@ expression
 
 //Boolean expression
 boolexpr
-	: identifier
+	: value
 	| TRUE
 	| FALSE
-	| identifier GREATER_THAN expression
-	| identifier LESS_THAN expression
-	| identifier EQUAL_TO expression
-	| identifier NOT_EQUAL_TO expression
+	| value GREATER_THAN boolexpr
+	| value LESS_THAN boolexpr
+	| value EQUAL_TO boolexpr
+	| value NOT_EQUAL_TO boolexpr
+	| value GREATER_THAN_OR_EQUAL boolexpr
+	| value LESS_THAN_OR_EQUAL boolexpr
+	| value OR boolexpr
+	| value AND boolexpr
 	;
 
 
@@ -125,6 +129,10 @@ GREATER_THAN : '>';
 LESS_THAN : '<';
 EQUAL_TO : '==';
 NOT_EQUAL_TO : '!=';
+GREATER_THAN_OR_EQUAL : '>=';
+LESS_THAN_OR_EQUAL : '<=';
+OR : '||';
+AND  : '&&';
 
 //Assignment operators
 ASSIGN : '=';

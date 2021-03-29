@@ -81,6 +81,7 @@ public enum TiToken {
 	DIVIDE(0x81, "/"),
 	CONST_PI(0xAC, "pi"),
 	CONST_E(0xBB, 0x31, "e"),
+	AND(0xBB, 0xD4, "&"),
 	IF(0xCE, "IF "),
 	THEN(0xCF, "THEN "),
 	END(0xD4, "END "),

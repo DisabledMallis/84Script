@@ -21,10 +21,11 @@ public class EFScriptParser extends Parser {
 	public static final int
 		T__0=1, OPEN_BRACKET=2, CLOSE_BRACKET=3, OPEN_CURLEY=4, CLOSE_CURLEY=5, 
 		END_STMT=6, ADD=7, SUB=8, MUL=9, DIV=10, GREATER_THAN=11, LESS_THAN=12, 
-		EQUAL_TO=13, NOT_EQUAL_TO=14, ASSIGN=15, ADDASSIGN=16, SUBASSIGN=17, MULASSIGN=18, 
-		DIVASSIGN=19, INCREMENT=20, DECREMENT=21, DEF=22, VAR=23, IF=24, WHILE=25, 
-		RETURN=26, TRUE=27, FALSE=28, IDENTIFIER=29, NUMBER=30, PI=31, E=32, QUOTED_TEXT=33, 
-		LINECOMMENT=34, BLOCKCOMMENT=35, WHITESPACE=36;
+		EQUAL_TO=13, NOT_EQUAL_TO=14, GREATER_THAN_OR_EQUAL=15, LESS_THAN_OR_EQUAL=16, 
+		OR=17, AND=18, ASSIGN=19, ADDASSIGN=20, SUBASSIGN=21, MULASSIGN=22, DIVASSIGN=23, 
+		INCREMENT=24, DECREMENT=25, DEF=26, VAR=27, IF=28, WHILE=29, RETURN=30, 
+		TRUE=31, FALSE=32, IDENTIFIER=33, NUMBER=34, PI=35, E=36, QUOTED_TEXT=37, 
+		LINECOMMENT=38, BLOCKCOMMENT=39, WHITESPACE=40;
 	public static final int
 		RULE_script = 0, RULE_code = 1, RULE_function = 2, RULE_func_params = 3, 
 		RULE_statement = 4, RULE_assign_stmt = 5, RULE_add_assign_stmt = 6, RULE_sub_assign_stmt = 7, 
@@ -46,9 +47,10 @@ public class EFScriptParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "','", "'('", "')'", "'{'", "'}'", "';'", "'+'", "'-'", "'*'", 
-			"'/'", "'>'", "'<'", "'=='", "'!='", "'='", "'+='", "'-='", "'*='", "'/='", 
-			"'++'", "'--'", "'def'", "'var'", "'if'", "'while'", "'return'", "'true'", 
-			"'false'", null, null, "'pi'", "'e'"
+			"'/'", "'>'", "'<'", "'=='", "'!='", "'>='", "'<='", "'||'", "'&&'", 
+			"'='", "'+='", "'-='", "'*='", "'/='", "'++'", "'--'", "'def'", "'var'", 
+			"'if'", "'while'", "'return'", "'true'", "'false'", null, null, "'pi'", 
+			"'e'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -56,9 +58,10 @@ public class EFScriptParser extends Parser {
 		return new String[] {
 			null, null, "OPEN_BRACKET", "CLOSE_BRACKET", "OPEN_CURLEY", "CLOSE_CURLEY", 
 			"END_STMT", "ADD", "SUB", "MUL", "DIV", "GREATER_THAN", "LESS_THAN", 
-			"EQUAL_TO", "NOT_EQUAL_TO", "ASSIGN", "ADDASSIGN", "SUBASSIGN", "MULASSIGN", 
-			"DIVASSIGN", "INCREMENT", "DECREMENT", "DEF", "VAR", "IF", "WHILE", "RETURN", 
-			"TRUE", "FALSE", "IDENTIFIER", "NUMBER", "PI", "E", "QUOTED_TEXT", "LINECOMMENT", 
+			"EQUAL_TO", "NOT_EQUAL_TO", "GREATER_THAN_OR_EQUAL", "LESS_THAN_OR_EQUAL", 
+			"OR", "AND", "ASSIGN", "ADDASSIGN", "SUBASSIGN", "MULASSIGN", "DIVASSIGN", 
+			"INCREMENT", "DECREMENT", "DEF", "VAR", "IF", "WHILE", "RETURN", "TRUE", 
+			"FALSE", "IDENTIFIER", "NUMBER", "PI", "E", "QUOTED_TEXT", "LINECOMMENT", 
 			"BLOCKCOMMENT", "WHITESPACE"
 		};
 	}
@@ -1378,18 +1381,22 @@ public class EFScriptParser extends Parser {
 	}
 
 	public static class BoolexprContext extends ParserRuleContext {
-		public IdentifierContext identifier() {
-			return getRuleContext(IdentifierContext.class,0);
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
 		}
 		public TerminalNode TRUE() { return getToken(EFScriptParser.TRUE, 0); }
 		public TerminalNode FALSE() { return getToken(EFScriptParser.FALSE, 0); }
 		public TerminalNode GREATER_THAN() { return getToken(EFScriptParser.GREATER_THAN, 0); }
-		public ExpressionContext expression() {
-			return getRuleContext(ExpressionContext.class,0);
+		public BoolexprContext boolexpr() {
+			return getRuleContext(BoolexprContext.class,0);
 		}
 		public TerminalNode LESS_THAN() { return getToken(EFScriptParser.LESS_THAN, 0); }
 		public TerminalNode EQUAL_TO() { return getToken(EFScriptParser.EQUAL_TO, 0); }
 		public TerminalNode NOT_EQUAL_TO() { return getToken(EFScriptParser.NOT_EQUAL_TO, 0); }
+		public TerminalNode GREATER_THAN_OR_EQUAL() { return getToken(EFScriptParser.GREATER_THAN_OR_EQUAL, 0); }
+		public TerminalNode LESS_THAN_OR_EQUAL() { return getToken(EFScriptParser.LESS_THAN_OR_EQUAL, 0); }
+		public TerminalNode OR() { return getToken(EFScriptParser.OR, 0); }
+		public TerminalNode AND() { return getToken(EFScriptParser.AND, 0); }
 		public BoolexprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1413,14 +1420,14 @@ public class EFScriptParser extends Parser {
 		BoolexprContext _localctx = new BoolexprContext(_ctx, getState());
 		enterRule(_localctx, 34, RULE_boolexpr);
 		try {
-			setState(206);
+			setState(222);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(187);
-				identifier();
+				value();
 				}
 				break;
 			case 2:
@@ -1441,44 +1448,88 @@ public class EFScriptParser extends Parser {
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(190);
-				identifier();
+				value();
 				setState(191);
 				match(GREATER_THAN);
 				setState(192);
-				expression(0);
+				boolexpr();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(194);
-				identifier();
+				value();
 				setState(195);
 				match(LESS_THAN);
 				setState(196);
-				expression(0);
+				boolexpr();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(198);
-				identifier();
+				value();
 				setState(199);
 				match(EQUAL_TO);
 				setState(200);
-				expression(0);
+				boolexpr();
 				}
 				break;
 			case 7:
 				enterOuterAlt(_localctx, 7);
 				{
 				setState(202);
-				identifier();
+				value();
 				setState(203);
 				match(NOT_EQUAL_TO);
 				setState(204);
-				expression(0);
+				boolexpr();
+				}
+				break;
+			case 8:
+				enterOuterAlt(_localctx, 8);
+				{
+				setState(206);
+				value();
+				setState(207);
+				match(GREATER_THAN_OR_EQUAL);
+				setState(208);
+				boolexpr();
+				}
+				break;
+			case 9:
+				enterOuterAlt(_localctx, 9);
+				{
+				setState(210);
+				value();
+				setState(211);
+				match(LESS_THAN_OR_EQUAL);
+				setState(212);
+				boolexpr();
+				}
+				break;
+			case 10:
+				enterOuterAlt(_localctx, 10);
+				{
+				setState(214);
+				value();
+				setState(215);
+				match(OR);
+				setState(216);
+				boolexpr();
+				}
+				break;
+			case 11:
+				enterOuterAlt(_localctx, 11);
+				{
+				setState(218);
+				value();
+				setState(219);
+				match(AND);
+				setState(220);
+				boolexpr();
 				}
 				break;
 			}
@@ -1528,13 +1579,13 @@ public class EFScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(208);
+			setState(224);
 			identifier();
-			setState(209);
+			setState(225);
 			match(OPEN_BRACKET);
-			setState(210);
+			setState(226);
 			methodparams();
-			setState(211);
+			setState(227);
 			match(CLOSE_BRACKET);
 			}
 		}
@@ -1582,21 +1633,21 @@ public class EFScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(213);
+			setState(229);
 			expression(0);
-			setState(218);
+			setState(234);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==T__0) {
 				{
 				{
-				setState(214);
+				setState(230);
 				match(T__0);
-				setState(215);
+				setState(231);
 				expression(0);
 				}
 				}
-				setState(220);
+				setState(236);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1643,13 +1694,13 @@ public class EFScriptParser extends Parser {
 		ValueContext _localctx = new ValueContext(_ctx, getState());
 		enterRule(_localctx, 40, RULE_value);
 		try {
-			setState(223);
+			setState(239);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case IDENTIFIER:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(221);
+				setState(237);
 				identifier();
 				}
 				break;
@@ -1658,7 +1709,7 @@ public class EFScriptParser extends Parser {
 			case E:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(222);
+				setState(238);
 				number();
 				}
 				break;
@@ -1704,7 +1755,7 @@ public class EFScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(225);
+			setState(241);
 			match(IDENTIFIER);
 			}
 		}
@@ -1749,7 +1800,7 @@ public class EFScriptParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(227);
+			setState(243);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NUMBER) | (1L << PI) | (1L << E))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1794,7 +1845,7 @@ public class EFScriptParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3&\u00e8\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3*\u00f8\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\3\2\7\2\62"+
@@ -1808,64 +1859,71 @@ public class EFScriptParser extends Parser {
 		"\21\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u00ab\n\22\3\22"+
 		"\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\7\22\u00b9\n\22"+
 		"\f\22\16\22\u00bc\13\22\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3"+
-		"\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\5\23\u00d1\n\23\3\24"+
-		"\3\24\3\24\3\24\3\24\3\25\3\25\3\25\7\25\u00db\n\25\f\25\16\25\u00de\13"+
-		"\25\3\26\3\26\5\26\u00e2\n\26\3\27\3\27\3\30\3\30\3\30\2\3\"\31\2\4\6"+
-		"\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\2\3\3\2 \"\2\u00f3\2\67\3\2"+
-		"\2\2\4;\3\2\2\2\6=\3\2\2\2\bG\3\2\2\2\nh\3\2\2\2\fj\3\2\2\2\16o\3\2\2"+
-		"\2\20t\3\2\2\2\22y\3\2\2\2\24~\3\2\2\2\26\u0083\3\2\2\2\30\u0087\3\2\2"+
-		"\2\32\u008b\3\2\2\2\34\u0091\3\2\2\2\36\u0097\3\2\2\2 \u009d\3\2\2\2\""+
-		"\u00aa\3\2\2\2$\u00d0\3\2\2\2&\u00d2\3\2\2\2(\u00d7\3\2\2\2*\u00e1\3\2"+
-		"\2\2,\u00e3\3\2\2\2.\u00e5\3\2\2\2\60\62\5\4\3\2\61\60\3\2\2\2\62\65\3"+
-		"\2\2\2\63\61\3\2\2\2\63\64\3\2\2\2\648\3\2\2\2\65\63\3\2\2\2\668\7\2\2"+
-		"\3\67\63\3\2\2\2\67\66\3\2\2\28\3\3\2\2\29<\5\6\4\2:<\5\n\6\2;9\3\2\2"+
-		"\2;:\3\2\2\2<\5\3\2\2\2=>\7\30\2\2>?\5,\27\2?@\7\4\2\2@A\5\b\5\2AB\7\5"+
-		"\2\2BC\5\n\6\2C\7\3\2\2\2DF\5,\27\2ED\3\2\2\2FI\3\2\2\2GE\3\2\2\2GH\3"+
-		"\2\2\2HN\3\2\2\2IG\3\2\2\2JK\7\3\2\2KM\5,\27\2LJ\3\2\2\2MP\3\2\2\2NL\3"+
-		"\2\2\2NO\3\2\2\2O\t\3\2\2\2PN\3\2\2\2QU\7\6\2\2RT\5\n\6\2SR\3\2\2\2TW"+
-		"\3\2\2\2US\3\2\2\2UV\3\2\2\2VX\3\2\2\2WU\3\2\2\2Xi\7\7\2\2Yi\5\f\7\2Z"+
-		"i\5\16\b\2[i\5\20\t\2\\i\5\22\n\2]i\5\24\13\2^i\5\26\f\2_i\5\30\r\2`i"+
-		"\5\32\16\2ai\5\34\17\2bi\5\36\20\2ci\5 \21\2de\5\"\22\2ef\7\b\2\2fi\3"+
-		"\2\2\2gi\7\b\2\2hQ\3\2\2\2hY\3\2\2\2hZ\3\2\2\2h[\3\2\2\2h\\\3\2\2\2h]"+
-		"\3\2\2\2h^\3\2\2\2h_\3\2\2\2h`\3\2\2\2ha\3\2\2\2hb\3\2\2\2hc\3\2\2\2h"+
-		"d\3\2\2\2hg\3\2\2\2i\13\3\2\2\2jk\5,\27\2kl\7\21\2\2lm\5\"\22\2mn\7\b"+
-		"\2\2n\r\3\2\2\2op\5,\27\2pq\7\22\2\2qr\5*\26\2rs\7\b\2\2s\17\3\2\2\2t"+
-		"u\5,\27\2uv\7\23\2\2vw\5*\26\2wx\7\b\2\2x\21\3\2\2\2yz\5,\27\2z{\7\24"+
-		"\2\2{|\5*\26\2|}\7\b\2\2}\23\3\2\2\2~\177\5,\27\2\177\u0080\7\25\2\2\u0080"+
+		"\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3"+
+		"\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\3\23\5\23\u00e1"+
+		"\n\23\3\24\3\24\3\24\3\24\3\24\3\25\3\25\3\25\7\25\u00eb\n\25\f\25\16"+
+		"\25\u00ee\13\25\3\26\3\26\5\26\u00f2\n\26\3\27\3\27\3\30\3\30\3\30\2\3"+
+		"\"\31\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\2\3\3\2$&\2\u0107"+
+		"\2\67\3\2\2\2\4;\3\2\2\2\6=\3\2\2\2\bG\3\2\2\2\nh\3\2\2\2\fj\3\2\2\2\16"+
+		"o\3\2\2\2\20t\3\2\2\2\22y\3\2\2\2\24~\3\2\2\2\26\u0083\3\2\2\2\30\u0087"+
+		"\3\2\2\2\32\u008b\3\2\2\2\34\u0091\3\2\2\2\36\u0097\3\2\2\2 \u009d\3\2"+
+		"\2\2\"\u00aa\3\2\2\2$\u00e0\3\2\2\2&\u00e2\3\2\2\2(\u00e7\3\2\2\2*\u00f1"+
+		"\3\2\2\2,\u00f3\3\2\2\2.\u00f5\3\2\2\2\60\62\5\4\3\2\61\60\3\2\2\2\62"+
+		"\65\3\2\2\2\63\61\3\2\2\2\63\64\3\2\2\2\648\3\2\2\2\65\63\3\2\2\2\668"+
+		"\7\2\2\3\67\63\3\2\2\2\67\66\3\2\2\28\3\3\2\2\29<\5\6\4\2:<\5\n\6\2;9"+
+		"\3\2\2\2;:\3\2\2\2<\5\3\2\2\2=>\7\34\2\2>?\5,\27\2?@\7\4\2\2@A\5\b\5\2"+
+		"AB\7\5\2\2BC\5\n\6\2C\7\3\2\2\2DF\5,\27\2ED\3\2\2\2FI\3\2\2\2GE\3\2\2"+
+		"\2GH\3\2\2\2HN\3\2\2\2IG\3\2\2\2JK\7\3\2\2KM\5,\27\2LJ\3\2\2\2MP\3\2\2"+
+		"\2NL\3\2\2\2NO\3\2\2\2O\t\3\2\2\2PN\3\2\2\2QU\7\6\2\2RT\5\n\6\2SR\3\2"+
+		"\2\2TW\3\2\2\2US\3\2\2\2UV\3\2\2\2VX\3\2\2\2WU\3\2\2\2Xi\7\7\2\2Yi\5\f"+
+		"\7\2Zi\5\16\b\2[i\5\20\t\2\\i\5\22\n\2]i\5\24\13\2^i\5\26\f\2_i\5\30\r"+
+		"\2`i\5\32\16\2ai\5\34\17\2bi\5\36\20\2ci\5 \21\2de\5\"\22\2ef\7\b\2\2"+
+		"fi\3\2\2\2gi\7\b\2\2hQ\3\2\2\2hY\3\2\2\2hZ\3\2\2\2h[\3\2\2\2h\\\3\2\2"+
+		"\2h]\3\2\2\2h^\3\2\2\2h_\3\2\2\2h`\3\2\2\2ha\3\2\2\2hb\3\2\2\2hc\3\2\2"+
+		"\2hd\3\2\2\2hg\3\2\2\2i\13\3\2\2\2jk\5,\27\2kl\7\25\2\2lm\5\"\22\2mn\7"+
+		"\b\2\2n\r\3\2\2\2op\5,\27\2pq\7\26\2\2qr\5*\26\2rs\7\b\2\2s\17\3\2\2\2"+
+		"tu\5,\27\2uv\7\27\2\2vw\5*\26\2wx\7\b\2\2x\21\3\2\2\2yz\5,\27\2z{\7\30"+
+		"\2\2{|\5*\26\2|}\7\b\2\2}\23\3\2\2\2~\177\5,\27\2\177\u0080\7\31\2\2\u0080"+
 		"\u0081\5*\26\2\u0081\u0082\7\b\2\2\u0082\25\3\2\2\2\u0083\u0084\5,\27"+
-		"\2\u0084\u0085\7\26\2\2\u0085\u0086\7\b\2\2\u0086\27\3\2\2\2\u0087\u0088"+
-		"\5,\27\2\u0088\u0089\7\27\2\2\u0089\u008a\7\b\2\2\u008a\31\3\2\2\2\u008b"+
-		"\u008c\7\32\2\2\u008c\u008d\7\4\2\2\u008d\u008e\5$\23\2\u008e\u008f\7"+
-		"\5\2\2\u008f\u0090\5\n\6\2\u0090\33\3\2\2\2\u0091\u0092\7\33\2\2\u0092"+
+		"\2\u0084\u0085\7\32\2\2\u0085\u0086\7\b\2\2\u0086\27\3\2\2\2\u0087\u0088"+
+		"\5,\27\2\u0088\u0089\7\33\2\2\u0089\u008a\7\b\2\2\u008a\31\3\2\2\2\u008b"+
+		"\u008c\7\36\2\2\u008c\u008d\7\4\2\2\u008d\u008e\5$\23\2\u008e\u008f\7"+
+		"\5\2\2\u008f\u0090\5\n\6\2\u0090\33\3\2\2\2\u0091\u0092\7\37\2\2\u0092"+
 		"\u0093\7\4\2\2\u0093\u0094\5$\23\2\u0094\u0095\7\5\2\2\u0095\u0096\5\n"+
-		"\6\2\u0096\35\3\2\2\2\u0097\u0098\7\31\2\2\u0098\u0099\5,\27\2\u0099\u009a"+
-		"\7\21\2\2\u009a\u009b\5\"\22\2\u009b\u009c\7\b\2\2\u009c\37\3\2\2\2\u009d"+
-		"\u009e\7\34\2\2\u009e\u009f\5\"\22\2\u009f\u00a0\7\b\2\2\u00a0!\3\2\2"+
-		"\2\u00a1\u00a2\b\22\1\2\u00a2\u00a3\7\4\2\2\u00a3\u00a4\5\"\22\2\u00a4"+
-		"\u00a5\7\5\2\2\u00a5\u00ab\3\2\2\2\u00a6\u00ab\5*\26\2\u00a7\u00ab\5$"+
-		"\23\2\u00a8\u00ab\7#\2\2\u00a9\u00ab\5&\24\2\u00aa\u00a1\3\2\2\2\u00aa"+
-		"\u00a6\3\2\2\2\u00aa\u00a7\3\2\2\2\u00aa\u00a8\3\2\2\2\u00aa\u00a9\3\2"+
-		"\2\2\u00ab\u00ba\3\2\2\2\u00ac\u00ad\f\n\2\2\u00ad\u00ae\7\t\2\2\u00ae"+
-		"\u00b9\5\"\22\13\u00af\u00b0\f\t\2\2\u00b0\u00b1\7\n\2\2\u00b1\u00b9\5"+
-		"\"\22\n\u00b2\u00b3\f\b\2\2\u00b3\u00b4\7\13\2\2\u00b4\u00b9\5\"\22\t"+
-		"\u00b5\u00b6\f\7\2\2\u00b6\u00b7\7\f\2\2\u00b7\u00b9\5\"\22\b\u00b8\u00ac"+
-		"\3\2\2\2\u00b8\u00af\3\2\2\2\u00b8\u00b2\3\2\2\2\u00b8\u00b5\3\2\2\2\u00b9"+
-		"\u00bc\3\2\2\2\u00ba\u00b8\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb#\3\2\2\2"+
-		"\u00bc\u00ba\3\2\2\2\u00bd\u00d1\5,\27\2\u00be\u00d1\7\35\2\2\u00bf\u00d1"+
-		"\7\36\2\2\u00c0\u00c1\5,\27\2\u00c1\u00c2\7\r\2\2\u00c2\u00c3\5\"\22\2"+
-		"\u00c3\u00d1\3\2\2\2\u00c4\u00c5\5,\27\2\u00c5\u00c6\7\16\2\2\u00c6\u00c7"+
-		"\5\"\22\2\u00c7\u00d1\3\2\2\2\u00c8\u00c9\5,\27\2\u00c9\u00ca\7\17\2\2"+
-		"\u00ca\u00cb\5\"\22\2\u00cb\u00d1\3\2\2\2\u00cc\u00cd\5,\27\2\u00cd\u00ce"+
-		"\7\20\2\2\u00ce\u00cf\5\"\22\2\u00cf\u00d1\3\2\2\2\u00d0\u00bd\3\2\2\2"+
-		"\u00d0\u00be\3\2\2\2\u00d0\u00bf\3\2\2\2\u00d0\u00c0\3\2\2\2\u00d0\u00c4"+
-		"\3\2\2\2\u00d0\u00c8\3\2\2\2\u00d0\u00cc\3\2\2\2\u00d1%\3\2\2\2\u00d2"+
-		"\u00d3\5,\27\2\u00d3\u00d4\7\4\2\2\u00d4\u00d5\5(\25\2\u00d5\u00d6\7\5"+
-		"\2\2\u00d6\'\3\2\2\2\u00d7\u00dc\5\"\22\2\u00d8\u00d9\7\3\2\2\u00d9\u00db"+
-		"\5\"\22\2\u00da\u00d8\3\2\2\2\u00db\u00de\3\2\2\2\u00dc\u00da\3\2\2\2"+
-		"\u00dc\u00dd\3\2\2\2\u00dd)\3\2\2\2\u00de\u00dc\3\2\2\2\u00df\u00e2\5"+
-		",\27\2\u00e0\u00e2\5.\30\2\u00e1\u00df\3\2\2\2\u00e1\u00e0\3\2\2\2\u00e2"+
-		"+\3\2\2\2\u00e3\u00e4\7\37\2\2\u00e4-\3\2\2\2\u00e5\u00e6\t\2\2\2\u00e6"+
-		"/\3\2\2\2\17\63\67;GNUh\u00aa\u00b8\u00ba\u00d0\u00dc\u00e1";
+		"\6\2\u0096\35\3\2\2\2\u0097\u0098\7\35\2\2\u0098\u0099\5,\27\2\u0099\u009a"+
+		"\7\25\2\2\u009a\u009b\5\"\22\2\u009b\u009c\7\b\2\2\u009c\37\3\2\2\2\u009d"+
+		"\u009e\7 \2\2\u009e\u009f\5\"\22\2\u009f\u00a0\7\b\2\2\u00a0!\3\2\2\2"+
+		"\u00a1\u00a2\b\22\1\2\u00a2\u00a3\7\4\2\2\u00a3\u00a4\5\"\22\2\u00a4\u00a5"+
+		"\7\5\2\2\u00a5\u00ab\3\2\2\2\u00a6\u00ab\5*\26\2\u00a7\u00ab\5$\23\2\u00a8"+
+		"\u00ab\7\'\2\2\u00a9\u00ab\5&\24\2\u00aa\u00a1\3\2\2\2\u00aa\u00a6\3\2"+
+		"\2\2\u00aa\u00a7\3\2\2\2\u00aa\u00a8\3\2\2\2\u00aa\u00a9\3\2\2\2\u00ab"+
+		"\u00ba\3\2\2\2\u00ac\u00ad\f\n\2\2\u00ad\u00ae\7\t\2\2\u00ae\u00b9\5\""+
+		"\22\13\u00af\u00b0\f\t\2\2\u00b0\u00b1\7\n\2\2\u00b1\u00b9\5\"\22\n\u00b2"+
+		"\u00b3\f\b\2\2\u00b3\u00b4\7\13\2\2\u00b4\u00b9\5\"\22\t\u00b5\u00b6\f"+
+		"\7\2\2\u00b6\u00b7\7\f\2\2\u00b7\u00b9\5\"\22\b\u00b8\u00ac\3\2\2\2\u00b8"+
+		"\u00af\3\2\2\2\u00b8\u00b2\3\2\2\2\u00b8\u00b5\3\2\2\2\u00b9\u00bc\3\2"+
+		"\2\2\u00ba\u00b8\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb#\3\2\2\2\u00bc\u00ba"+
+		"\3\2\2\2\u00bd\u00e1\5*\26\2\u00be\u00e1\7!\2\2\u00bf\u00e1\7\"\2\2\u00c0"+
+		"\u00c1\5*\26\2\u00c1\u00c2\7\r\2\2\u00c2\u00c3\5$\23\2\u00c3\u00e1\3\2"+
+		"\2\2\u00c4\u00c5\5*\26\2\u00c5\u00c6\7\16\2\2\u00c6\u00c7\5$\23\2\u00c7"+
+		"\u00e1\3\2\2\2\u00c8\u00c9\5*\26\2\u00c9\u00ca\7\17\2\2\u00ca\u00cb\5"+
+		"$\23\2\u00cb\u00e1\3\2\2\2\u00cc\u00cd\5*\26\2\u00cd\u00ce\7\20\2\2\u00ce"+
+		"\u00cf\5$\23\2\u00cf\u00e1\3\2\2\2\u00d0\u00d1\5*\26\2\u00d1\u00d2\7\21"+
+		"\2\2\u00d2\u00d3\5$\23\2\u00d3\u00e1\3\2\2\2\u00d4\u00d5\5*\26\2\u00d5"+
+		"\u00d6\7\22\2\2\u00d6\u00d7\5$\23\2\u00d7\u00e1\3\2\2\2\u00d8\u00d9\5"+
+		"*\26\2\u00d9\u00da\7\23\2\2\u00da\u00db\5$\23\2\u00db\u00e1\3\2\2\2\u00dc"+
+		"\u00dd\5*\26\2\u00dd\u00de\7\24\2\2\u00de\u00df\5$\23\2\u00df\u00e1\3"+
+		"\2\2\2\u00e0\u00bd\3\2\2\2\u00e0\u00be\3\2\2\2\u00e0\u00bf\3\2\2\2\u00e0"+
+		"\u00c0\3\2\2\2\u00e0\u00c4\3\2\2\2\u00e0\u00c8\3\2\2\2\u00e0\u00cc\3\2"+
+		"\2\2\u00e0\u00d0\3\2\2\2\u00e0\u00d4\3\2\2\2\u00e0\u00d8\3\2\2\2\u00e0"+
+		"\u00dc\3\2\2\2\u00e1%\3\2\2\2\u00e2\u00e3\5,\27\2\u00e3\u00e4\7\4\2\2"+
+		"\u00e4\u00e5\5(\25\2\u00e5\u00e6\7\5\2\2\u00e6\'\3\2\2\2\u00e7\u00ec\5"+
+		"\"\22\2\u00e8\u00e9\7\3\2\2\u00e9\u00eb\5\"\22\2\u00ea\u00e8\3\2\2\2\u00eb"+
+		"\u00ee\3\2\2\2\u00ec\u00ea\3\2\2\2\u00ec\u00ed\3\2\2\2\u00ed)\3\2\2\2"+
+		"\u00ee\u00ec\3\2\2\2\u00ef\u00f2\5,\27\2\u00f0\u00f2\5.\30\2\u00f1\u00ef"+
+		"\3\2\2\2\u00f1\u00f0\3\2\2\2\u00f2+\3\2\2\2\u00f3\u00f4\7#\2\2\u00f4-"+
+		"\3\2\2\2\u00f5\u00f6\t\2\2\2\u00f6/\3\2\2\2\17\63\67;GNUh\u00aa\u00b8"+
+		"\u00ba\u00e0\u00ec\u00f1";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

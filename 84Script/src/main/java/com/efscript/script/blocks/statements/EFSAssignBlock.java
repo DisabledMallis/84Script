@@ -6,6 +6,7 @@ import com.efscript.antlr.EFScriptParser.IdentifierContext;
 import com.efscript.script.blocks.EFSGenericExpression;
 import com.efscript.script.blocks.EFSStatementBlock;
 import com.efscript.script.blocks.EFSVarToken;
+import com.efscript.script.blocks.expressions.EFSExpressionBlock;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
@@ -29,7 +30,7 @@ public class EFSAssignBlock extends EFSStatementBlock<Assign_stmtContext> {
 		// Expression to evaluate & store
 		ExpressionContext eCtx = aCtx.expression();
 		// Create an expression block instance
-		EFSGenericExpression<ExpressionContext> exprBlock = new EFSGenericExpression<ExpressionContext>(eCtx);
+		EFSExpressionBlock exprBlock = new EFSExpressionBlock(eCtx);
 		// Compile it
 		minComp.appendInstruction(exprBlock.compile());
 		// Store token
