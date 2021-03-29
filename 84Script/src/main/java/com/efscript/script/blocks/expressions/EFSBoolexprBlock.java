@@ -16,6 +16,15 @@ public class EFSBoolexprBlock extends EFSGenericExpression<BoolexprContext> {
 	public TiToken[] compile() {
 		TiCompiler compiler = new TiCompiler();
 		BoolexprContext ctx = this.getCtx();
+
+		// Check for value
+		boolean isValueExpr = ctx.value() != null;
+		if (isValueExpr) {
+			// Epic cool cool
+			EFSValueBlock block = new EFSValueBlock(ctx.value());
+			compiler.appendInstruction(block.compile());
+		}
+
 		// If is the 'true' keyword
 		boolean isTrue = ctx.TRUE() != null;
 		if (isTrue) {

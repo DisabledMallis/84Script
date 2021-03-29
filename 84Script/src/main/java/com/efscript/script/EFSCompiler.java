@@ -55,7 +55,7 @@ public class EFSCompiler implements EFScriptListener {
 	// The func that will compile the script start to finish
 	private ScriptContext parsed;
 
-	public byte[] compile() {
+	public byte[] compile() throws Exception {
 		Logger.Log("Compiling...");
 
 		if (parsed == null) {
@@ -91,12 +91,10 @@ public class EFSCompiler implements EFScriptListener {
 
 	@Override
 	public void enterScript(ScriptContext ctx) {
-		Logger.Log("First token reached!");
 	}
 
 	@Override
 	public void exitScript(ScriptContext ctx) {
-		Logger.Log("Exit token reached!");
 	}
 
 	@Override

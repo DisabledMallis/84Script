@@ -16,7 +16,7 @@ public class EFSAssignBlock extends EFSStatementBlock<Assign_stmtContext> {
 	}
 
 	@Override
-	public TiToken[] compile() {
+	public TiToken[] compile() throws Exception {
 		// Initialize TiCompiler
 		TiCompiler minComp = new TiCompiler();
 

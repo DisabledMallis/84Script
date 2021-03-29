@@ -9,6 +9,7 @@ import com.efscript.antlr.EFScriptParser.If_stmtContext;
 import com.efscript.antlr.EFScriptParser.Inc_stmtContext;
 import com.efscript.antlr.EFScriptParser.Mul_assign_stmtContext;
 import com.efscript.antlr.EFScriptParser.Return_stmtContext;
+import com.efscript.antlr.EFScriptParser.StatementContext;
 import com.efscript.antlr.EFScriptParser.Var_stmtContext;
 import com.efscript.antlr.EFScriptParser.While_stmtContext;
 import com.efscript.script.IBlock;
@@ -20,6 +21,7 @@ import com.efscript.script.blocks.statements.EFSIfBlock;
 import com.efscript.script.blocks.statements.EFSIncBlock;
 import com.efscript.script.blocks.statements.EFSMulAssignBlock;
 import com.efscript.script.blocks.statements.EFSReturnBlock;
+import com.efscript.script.blocks.statements.EFSSubAssignBlock;
 import com.efscript.script.blocks.statements.EFSVarBlock;
 import com.efscript.script.blocks.statements.EFSWhileBlock;
 
@@ -28,39 +30,53 @@ import org.antlr.v4.runtime.ParserRuleContext;
 public abstract class EFSStatementBlock<T extends ParserRuleContext> implements IBlock {
 
 	// Create the appropriate block
-	public static EFSStatementBlock<?> getAppropriate(ParserRuleContext ctx) {
-		// TODO: FUck. this design doesnt work at all as I expected. All of these are
-		// StatementContexts, and they arent their actual type. This is bad.
-		// Check what kind of context it is, and create that type of block.
-		if (ctx instanceof If_stmtContext) {
-			return new EFSIfBlock((If_stmtContext) ctx);
+	public static EFSStatementBlock<?> getAppropriate(StatementContext ctx) {
+		// Check what kind of context it is
+		boolean isIf = ctx.if_stmt() != null;
+		boolean isDec = ctx.dec_stmt() != null;
+		boolean isInc = ctx.inc_stmt() != null;
+		boolean isVar = ctx.var_stmt() != null;
+		boolean isWhile = ctx.while_stmt() != null;
+		boolean isAssign = ctx.assign_stmt() != null;
+		boolean isReturn = ctx.return_stmt() != null;
+		boolean isAddAssign = ctx.add_assign_stmt() != null;
+		boolean isSubAssign = ctx.add_assign_stmt() != null;
+		boolean isMulAssign = ctx.add_assign_stmt() != null;
+		boolean isDivAssign = ctx.add_assign_stmt() != null;
+
+		// create that type of block.
+		if (isIf) {
+			return new EFSIfBlock(ctx.if_stmt());
 		}
-		if (ctx instanceof Dec_stmtContext) {
-			return new EFSDecBlock((Dec_stmtContext) ctx);
+		if (isDec) {
+			return new EFSDecBlock(ctx.dec_stmt());
 		}
-		if (ctx instanceof Inc_stmtContext) {
-			return new EFSIncBlock((Inc_stmtContext) ctx);
+		if (isInc) {
+			return new EFSIncBlock(ctx.inc_stmt());
 		}
-		if (ctx instanceof Var_stmtContext) {
-			return new EFSVarBlock((Var_stmtContext) ctx);
+		if (isVar) {
+			return new EFSVarBlock(ctx.var_stmt());
 		}
-		if (ctx instanceof While_stmtContext) {
-			return new EFSWhileBlock((While_stmtContext) ctx);
+		if (isWhile) {
+			return new EFSWhileBlock(ctx.while_stmt());
 		}
-		if (ctx instanceof Assign_stmtContext) {
-			return new EFSAssignBlock((Assign_stmtContext) ctx);
+		if (isAssign) {
+			return new EFSAssignBlock(ctx.assign_stmt());
 		}
-		if (ctx instanceof Return_stmtContext) {
-			return new EFSReturnBlock((Return_stmtContext) ctx);
+		if (isReturn) {
+			return new EFSReturnBlock(ctx.return_stmt());
 		}
-		if (ctx instanceof Add_assign_stmtContext) {
-			return new EFSAddAssignBlock((Add_assign_stmtContext) ctx);
+		if (isAddAssign) {
+			return new EFSAddAssignBlock(ctx.add_assign_stmt());
 		}
-		if (ctx instanceof Div_assign_stmtContext) {
-			return new EFSDivAssignBlock((Div_assign_stmtContext) ctx);
+		if (isSubAssign) {
+			return new EFSSubAssignBlock(ctx.sub_assign_stmt());
 		}
-		if (ctx instanceof Mul_assign_stmtContext) {
-			return new EFSMulAssignBlock((Mul_assign_stmtContext) ctx);
+		if (isMulAssign) {
+			return new EFSMulAssignBlock(ctx.mul_assign_stmt());
+		}
+		if (isDivAssign) {
+			return new EFSDivAssignBlock(ctx.div_assign_stmt());
 		}
 		try {
 			throw new Exception("Unknown statement!");

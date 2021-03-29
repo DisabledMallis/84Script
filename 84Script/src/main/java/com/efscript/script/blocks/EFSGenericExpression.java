@@ -13,6 +13,6 @@ public abstract class EFSGenericExpression<T extends ParserRuleContext> implemen
 	}
 
 	public T getCtx() {
-		return ctx;
+		return this.ctx;
 	}
 }

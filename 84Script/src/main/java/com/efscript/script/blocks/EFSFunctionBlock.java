@@ -47,7 +47,7 @@ public class EFSFunctionBlock implements IBlock {
 	}
 
 	@Override
-	public TiToken[] compile() {
+	public TiToken[] compile() throws Exception {
 		TiCompiler comp = new TiCompiler();
 
 		for (EFSStatementBlock<?> block : this.blocks) {

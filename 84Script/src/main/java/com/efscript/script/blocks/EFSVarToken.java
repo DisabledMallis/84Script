@@ -10,7 +10,7 @@ import com.efscript.ti.TiToken;
 public class EFSVarToken implements IBlock {
 
 	// Vars & Func blocks and other shit
-	private static ArrayList<String> varIdentifiers = new ArrayList<>();
+	public static ArrayList<String> varIdentifiers = new ArrayList<>();
 
 	/*
 	 * Funcs for managing vars and creating references to them

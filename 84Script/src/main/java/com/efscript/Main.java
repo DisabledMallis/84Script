@@ -46,5 +46,7 @@ public class Main {
 		String code = Files.readString(Paths.get("Test.84s"));
 		EFSCompiler compiler = new EFSCompiler(code);
 		byte[] compiled = compiler.compile();
+		decomp = new TiDecompiler(compiled);
+		Logger.Log(decomp.decompile());
 	}
 }

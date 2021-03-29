@@ -1,20 +1,4 @@
-//Awesome func
-def Crud(nerd, nerd2) {
-	return nerd+nerd2;
-}
-
 var x = 43643.000000053298798375982;
-x++;
-//Func defs can happen anywhere
-//However they are always going to be accessible everywhere in the script.
-def Another(hey, you)
-{
-	Another(1,2);
-}
-x++;
-//Epic comment
-if(x > 3)
-{
-	var y = 4;
-	y++;
-}
+var y = 55;
+
+var z = x+y;

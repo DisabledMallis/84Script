@@ -14,7 +14,7 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 	}
 
 	@Override
-	public TiToken[] compile() {
+	public TiToken[] compile() throws Exception {
 		TiCompiler comp = new TiCompiler();
 		ScriptContext ctx = this.getCtx();
 
@@ -106,6 +106,7 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 		for (StatementContext stmt : ctx.statement()) {
 			EFSStatementBlock<?> stmtBlock = EFSStatementBlock.getAppropriate(stmt);
 			comp.appendInstruction(stmtBlock.compile());
+			comp.appendInstruction(TiToken.NEWLINE);
 		}
 
 		comp.appendInstruction(TiToken.NUM_0);
