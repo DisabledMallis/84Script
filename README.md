@@ -60,6 +60,10 @@ Key:
 			❌ - While statement
 			✅ - Var statement
 			❌ - Return statement
+			❌ - TiBasic statement
+				❌ - TiBasic grammar
+				❌ - TiBasic parser & lexer
+				❌ - TiBasic compiler
 	❌ - 8xp from 84Script generation
 ```
 
