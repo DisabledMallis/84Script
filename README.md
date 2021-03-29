@@ -36,12 +36,12 @@ Key:
 			🔄 - Boolean expression
 				✅ - True
 				✅ - False
-				❌ - Greater than
-				❌ - Less than
-				❌ - Equal to
-				❌ - Not equal
-				❌ - Greater than or equal to
-				❌ - Less than or equal to
+				✅ - Greater than
+				✅ - Less than
+				✅ - Equal to
+				✅ - Not equal
+				✅ - Greater than or equal to
+				✅ - Less than or equal to
 			❌ - Text expression
 			✅ - Add expression
 			✅ - Subtract expression

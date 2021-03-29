@@ -3,7 +3,6 @@ package com.efscript.script.blocks.statements;
 import com.efscript.antlr.EFScriptParser.Assign_stmtContext;
 import com.efscript.antlr.EFScriptParser.ExpressionContext;
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
-import com.efscript.script.blocks.EFSGenericExpression;
 import com.efscript.script.blocks.EFSStatementBlock;
 import com.efscript.script.blocks.EFSVarToken;
 import com.efscript.script.blocks.expressions.EFSExpressionBlock;

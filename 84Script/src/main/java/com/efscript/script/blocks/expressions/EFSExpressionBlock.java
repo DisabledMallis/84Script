@@ -2,12 +2,8 @@ package com.efscript.script.blocks.expressions;
 
 import com.efscript.antlr.EFScriptParser.BoolexprContext;
 import com.efscript.antlr.EFScriptParser.ExpressionContext;
-import com.efscript.antlr.EFScriptParser.IdentifierContext;
-import com.efscript.antlr.EFScriptParser.NumberContext;
-import com.efscript.antlr.EFScriptParser.ValueContext;
 import com.efscript.script.blocks.EFSGenericExpression;
 import com.efscript.script.blocks.EFSValueBlock;
-import com.efscript.script.blocks.EFSVarToken;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
