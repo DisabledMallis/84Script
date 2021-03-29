@@ -1,18 +1,45 @@
 package com.efscript.script.blocks;
 
-import com.efscript.script.CompilerAccessor;
+import java.util.ArrayList;
+
+import com.efscript.Logger;
 import com.efscript.script.IBlock;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
-public class EFSVarToken extends CompilerAccessor implements IBlock {
+public class EFSVarToken implements IBlock {
 
-	private String identifier;
+	// Vars & Func blocks and other shit
+	private static ArrayList<String> varIdentifiers = new ArrayList<>();
+
+	/*
+	 * Funcs for managing vars and creating references to them
+	 */
+	public static void addVar(String var) {
+		for (String ident : varIdentifiers) {
+			if (var.equals(ident)) {
+				Logger.Log("Identifier " + var + " is already defined!");
+			}
+		}
+		varIdentifiers.add(var);
+	}
+
+	public static int getVarIndex(String var) {
+		int current = 0;
+		for (String ident : varIdentifiers) {
+			if (ident.equals(var)) {
+				return current;
+			}
+			current++;
+		}
+		Logger.Log("Could not find var \"" + var + "\"");
+		return -1;
+	}
+
 	private int refIndex;
 
 	public EFSVarToken(String identifier) {
-		this.identifier = identifier;
-		this.refIndex = this.currentCompiler().getVarIndex(identifier);
+		this.refIndex = getVarIndex(identifier);
 	}
 
 	@Override

@@ -44,7 +44,7 @@ public class Main {
 
 		// Compile "Test.84s"
 		String code = Files.readString(Paths.get("Test.84s"));
-		EFSCompiler compiler = EFSCompiler.compileCode(code);
+		EFSCompiler compiler = new EFSCompiler(code);
 		byte[] compiled = compiler.compile();
 	}
 }

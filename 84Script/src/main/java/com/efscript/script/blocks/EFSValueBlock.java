@@ -3,22 +3,15 @@ package com.efscript.script.blocks;
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
 import com.efscript.antlr.EFScriptParser.NumberContext;
 import com.efscript.antlr.EFScriptParser.ValueContext;
-import com.efscript.script.IBlock;
+import com.efscript.script.ABlock;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-public class EFSValueBlock implements IBlock {
-
-	private ValueContext ctx;
-
+public class EFSValueBlock extends ABlock<ValueContext> {
 	public EFSValueBlock(ValueContext ctx) {
-		this.ctx = ctx;
-	}
-
-	public ValueContext getCtx() {
-		return this.ctx;
+		super(ctx);
 	}
 
 	@Override
