@@ -2,9 +2,11 @@ package com.efscript.ti;
 
 import java.util.ArrayList;
 
+import com.efscript.antlr.TiBasicListener;
+
 import com.efscript.Logger;
 
-public class TiCompiler {
+public class TiCompiler implements TiBasicListener {
 	// List for tokens
 	ArrayList<TiToken> tokens;
 

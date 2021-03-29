@@ -1,7 +1,5 @@
 package com.efscript.script;
 
-import java.util.ArrayList;
-
 import com.efscript.Logger;
 import com.efscript.antlr.EFScriptLexer;
 import com.efscript.antlr.EFScriptListener;
