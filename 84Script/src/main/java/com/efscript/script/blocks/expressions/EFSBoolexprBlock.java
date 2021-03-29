@@ -33,7 +33,6 @@ public class EFSBoolexprBlock extends EFSGenericExpression<BoolexprContext> {
 			// Value shit
 			EFSValueBlock valBlock = new EFSValueBlock(ctx.value());
 			compiler.appendInstruction(valBlock.compile());
-			// TODO: Operator thing
 			// Someone come up with a cooler way to do this, please, thanks
 			boolean isGT = ctx.GREATER_THAN() != null;
 			boolean isLT = ctx.LESS_THAN() != null;

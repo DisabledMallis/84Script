@@ -42,6 +42,7 @@ public class EFSExpressionBlock extends EFSGenericExpression<ExpressionContext> 
 			// to the right format for the calc
 			boolean isValueExpr = ctx.value() != null;
 			if (isValueExpr) {
+				// Epic cool cool
 				EFSValueBlock block = new EFSValueBlock(ctx.value());
 				compiler.appendInstruction(block.compile());
 			}
