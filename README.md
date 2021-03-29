@@ -81,6 +81,29 @@ def Add(numA, numB)
 }
 ```
 
+## Multiple files
+You can include multiple files using 84Script.
+```
+include: STIL.efs
+include: anotherFile.efs
+```
+
+## Inline Ti-Basic
+Much like C++ inline assembly, you can use inline Ti-Basic.
+This feature will not be well supported though, and will mostly be used for creating a standard library for 84Script.
+```
+def display(myText)
+{
+	__tibasic {
+		Disp myText
+	}
+}
+```
+
+## STIL
+STIL (Standard TI Library) is an 84Script source file you can include in your code to invoke Ti-Basic in a 84Script format. For example, "display". Ti-Basic has a "Disp" token, which will display whatever variable succeeds it. Using it in STIL is as simple as a call to ``display(xyz)`` in your code.
+Considering the compiler isnt really done yet, don't expect much here to stay as is. Many compiler features are required for this lib to even be written.
+
 ## Variables
 All variables are global in code executed after their initialization. They may be accessed and modified after their declaration, but not deleted. Keep this in mind when initializing them with repeating code. Variables are always numerical, other types of data, such as strings, are not possible for use with variables. Their numerical abilities are determined by the calculator's settings. If the calculator is in "Real" mode, only real numbers can be stored.
 Variables can be defined using the ``var`` keyword.
