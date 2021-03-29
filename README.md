@@ -32,7 +32,7 @@ Key:
 		🔄 - Expressions
 			✅ - Bracket expressions "(<expression>)"
 			✅ - Identifier expression
-			❌ - Number expression
+			✅ - Number expression
 			✅ - Constant expression (pi, e, ...)
 			✅ - Boolean expression
 				✅ - True

@@ -75,7 +75,7 @@ public class EFSExpressionBlock extends EFSGenericExpression<ExpressionContext> 
 					compiler.appendInstruction(TiToken.DIVIDE);
 
 				// The second expression block
-				EFSExpressionBlock second_block = new EFSExpressionBlock(this.getCtx().expression(1));
+				EFSExpressionBlock second_block = new EFSExpressionBlock(ctx.expression(1));
 				compiler.appendInstruction(second_block.compile());
 			}
 

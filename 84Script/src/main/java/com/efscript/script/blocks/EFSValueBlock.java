@@ -7,6 +7,8 @@ import com.efscript.script.IBlock;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 public class EFSValueBlock implements IBlock {
 
 	private ValueContext ctx;
@@ -50,7 +52,30 @@ public class EFSValueBlock implements IBlock {
 			} else if (isE) {
 				compiler.appendInstruction(TiToken.CONST_E);
 			} else {
-				// TODO: actual numbers / non constants
+				// This case it has to be a number
+				TerminalNode numNode = nctx.NUMBER();
+				// Get the number as text
+				String nodeText = numNode.getText();
+
+				// Loop through each char
+				for (int i = 0; i < nodeText.length(); i++) {
+					char c = nodeText.charAt(i);
+					switch (c) {
+					// If its a -, we have to convert that to a negate token
+					case '-':
+						compiler.appendInstruction(TiToken.NEGATE);
+						break;
+					// If its a . thats the period token
+					case '.':
+						compiler.appendInstruction(TiToken.PERIOD);
+						break;
+					// Otherwise just convert the number and append it
+					default:
+						int num = Integer.parseInt("" + c);
+						TiToken next = TiToken.getNumber(num)[0];
+						compiler.appendInstruction(next);
+					}
+				}
 			}
 		}
 

@@ -402,7 +402,6 @@ public class EFSCompiler implements EFScriptListener {
 	@Override
 	public void enterNumber(NumberContext ctx) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
