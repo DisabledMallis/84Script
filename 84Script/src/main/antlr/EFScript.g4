@@ -166,6 +166,7 @@ number
    : NUMBER
    | PI
    | E
+   | I
    ;
 
 
@@ -177,6 +178,7 @@ NUMBER
 //Mathematic constants
 PI : 'pi';
 E : 'e';
+I : 'i';
 
 fragment INT
    : '0' | [1-9] [0-9]*

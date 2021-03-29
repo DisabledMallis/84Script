@@ -1,0 +1,3 @@
+Disp "HEY"
+Input "SELECT: ", C
+Disp C

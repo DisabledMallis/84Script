@@ -24,8 +24,8 @@ public class EFScriptParser extends Parser {
 		EQUAL_TO=13, NOT_EQUAL_TO=14, GREATER_THAN_OR_EQUAL=15, LESS_THAN_OR_EQUAL=16, 
 		OR=17, AND=18, ASSIGN=19, ADDASSIGN=20, SUBASSIGN=21, MULASSIGN=22, DIVASSIGN=23, 
 		INCREMENT=24, DECREMENT=25, DEF=26, VAR=27, STR=28, IF=29, WHILE=30, RETURN=31, 
-		TRUE=32, FALSE=33, IDENTIFIER=34, NUMBER=35, PI=36, E=37, QUOTED_TEXT=38, 
-		LINECOMMENT=39, BLOCKCOMMENT=40, WHITESPACE=41;
+		TRUE=32, FALSE=33, IDENTIFIER=34, NUMBER=35, PI=36, E=37, I=38, QUOTED_TEXT=39, 
+		LINECOMMENT=40, BLOCKCOMMENT=41, WHITESPACE=42;
 	public static final int
 		RULE_script = 0, RULE_function = 1, RULE_func_params = 2, RULE_statement = 3, 
 		RULE_assign_stmt = 4, RULE_add_assign_stmt = 5, RULE_sub_assign_stmt = 6, 
@@ -49,7 +49,7 @@ public class EFScriptParser extends Parser {
 			"'/'", "'>'", "'<'", "'=='", "'!='", "'>='", "'<='", "'||'", "'&&'", 
 			"'='", "'+='", "'-='", "'*='", "'/='", "'++'", "'--'", "'def'", "'var'", 
 			"'str'", "'if'", "'while'", "'return'", "'true'", "'false'", null, null, 
-			"'pi'", "'e'"
+			"'pi'", "'e'", "'i'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -60,8 +60,8 @@ public class EFScriptParser extends Parser {
 			"EQUAL_TO", "NOT_EQUAL_TO", "GREATER_THAN_OR_EQUAL", "LESS_THAN_OR_EQUAL", 
 			"OR", "AND", "ASSIGN", "ADDASSIGN", "SUBASSIGN", "MULASSIGN", "DIVASSIGN", 
 			"INCREMENT", "DECREMENT", "DEF", "VAR", "STR", "IF", "WHILE", "RETURN", 
-			"TRUE", "FALSE", "IDENTIFIER", "NUMBER", "PI", "E", "QUOTED_TEXT", "LINECOMMENT", 
-			"BLOCKCOMMENT", "WHITESPACE"
+			"TRUE", "FALSE", "IDENTIFIER", "NUMBER", "PI", "E", "I", "QUOTED_TEXT", 
+			"LINECOMMENT", "BLOCKCOMMENT", "WHITESPACE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -181,7 +181,7 @@ public class EFScriptParser extends Parser {
 				setState(53);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPEN_BRACKET) | (1L << OPEN_CURLEY) | (1L << END_STMT) | (1L << VAR) | (1L << IF) | (1L << WHILE) | (1L << RETURN) | (1L << TRUE) | (1L << FALSE) | (1L << IDENTIFIER) | (1L << NUMBER) | (1L << PI) | (1L << E) | (1L << QUOTED_TEXT))) != 0)) {
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPEN_BRACKET) | (1L << OPEN_CURLEY) | (1L << END_STMT) | (1L << VAR) | (1L << IF) | (1L << WHILE) | (1L << RETURN) | (1L << TRUE) | (1L << FALSE) | (1L << IDENTIFIER) | (1L << NUMBER) | (1L << PI) | (1L << E) | (1L << I) | (1L << QUOTED_TEXT))) != 0)) {
 					{
 					{
 					setState(50);
@@ -434,7 +434,7 @@ public class EFScriptParser extends Parser {
 				setState(83);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPEN_BRACKET) | (1L << OPEN_CURLEY) | (1L << END_STMT) | (1L << VAR) | (1L << IF) | (1L << WHILE) | (1L << RETURN) | (1L << TRUE) | (1L << FALSE) | (1L << IDENTIFIER) | (1L << NUMBER) | (1L << PI) | (1L << E) | (1L << QUOTED_TEXT))) != 0)) {
+				while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OPEN_BRACKET) | (1L << OPEN_CURLEY) | (1L << END_STMT) | (1L << VAR) | (1L << IF) | (1L << WHILE) | (1L << RETURN) | (1L << TRUE) | (1L << FALSE) | (1L << IDENTIFIER) | (1L << NUMBER) | (1L << PI) | (1L << E) | (1L << I) | (1L << QUOTED_TEXT))) != 0)) {
 					{
 					{
 					setState(80);
@@ -1656,6 +1656,7 @@ public class EFScriptParser extends Parser {
 			case NUMBER:
 			case PI:
 			case E:
+			case I:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(238);
@@ -1723,6 +1724,7 @@ public class EFScriptParser extends Parser {
 		public TerminalNode NUMBER() { return getToken(EFScriptParser.NUMBER, 0); }
 		public TerminalNode PI() { return getToken(EFScriptParser.PI, 0); }
 		public TerminalNode E() { return getToken(EFScriptParser.E, 0); }
+		public TerminalNode I() { return getToken(EFScriptParser.I, 0); }
 		public NumberContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1751,7 +1753,7 @@ public class EFScriptParser extends Parser {
 			{
 			setState(243);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NUMBER) | (1L << PI) | (1L << E))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << NUMBER) | (1L << PI) | (1L << E) | (1L << I))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1794,7 +1796,7 @@ public class EFScriptParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3+\u00f8\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3,\u00f8\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\3\2\7\2\60\n\2\f\2"+
@@ -1812,7 +1814,7 @@ public class EFScriptParser extends Parser {
 		"\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\3\22\5\22\u00e1"+
 		"\n\22\3\23\3\23\3\23\3\23\3\23\3\24\3\24\3\24\7\24\u00eb\n\24\f\24\16"+
 		"\24\u00ee\13\24\3\25\3\25\5\25\u00f2\n\25\3\26\3\26\3\27\3\27\3\27\2\3"+
-		" \30\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,\2\3\3\2%\'\2\u0109"+
+		" \30\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,\2\3\3\2%(\2\u0109"+
 		"\2;\3\2\2\2\4=\3\2\2\2\6G\3\2\2\2\bh\3\2\2\2\nj\3\2\2\2\fo\3\2\2\2\16"+
 		"t\3\2\2\2\20y\3\2\2\2\22~\3\2\2\2\24\u0083\3\2\2\2\26\u0087\3\2\2\2\30"+
 		"\u008b\3\2\2\2\32\u0091\3\2\2\2\34\u0097\3\2\2\2\36\u009d\3\2\2\2 \u00aa"+
@@ -1844,7 +1846,7 @@ public class EFScriptParser extends Parser {
 		"\b\2\2\u009c\35\3\2\2\2\u009d\u009e\7!\2\2\u009e\u009f\5 \21\2\u009f\u00a0"+
 		"\7\b\2\2\u00a0\37\3\2\2\2\u00a1\u00a2\b\21\1\2\u00a2\u00a3\7\4\2\2\u00a3"+
 		"\u00a4\5 \21\2\u00a4\u00a5\7\5\2\2\u00a5\u00ab\3\2\2\2\u00a6\u00ab\5("+
-		"\25\2\u00a7\u00ab\5\"\22\2\u00a8\u00ab\7(\2\2\u00a9\u00ab\5$\23\2\u00aa"+
+		"\25\2\u00a7\u00ab\5\"\22\2\u00a8\u00ab\7)\2\2\u00a9\u00ab\5$\23\2\u00aa"+
 		"\u00a1\3\2\2\2\u00aa\u00a6\3\2\2\2\u00aa\u00a7\3\2\2\2\u00aa\u00a8\3\2"+
 		"\2\2\u00aa\u00a9\3\2\2\2\u00ab\u00ba\3\2\2\2\u00ac\u00ad\f\n\2\2\u00ad"+
 		"\u00ae\7\t\2\2\u00ae\u00b9\5 \21\13\u00af\u00b0\f\t\2\2\u00b0\u00b1\7"+
