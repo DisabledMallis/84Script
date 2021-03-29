@@ -33,7 +33,7 @@ Key:
 			✅ - Identifier expression
 			❌ - Number expression
 			✅ - Constant expression (pi, e, ...)
-			🔄 - Boolean expression
+			✅ - Boolean expression
 				✅ - True
 				✅ - False
 				✅ - Greater than
