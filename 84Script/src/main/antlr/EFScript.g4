@@ -144,6 +144,7 @@ DECREMENT : '--';
 //Basic keywords & concepts
 DEF : 'def';
 VAR : 'var';
+STR : 'str'; //Same as Var but for strings
 IF : 'if';
 WHILE : 'while';
 RETURN : 'return';

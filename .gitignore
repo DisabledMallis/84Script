@@ -17,3 +17,4 @@ bin/
 build/
 *.interp
 *.tokens
+*.8xp

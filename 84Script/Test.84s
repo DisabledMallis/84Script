@@ -1,9 +1,2 @@
-def Add(num, ber)
-{
-	num+ber;
-}
-
-var x = 64;
-var y = 55;
-
-var z = x+y;
+var x = 0;
+var y = 2;

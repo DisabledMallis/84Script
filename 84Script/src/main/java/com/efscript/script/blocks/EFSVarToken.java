@@ -25,7 +25,7 @@ public class EFSVarToken implements IBlock {
 	}
 
 	public static int getVarIndex(String var) {
-		int current = 0;
+		int current = 1;
 		for (String ident : varIdentifiers) {
 			if (ident.equals(var)) {
 				return current;
