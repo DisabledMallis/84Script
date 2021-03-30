@@ -29,6 +29,11 @@ Key:
 		✅ - EFS Statement Block
 		🔄 - EFS Script Block
 		❌ - Include other files
+		🔄 - Functions
+			✅ - Function parsing
+			🔄 - Function defining
+			❌ - Function compiling
+			❌ - Function calling
 		🔄 - Expressions
 			✅ - Bracket expressions "(<expression>)"
 			✅ - Identifier expression
