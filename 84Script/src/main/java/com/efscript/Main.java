@@ -15,20 +15,40 @@ public class Main {
 
 	// Entry function
 	public static void main(String[] args) throws Exception {
-		// Compile "Test.84s"
-		String code = Files.readString(Paths.get("Test.84s"));
-		EFSCompiler compiler = new EFSCompiler(code);
-		byte[] compiled = compiler.compile();
-		TiDecompiler decomp = new TiDecompiler(compiled);
-		Logger.Log(decomp.decompile());
-
-		TiFile newFile = new TiFile(fileDesc, "Test", compiled);
-		byte[] fileBytes = newFile.generateNew();
-		File jFile = new File("Gen.8xp");
-		if (!jFile.exists()) {
-			jFile.createNewFile();
+		//Compile "Test.ti"
+		if(testCompileTI()) {
+			Logger.Log("Successfully compiled Ti-Basic!");
 		}
-		jFile.setWritable(true);
-		Files.write(jFile.toPath(), fileBytes);
+		//Compile "Test.efs"
+		if(testCompileEF()) {
+			Logger.Log("Successfully compiled EFS!");
+		}
+	}
+
+	static boolean testCompileEF() {
+		try{
+			// Compile "Test.84s"
+			String code = Files.readString(Paths.get("Test.efs"));
+			EFSCompiler compiler = new EFSCompiler(code);
+			byte[] compiled = compiler.compile();
+			TiDecompiler decomp = new TiDecompiler(compiled);
+			Logger.Log(decomp.decompile());
+
+			TiFile newFile = new TiFile(fileDesc, "Test", compiled);
+			byte[] fileBytes = newFile.generateNew();
+			File jFile = new File("Gen.8xp");
+			if (!jFile.exists()) {
+				jFile.createNewFile();
+			}
+			jFile.setWritable(true);
+			Files.write(jFile.toPath(), fileBytes);
+
+			return true;
+		}catch (Exception ex){
+			return false;
+		}
+	}
+	static boolean testCompileTI() {
+
 	}
 }
