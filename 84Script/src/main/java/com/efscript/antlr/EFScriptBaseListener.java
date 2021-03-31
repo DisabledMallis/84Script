@@ -78,6 +78,18 @@ public class EFScriptBaseListener implements EFScriptListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterTi_basic_stmt(EFScriptParser.Ti_basic_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTi_basic_stmt(EFScriptParser.Ti_basic_stmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterAdd_assign_stmt(EFScriptParser.Add_assign_stmtContext ctx) { }
 	/**
 	 * {@inheritDoc}

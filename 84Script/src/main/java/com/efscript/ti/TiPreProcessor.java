@@ -12,6 +12,6 @@ public class TiPreProcessor {
     }
 
     public String processed() {
-
+        return code;
     }
 }

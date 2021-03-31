@@ -21,6 +21,7 @@ func_params
 statement
 	: OPEN_CURLEY (statement)* CLOSE_CURLEY
 	| assign_stmt
+	| ti_basic_stmt
 	| add_assign_stmt
 	| sub_assign_stmt
 	| mul_assign_stmt
@@ -38,6 +39,9 @@ statement
 assign_stmt
 	: identifier ASSIGN expression END_STMT
 	;
+ti_basic_stmt
+    : '__tibasic' statement
+    ;
 add_assign_stmt
 	: identifier ADDASSIGN value END_STMT
 	;
