@@ -29,6 +29,11 @@ Key:
 		✅ - EFS Statement Block
 		🔄 - EFS Script Block
 		❌ - Include other files
+		🔄 - Functions
+			✅ - Function parsing
+			🔄 - Function defining
+			❌ - Function compiling
+			❌ - Function calling
 		🔄 - Expressions
 			✅ - Bracket expressions "(<expression>)"
 			✅ - Identifier expression
@@ -101,6 +106,9 @@ def display(myText)
 	}
 }
 ```
+
+## Inline assembly
+Ti calculators have the ability to run assembly code, I would like to implement some kind of inline assembly at some point. Unfortunately, as far as I'm aware, modern firmwares are restricted from the use of assembly, so this feature may never come to be. If it does come to exist in the future, it will behave much like the "Inline Ti-Basic", but with a ``__asm`` block like you'd find in C++.
 
 ## STIL
 STIL (Standard TI Library) is an 84Script source file you can include in your code to invoke Ti-Basic in a 84Script format. For example, "display". Ti-Basic has a "Disp" token, which will display whatever variable succeeds it. Using it in STIL is as simple as a call to ``display(xyz)`` in your code.
