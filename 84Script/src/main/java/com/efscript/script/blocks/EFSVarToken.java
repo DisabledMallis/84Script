@@ -7,6 +7,8 @@ import com.efscript.script.IBlock;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
+//TODO repurpose this class, Context.java should take its current
+// job & this class should be used as a helper for references
 public class EFSVarToken implements IBlock {
 
 	// Vars & Func blocks and other shit

@@ -15,7 +15,7 @@ public class EFSTiBasicBlock extends EFSStatementBlock<EFScriptParser.Ti_basic_s
 
     @Override
     public TiToken[] compile() throws Exception {
-        String stmtCode = this.getCtx().getText();
+        String stmtCode = this.getCtx().TI_CODE_BLOCK().getText();
         Logger.Log("STMTCODE: "+stmtCode);
         TiPreProcessor preProcessor = new TiPreProcessor(stmtCode);
         TiCompiler compiler = new TiCompiler(preProcessor.processed());

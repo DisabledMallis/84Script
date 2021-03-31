@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.efscript.Logger;
+import com.efscript.antlr.EFScriptParser;
 import com.efscript.antlr.EFScriptParser.Func_paramsContext;
 import com.efscript.antlr.EFScriptParser.FunctionContext;
 import com.efscript.antlr.EFScriptParser.StatementContext;
+import com.efscript.script.Context;
 import com.efscript.script.IBlock;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
 public class EFSFunctionBlock implements IBlock {
 
+	String name;
 	List<EFSStatementBlock<?>> blocks;
 	Func_paramsContext parameters;
 
@@ -21,6 +24,7 @@ public class EFSFunctionBlock implements IBlock {
 		// Init vars
 		this.parameters = ctx.func_params();
 		this.blocks = new ArrayList<>();
+		this.name = ctx.identifier().getText();
 
 		boolean isCurl = ctx.statement().OPEN_CURLEY() != null;
 		StatementContext stmtCtx = ctx.statement();
@@ -43,7 +47,15 @@ public class EFSFunctionBlock implements IBlock {
 		if (stmtBlock == null)
 			throw new Exception("Null statement? Very bad");
 		this.blocks.add(stmtBlock);
-		return;
+
+		// Push a new context
+		Context newCtx = new Context("FUNC: "+this.name);
+		//Add parameters to the new context
+		for(EFScriptParser.IdentifierContext iCtx : parameters.identifier()) {
+			newCtx.addParameter(iCtx.getText());
+		}
+		//Push the context
+		Context.pushContext(newCtx);
 	}
 
 	@Override

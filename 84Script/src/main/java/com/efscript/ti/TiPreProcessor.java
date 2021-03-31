@@ -9,6 +9,7 @@ public class TiPreProcessor {
     private final String code;
     public TiPreProcessor(String code) {
         this.code = code;
+        setContext(Context.currentContext());
     }
 
     public void setContext(Context currentContext) {
@@ -17,11 +18,10 @@ public class TiPreProcessor {
 
     public String processed() throws Exception {
         String processed = code;
-        EFSVarToken[] tokes = currentContext.getAsTokens();
-        for(EFSVarToken token : tokes) {
+        for(String var : currentContext.getIdentifiers()) {
             TiCompiler comp = new TiCompiler();
-            comp.appendInstruction(token.compile());
-            processed = processed.replaceAll(token.toString(), comp.toString());
+            comp.appendInstruction(currentContext.genAccessor(var));
+            processed = processed.replaceAll(var.toString(), comp.toString());
         }
         return processed;
     }

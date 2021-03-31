@@ -4,6 +4,7 @@ import com.efscript.antlr.EFScriptParser.FunctionContext;
 import com.efscript.antlr.EFScriptParser.ScriptContext;
 import com.efscript.antlr.EFScriptParser.StatementContext;
 import com.efscript.script.ABlock;
+import com.efscript.script.Context;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
@@ -17,6 +18,7 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 	public TiToken[] compile() throws Exception {
 		TiCompiler comp = new TiCompiler();
 		ScriptContext ctx = this.getCtx();
+		Context.pushContext(new Context("SCRIPT"));
 
 		// Initialization section
 		// Basically just reset the registers
