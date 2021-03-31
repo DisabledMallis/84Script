@@ -11,12 +11,6 @@ public enum TiToken {
 	TO_FRAC(0x3, ">FRAC"),
 	STORE(0x4, "->"),
 	BOXPLOT(0x5, "BOXPLOT"),
-	LIST_SUBSCRIPT_1(0x0, "1"),
-	LIST_SUBSCRIPT_2(0x1, "2"),
-	LIST_SUBSCRIPT_3(0x2, "3"),
-	LIST_SUBSCRIPT_4(0x3, "4"),
-	LIST_SUBSCRIPT_5(0x4, "5"),
-	LIST_SUBSCRIPT_6(0x5, "6"),
 	OPEN_SQUARE_BRACKET(0x6, "["),
 	CLOSE_SQUARE_BRACKET(0x7, "]"),
 	OPEN_CURLEY_BRACKET(0x8, "{"),
@@ -68,7 +62,12 @@ public enum TiToken {
 	LETTER_X(0x58, "X"),
 	LETTER_Y(0x59, "Y"),
 	LETTER_Z(0x5A, "Z"),
-	LIST(0x5D, "LIST"),
+	LIST1(0x5D, 0x0, "LIST1"),
+	LIST2(0x5D, 0x1, "LIST2"),
+	LIST3(0x5D, 0x2, "LIST3"),
+	LIST4(0x5D, 0x3, "LIST4"),
+	LIST5(0x5D, 0x4, "LIST5"),
+	LIST6(0x5D, 0x5, "LIST6"),
 	EQUALS(0x6A, "="),
 	LESS_THAN(0x6B, "<"),
 	GREATER_THAN(0x6C, ">"),
@@ -143,6 +142,10 @@ public enum TiToken {
 		return null;
 	};
 
+	public static TiToken getList(int id) {
+		return getTokenByName("LIST"+id);
+	}
+
 	// Get a token by its *string* representation
 	public static TiToken getToken(String token) {
 		for (TiToken t : TiToken.values()) {
@@ -177,16 +180,6 @@ public enum TiToken {
 			}
 		}
 		return null;
-	};
-
-	// Get a list subscript byte
-	// Deprecated, 2 byte tokens will be supported soon.
-	public static TiToken getListSubscript(int index) throws Exception {
-		TiToken t = TiToken.valueOf("LIST_SUBSCRIPT_" + index);
-		if (t == null) {
-			throw new Exception("No such list " + index);
-		}
-		return t;
 	};
 
 	// Generate tokens for a number (can be greater than 9)

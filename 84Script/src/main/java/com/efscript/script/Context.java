@@ -96,8 +96,7 @@ public class Context {
 
         //Compile the reference
         TiCompiler comp = new TiCompiler();
-        comp.appendInstruction(TiToken.LIST);
-        comp.appendInstruction(TiToken.getListSubscript(list));
+        comp.appendInstruction(TiToken.getList(list));
         comp.appendInstruction(TiToken.OPEN_BRACKET);
         comp.appendInstruction(TiToken.getNumber(refIndex));
         comp.appendInstruction(TiToken.CLOSE_BRACKET);

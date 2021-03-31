@@ -95,20 +95,18 @@ public class TiCompiler extends TiBasicBaseListener {
 
 	@Override
 	public void enterToken(TiBasicParser.TokenContext ctx) {
-		String text = ctx.getText();
-		TiToken token = TiToken.getToken(text);
-		if(token == null){
-			Logger.Log("Caught a null token!");
+		if(ctx.list() != null) {
+			parseList(ctx.list());
 			return;
 		}
+		String text = ctx.getText();
+		TiToken token = TiToken.getToken(text);
 		appendInstruction(token);
 	}
 
-	@Override
-	public void enterList(TiBasicParser.ListContext ctx) {
-		appendInstruction(TiToken.LIST);
+	public void parseList(TiBasicParser.ListContext ctx) {
 		try {
-			TiToken token = TiToken.getListSubscript(Integer.parseInt(ctx.number().getText()));
+			TiToken token = TiToken.getList(Integer.parseInt(ctx.number().getText()));
 			appendInstruction(token);
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -1,5 +1,6 @@
 package com.efscript.script.blocks;
 
+import com.efscript.Logger;
 import com.efscript.antlr.EFScriptParser.FunctionContext;
 import com.efscript.antlr.EFScriptParser.ScriptContext;
 import com.efscript.antlr.EFScriptParser.StatementContext;

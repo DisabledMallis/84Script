@@ -6,8 +6,7 @@ package com.efscript.antlr;
 
 
 script
-	: function*
-	| statement*
+	: function* statement*
 	| EOF
 	;
 

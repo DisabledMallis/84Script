@@ -69,6 +69,8 @@ public class EFSFunctionBlock implements IBlock {
 			comp.appendInstruction(block.compile());
 		}
 
+		comp.appendInstruction(TiToken.NEWLINE);
+
 		return comp.getTokens();
 	}
 }
