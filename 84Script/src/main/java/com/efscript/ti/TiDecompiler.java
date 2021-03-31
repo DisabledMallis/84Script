@@ -2,6 +2,8 @@ package com.efscript.ti;
 
 import com.efscript.Logger;
 
+import java.util.ArrayList;
+
 public class TiDecompiler {
 	// Bytes for the bytecode
 	byte[] code;
@@ -17,11 +19,10 @@ public class TiDecompiler {
 		Logger.Log("Initialized new TiDecompiler");
 	}
 
-	// Decompile the bytecode to a string
-	public String decompile() {
+	// Decompile the bytecode to a TiToken array
+	public TiToken[] decompile() {
 		Logger.Log("Decompiling tokens...");
-		// Create a string builder
-		StringBuilder build = new StringBuilder();
+		ArrayList<TiToken> tokens = new ArrayList<>();
 		// loop through bytes
 		for (int i = 0; i < code.length; i++) {
 			TiToken token;
@@ -39,9 +40,23 @@ public class TiDecompiler {
 				token = TiToken.getToken(code[i]);
 			}
 			// Return the decompiled code
-			build.append(token.str);
+			tokens.add(token);
 		}
 		Logger.Log("Decompiled tokens");
+
+		TiToken[] arr = new TiToken[tokens.size()];
+		for(int i = 0; i < arr.length; i++) {
+			arr[i] = tokens.get(i);
+		}
+		return arr;
+	}
+	// Decompile the bytecode to a String
+	public String getCode() {
+		TiToken[] tokens = this.decompile();
+		StringBuilder build = new StringBuilder();
+		for(TiToken token : tokens) {
+			build.append(token.str);
+		}
 		return build.toString();
 	}
 }

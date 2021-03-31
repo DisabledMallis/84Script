@@ -70,16 +70,6 @@ public interface TiBasicListener extends ParseTreeListener {
 	 */
 	void exitIf_(TiBasicParser.If_Context ctx);
 	/**
-	 * Enter a parse tree produced by {@link TiBasicParser#equals}.
-	 * @param ctx the parse tree
-	 */
-	void enterEquals(TiBasicParser.EqualsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link TiBasicParser#equals}.
-	 * @param ctx the parse tree
-	 */
-	void exitEquals(TiBasicParser.EqualsContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link TiBasicParser#then}.
 	 * @param ctx the parse tree
 	 */
@@ -159,6 +149,16 @@ public interface TiBasicListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPeriod(TiBasicParser.PeriodContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#equals}.
+	 * @param ctx the parse tree
+	 */
+	void enterEquals(TiBasicParser.EqualsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#equals}.
+	 * @param ctx the parse tree
+	 */
+	void exitEquals(TiBasicParser.EqualsContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TiBasicParser#number}.
 	 * @param ctx the parse tree

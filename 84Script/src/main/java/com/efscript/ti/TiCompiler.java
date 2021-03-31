@@ -2,10 +2,7 @@ package com.efscript.ti;
 
 import java.util.ArrayList;
 
-import com.efscript.antlr.EFScriptParser;
-import com.efscript.antlr.TiBasicLexer;
-import com.efscript.antlr.TiBasicListener;
-import com.efscript.antlr.TiBasicParser;
+import com.efscript.antlr.*;
 
 import com.efscript.Logger;
 import org.antlr.v4.runtime.CharStreams;
@@ -15,7 +12,7 @@ import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
-public class TiCompiler implements TiBasicListener {
+public class TiCompiler extends TiBasicBaseListener {
 	// List for tokens
 	ArrayList<TiToken> tokens;
 
@@ -89,229 +86,9 @@ public class TiCompiler implements TiBasicListener {
 	}
 
 	@Override
-	public void enterScript(TiBasicParser.ScriptContext ctx) {
-
-	}
-
-	@Override
-	public void exitScript(TiBasicParser.ScriptContext ctx) {
-
-	}
-
-	@Override
 	public void enterToken(TiBasicParser.TokenContext ctx) {
-
-	}
-
-	@Override
-	public void exitToken(TiBasicParser.TokenContext ctx) {
-
-	}
-
-	@Override
-	public void enterDisp(TiBasicParser.DispContext ctx) {
-		appendInstruction(TiToken.DISP);
-	}
-
-	@Override
-	public void exitDisp(TiBasicParser.DispContext ctx) {
-
-	}
-
-	@Override
-	public void enterInput(TiBasicParser.InputContext ctx) {
-		appendInstruction(TiToken.INPUT);
-	}
-
-	@Override
-	public void exitInput(TiBasicParser.InputContext ctx) {
-
-	}
-
-	@Override
-	public void enterStore(TiBasicParser.StoreContext ctx) {
-		appendInstruction(TiToken.STORE);
-	}
-
-	@Override
-	public void exitStore(TiBasicParser.StoreContext ctx) {
-
-	}
-
-	@Override
-	public void enterIf_(TiBasicParser.If_Context ctx) {
-		appendInstruction(TiToken.IF);
-	}
-
-	@Override
-	public void exitIf_(TiBasicParser.If_Context ctx) {
-
-	}
-
-	@Override
-	public void enterEquals(TiBasicParser.EqualsContext ctx) {
-		appendInstruction(TiToken.EQUALS);
-	}
-
-	@Override
-	public void exitEquals(TiBasicParser.EqualsContext ctx) {
-
-	}
-
-	@Override
-	public void enterThen(TiBasicParser.ThenContext ctx) {
-		appendInstruction(TiToken.THEN);
-	}
-
-	@Override
-	public void exitThen(TiBasicParser.ThenContext ctx) {
-
-	}
-
-	@Override
-	public void enterEnd(TiBasicParser.EndContext ctx) {
-		appendInstruction(TiToken.END);
-	}
-
-	@Override
-	public void exitEnd(TiBasicParser.EndContext ctx) {
-
-	}
-
-	@Override
-	public void enterSpace(TiBasicParser.SpaceContext ctx) {
-		appendInstruction(TiToken.BLANK);
-	}
-
-	@Override
-	public void exitSpace(TiBasicParser.SpaceContext ctx) {
-
-	}
-
-	@Override
-	public void enterLetter(TiBasicParser.LetterContext ctx) {
-		appendInstruction(TiToken.getToken(ctx.getText()));
-	}
-
-	@Override
-	public void exitLetter(TiBasicParser.LetterContext ctx) {
-
-	}
-
-	@Override
-	public void enterColon(TiBasicParser.ColonContext ctx) {
-
-	}
-
-	@Override
-	public void exitColon(TiBasicParser.ColonContext ctx) {
-
-	}
-
-	@Override
-	public void enterComma(TiBasicParser.CommaContext ctx) {
-		appendInstruction(TiToken.COMMA);
-	}
-
-	@Override
-	public void exitComma(TiBasicParser.CommaContext ctx) {
-
-	}
-
-	@Override
-	public void enterPeriod(TiBasicParser.PeriodContext ctx) {
-		appendInstruction(TiToken.PERIOD);
-	}
-
-	@Override
-	public void exitPeriod(TiBasicParser.PeriodContext ctx) {
-
-	}
-
-	@Override
-	public void enterNumber(TiBasicParser.NumberContext ctx) {
-		String numStr = ctx.NUMBER().getText();
-		int numI = Integer.parseInt(numStr);
-		try {
-			TiToken[] tokens = TiToken.getNumber(numI);
-			appendInstruction(tokens);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	@Override
-	public void exitNumber(TiBasicParser.NumberContext ctx) {
-
-	}
-
-	@Override
-	public void enterPi(TiBasicParser.PiContext ctx) {
-
-	}
-
-	@Override
-	public void exitPi(TiBasicParser.PiContext ctx) {
-
-	}
-
-	@Override
-	public void enterE(TiBasicParser.EContext ctx) {
-
-	}
-
-	@Override
-	public void exitE(TiBasicParser.EContext ctx) {
-
-	}
-
-	@Override
-	public void enterI(TiBasicParser.IContext ctx) {
-
-	}
-
-	@Override
-	public void exitI(TiBasicParser.IContext ctx) {
-
-	}
-
-	@Override
-	public void enterQuote(TiBasicParser.QuoteContext ctx) {
-		appendInstruction(TiToken.QUOTE);
-	}
-
-	@Override
-	public void exitQuote(TiBasicParser.QuoteContext ctx) {
-
-	}
-
-	@Override
-	public void enterNewline(TiBasicParser.NewlineContext ctx) {
-		appendInstruction(TiToken.NEWLINE);
-	}
-
-	@Override
-	public void exitNewline(TiBasicParser.NewlineContext ctx) {
-
-	}
-
-	@Override
-	public void visitTerminal(TerminalNode node) {
-
-	}
-
-	@Override
-	public void visitErrorNode(ErrorNode node) {
-
-	}
-
-	@Override
-	public void enterEveryRule(ParserRuleContext ctx) {
-
-	}
-
-	@Override
-	public void exitEveryRule(ParserRuleContext ctx) {
-
+		String text = ctx.getText();
+		TiToken token = TiToken.getToken(text);
+		appendInstruction(token);
 	}
 }

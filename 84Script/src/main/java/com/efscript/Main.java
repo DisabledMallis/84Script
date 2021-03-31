@@ -34,7 +34,7 @@ public class Main {
 			byte[] compiled = compiler.compile();
 			TiDecompiler decomp = new TiDecompiler(compiled);
 			Logger.Log("EFS TEST RESULTS");
-			Logger.Log(decomp.decompile());
+			Logger.Log(decomp.getCode());
 
 			TiFile newFile = new TiFile(fileDesc, "Test", compiled);
 			byte[] fileBytes = newFile.generateNew();
@@ -61,7 +61,7 @@ public class Main {
 
 			TiDecompiler decomp = new TiDecompiler(compiled);
 			Logger.Log("TI TEST RESULTS");
-			Logger.Log(decomp.decompile());
+			Logger.Log(decomp.getCode());
 
 			return true;
 		} catch (Exception ex) {

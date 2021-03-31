@@ -90,18 +90,6 @@ public class TiBasicBaseListener implements TiBasicListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEquals(TiBasicParser.EqualsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitEquals(TiBasicParser.EqualsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterThen(TiBasicParser.ThenContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -193,6 +181,18 @@ public class TiBasicBaseListener implements TiBasicListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPeriod(TiBasicParser.PeriodContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEquals(TiBasicParser.EqualsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEquals(TiBasicParser.EqualsContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

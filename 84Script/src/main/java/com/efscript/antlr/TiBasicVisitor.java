@@ -49,12 +49,6 @@ public interface TiBasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIf_(TiBasicParser.If_Context ctx);
 	/**
-	 * Visit a parse tree produced by {@link TiBasicParser#equals}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEquals(TiBasicParser.EqualsContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link TiBasicParser#then}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -102,6 +96,12 @@ public interface TiBasicVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPeriod(TiBasicParser.PeriodContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#equals}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEquals(TiBasicParser.EqualsContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TiBasicParser#number}.
 	 * @param ctx the parse tree
