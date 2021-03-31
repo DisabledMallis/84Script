@@ -1,5 +1,6 @@
 package com.efscript.script.blocks.statements;
 
+import com.efscript.Logger;
 import com.efscript.antlr.EFScriptParser;
 import com.efscript.script.blocks.EFSStatementBlock;
 import com.efscript.ti.TiCompiler;
@@ -14,7 +15,8 @@ public class EFSTiBasicBlock extends EFSStatementBlock<EFScriptParser.Ti_basic_s
 
     @Override
     public TiToken[] compile() throws Exception {
-        String stmtCode = this.getCtx().statement().getText();
+        String stmtCode = this.getCtx().getText();
+        Logger.Log("STMTCODE: "+stmtCode);
         TiPreProcessor preProcessor = new TiPreProcessor(stmtCode);
         TiCompiler compiler = new TiCompiler(preProcessor.processed());
         return compiler.getTokens();

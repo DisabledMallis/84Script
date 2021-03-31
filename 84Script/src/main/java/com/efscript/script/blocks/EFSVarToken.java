@@ -37,9 +37,15 @@ public class EFSVarToken implements IBlock {
 	}
 
 	private int refIndex;
-
+	private String identifier;
 	public EFSVarToken(String identifier) {
 		this.refIndex = getVarIndex(identifier);
+		this.identifier = identifier;
+	}
+
+	@Override
+	public String toString() {
+		return identifier;
 	}
 
 	@Override

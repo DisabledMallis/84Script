@@ -2,7 +2,7 @@ grammar EFScript;
 
 @header {
 package com.efscript.antlr;
-} 
+}
 
 
 script
@@ -40,8 +40,9 @@ assign_stmt
 	: identifier ASSIGN expression END_STMT
 	;
 ti_basic_stmt
-    : '__tibasic' statement
+    : '__tibasic' TI_CODE_BLOCK
     ;
+TI_CODE_BLOCK : '{' ~ [.]* '}';
 add_assign_stmt
 	: identifier ADDASSIGN value END_STMT
 	;

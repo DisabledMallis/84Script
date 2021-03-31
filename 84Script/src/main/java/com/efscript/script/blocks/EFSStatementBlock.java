@@ -15,17 +15,7 @@ import com.efscript.antlr.EFScriptParser.While_stmtContext;
 import com.efscript.script.ABlock;
 import com.efscript.script.IBlock;
 import com.efscript.script.blocks.expressions.EFSExpressionBlock;
-import com.efscript.script.blocks.statements.EFSAddAssignBlock;
-import com.efscript.script.blocks.statements.EFSAssignBlock;
-import com.efscript.script.blocks.statements.EFSDecBlock;
-import com.efscript.script.blocks.statements.EFSDivAssignBlock;
-import com.efscript.script.blocks.statements.EFSIfBlock;
-import com.efscript.script.blocks.statements.EFSIncBlock;
-import com.efscript.script.blocks.statements.EFSMulAssignBlock;
-import com.efscript.script.blocks.statements.EFSReturnBlock;
-import com.efscript.script.blocks.statements.EFSSubAssignBlock;
-import com.efscript.script.blocks.statements.EFSVarBlock;
-import com.efscript.script.blocks.statements.EFSWhileBlock;
+import com.efscript.script.blocks.statements.*;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 
@@ -46,6 +36,7 @@ public abstract class EFSStatementBlock<T extends ParserRuleContext> extends ABl
 		boolean isMulAssign = ctx.add_assign_stmt() != null;
 		boolean isDivAssign = ctx.add_assign_stmt() != null;
 		boolean isExpression = ctx.expression() != null;
+		boolean isTIB = ctx.ti_basic_stmt() != null;
 
 		// create that type of block.
 		if (isIf) {
@@ -83,6 +74,9 @@ public abstract class EFSStatementBlock<T extends ParserRuleContext> extends ABl
 		}
 		if (isExpression) {
 			return new EFSExpressionBlock(ctx.expression());
+		}
+		if(isTIB) {
+			return new EFSTiBasicBlock(ctx.ti_basic_stmt());
 		}
 		throw new Exception("Unknown statement! Very bad");
 	}

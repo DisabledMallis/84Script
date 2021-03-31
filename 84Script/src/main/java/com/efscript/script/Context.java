@@ -1,11 +1,13 @@
 package com.efscript.script;
 
+import com.efscript.script.blocks.EFSVarToken;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 //Class for current compiler context, also known as a "scope"
 public class Context {
-    private static ArrayDeque<Context> contexts = new ArrayDeque<>();
+    private static final ArrayDeque<Context> contexts = new ArrayDeque<>();
     public static Context currentContext() {
         return contexts.getFirst();
     }
@@ -31,5 +33,13 @@ public class Context {
             arr[i] = identifiers.get(i);
         }
         return arr;
+    }
+    public EFSVarToken[] getAsTokens() {
+        EFSVarToken[] tokens = new EFSVarToken[identifiers.size()];
+        for(int i = 0; i < tokens.length; i++) {
+            String id = identifiers.get(i);
+            tokens[i] = new EFSVarToken(id);
+        }
+        return tokens;
     }
 }

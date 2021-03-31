@@ -85,6 +85,14 @@ public class TiCompiler extends TiBasicBaseListener {
 		return compiled;
 	}
 
+	public String toString() {
+		StringBuilder build = new StringBuilder();
+		for(TiToken token : tokens) {
+			build.append(token.str);
+		}
+		return build.toString();
+	}
+
 	@Override
 	public void enterToken(TiBasicParser.TokenContext ctx) {
 		String text = ctx.getText();
