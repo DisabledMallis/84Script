@@ -1,3 +1,9 @@
-Disp "HEY"
-Input "SELECT: ", C
-Disp C
+Input "AWESOME SHIT: ", G
+If G = 0
+Then
+Disp "WOW THATS NOT AWESOME"
+End
+If G = 1
+Then
+Disp "OK THATS ACTUALLY AWESOME"
+End

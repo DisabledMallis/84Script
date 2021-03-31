@@ -84,8 +84,8 @@ public enum TiToken {
 	CONST_E(0xBB, 0x31, "e"),
 	AND(0xBB, 0xD4, "&"),
 	IF(0xCE, "IF "),
-	THEN(0xCF, "THEN "),
-	END(0xD4, "END "),
+	THEN(0xCF, "THEN"),
+	END(0xD4, "END"),
 	INPUT(0xDC, "INPUT "),
 	DISP(0xDE, "DISP ");
 

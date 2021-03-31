@@ -129,6 +129,66 @@ public class TiCompiler implements TiBasicListener {
 	}
 
 	@Override
+	public void enterStore(TiBasicParser.StoreContext ctx) {
+		appendInstruction(TiToken.STORE);
+	}
+
+	@Override
+	public void exitStore(TiBasicParser.StoreContext ctx) {
+
+	}
+
+	@Override
+	public void enterIf_(TiBasicParser.If_Context ctx) {
+		appendInstruction(TiToken.IF);
+	}
+
+	@Override
+	public void exitIf_(TiBasicParser.If_Context ctx) {
+
+	}
+
+	@Override
+	public void enterEquals(TiBasicParser.EqualsContext ctx) {
+		appendInstruction(TiToken.EQUALS);
+	}
+
+	@Override
+	public void exitEquals(TiBasicParser.EqualsContext ctx) {
+
+	}
+
+	@Override
+	public void enterThen(TiBasicParser.ThenContext ctx) {
+		appendInstruction(TiToken.THEN);
+	}
+
+	@Override
+	public void exitThen(TiBasicParser.ThenContext ctx) {
+
+	}
+
+	@Override
+	public void enterEnd(TiBasicParser.EndContext ctx) {
+		appendInstruction(TiToken.END);
+	}
+
+	@Override
+	public void exitEnd(TiBasicParser.EndContext ctx) {
+
+	}
+
+	@Override
+	public void enterSpace(TiBasicParser.SpaceContext ctx) {
+		appendInstruction(TiToken.BLANK);
+	}
+
+	@Override
+	public void exitSpace(TiBasicParser.SpaceContext ctx) {
+
+	}
+
+	@Override
 	public void enterLetter(TiBasicParser.LetterContext ctx) {
 		appendInstruction(TiToken.getToken(ctx.getText()));
 	}
@@ -155,6 +215,16 @@ public class TiCompiler implements TiBasicListener {
 
 	@Override
 	public void exitComma(TiBasicParser.CommaContext ctx) {
+
+	}
+
+	@Override
+	public void enterPeriod(TiBasicParser.PeriodContext ctx) {
+		appendInstruction(TiToken.PERIOD);
+	}
+
+	@Override
+	public void exitPeriod(TiBasicParser.PeriodContext ctx) {
 
 	}
 

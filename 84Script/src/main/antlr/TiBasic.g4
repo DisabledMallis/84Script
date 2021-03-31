@@ -11,6 +11,9 @@ script
 
 token
 	: number
+	| if_
+	| then
+	| end
 	| pi
 	| e
 	| i
@@ -21,49 +24,52 @@ token
 	| newline
 	| colon
 	| comma
+	| store
+	| period
+	| equals
+	| space
 	;
 
 //Tokens
-disp : 'Disp';
-input : 'Input';
+disp : 'Disp ';
+input : 'Input ';
+store : '->';
+if_ : 'If '; //Has an _ because it conflicts with java's 'if' in code generation
+equals : '=';
+then : 'Then';
+end : 'End';
+space : ' ';
 
 //Letters (Ti-basic variables & text)
-quote : QUOTE;
-QUOTE : '"';
-
+quote : '"';
 letter : LETTER;
 LETTER : [A-Z];
 
 //Symbols
-colon : COLON;
-COLON : ':';
-comma : COMMA;
-COMMA : ',';
+colon : ':';
+comma : ',';
+period : '.';
 
 //Numbers
 number : NUMBER;
 NUMBER
-	: '-'? INT ('.' [0-9] +)?
+	: [0-9]
 	;
 
 //Mathematic constants
-pi : PI;
-PI : 'pi';
+pi : 'pi';
 
-e : E;
-E : 'e';
+e : 'e';
 
-i : I;
-I : 'i';
+i : 'i';
 
 fragment INT
    : '0' | [1-9] [0-9]*
    ;
 
-newline : NEWLINE;
-NEWLINE : '\n';
+newline : '\n';
 
 //Stuff we wanna ignore
 LINECOMMENT : '//' ~[\r\n]* -> skip;
 BLOCKCOMMENT : '/*' .*? '*/' -> skip;
-WHITESPACE: [ \t\r] -> skip;
+WHITESPACE: [\t\r] -> skip;

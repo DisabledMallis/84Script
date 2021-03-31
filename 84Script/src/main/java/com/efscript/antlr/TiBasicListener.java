@@ -50,6 +50,66 @@ public interface TiBasicListener extends ParseTreeListener {
 	 */
 	void exitInput(TiBasicParser.InputContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#store}.
+	 * @param ctx the parse tree
+	 */
+	void enterStore(TiBasicParser.StoreContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#store}.
+	 * @param ctx the parse tree
+	 */
+	void exitStore(TiBasicParser.StoreContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#if_}.
+	 * @param ctx the parse tree
+	 */
+	void enterIf_(TiBasicParser.If_Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#if_}.
+	 * @param ctx the parse tree
+	 */
+	void exitIf_(TiBasicParser.If_Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#equals}.
+	 * @param ctx the parse tree
+	 */
+	void enterEquals(TiBasicParser.EqualsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#equals}.
+	 * @param ctx the parse tree
+	 */
+	void exitEquals(TiBasicParser.EqualsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#then}.
+	 * @param ctx the parse tree
+	 */
+	void enterThen(TiBasicParser.ThenContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#then}.
+	 * @param ctx the parse tree
+	 */
+	void exitThen(TiBasicParser.ThenContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#end}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnd(TiBasicParser.EndContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#end}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnd(TiBasicParser.EndContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#space}.
+	 * @param ctx the parse tree
+	 */
+	void enterSpace(TiBasicParser.SpaceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#space}.
+	 * @param ctx the parse tree
+	 */
+	void exitSpace(TiBasicParser.SpaceContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TiBasicParser#quote}.
 	 * @param ctx the parse tree
 	 */
@@ -89,6 +149,16 @@ public interface TiBasicListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitComma(TiBasicParser.CommaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#period}.
+	 * @param ctx the parse tree
+	 */
+	void enterPeriod(TiBasicParser.PeriodContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#period}.
+	 * @param ctx the parse tree
+	 */
+	void exitPeriod(TiBasicParser.PeriodContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TiBasicParser#number}.
 	 * @param ctx the parse tree

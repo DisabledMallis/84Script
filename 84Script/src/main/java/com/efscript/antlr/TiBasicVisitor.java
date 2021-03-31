@@ -37,6 +37,42 @@ public interface TiBasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInput(TiBasicParser.InputContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#store}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStore(TiBasicParser.StoreContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#if_}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf_(TiBasicParser.If_Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#equals}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEquals(TiBasicParser.EqualsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#then}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitThen(TiBasicParser.ThenContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#end}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEnd(TiBasicParser.EndContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#space}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSpace(TiBasicParser.SpaceContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TiBasicParser#quote}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -60,6 +96,12 @@ public interface TiBasicVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitComma(TiBasicParser.CommaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#period}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPeriod(TiBasicParser.PeriodContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TiBasicParser#number}.
 	 * @param ctx the parse tree
