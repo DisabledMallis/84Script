@@ -70,6 +70,16 @@ public interface EFScriptListener extends ParseTreeListener {
 	 */
 	void exitTi_basic_stmt(EFScriptParser.Ti_basic_stmtContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link EFScriptParser#any}.
+	 * @param ctx the parse tree
+	 */
+	void enterAny(EFScriptParser.AnyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EFScriptParser#any}.
+	 * @param ctx the parse tree
+	 */
+	void exitAny(EFScriptParser.AnyContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link EFScriptParser#add_assign_stmt}.
 	 * @param ctx the parse tree
 	 */

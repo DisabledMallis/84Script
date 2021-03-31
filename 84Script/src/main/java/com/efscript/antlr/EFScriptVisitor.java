@@ -49,6 +49,12 @@ public interface EFScriptVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTi_basic_stmt(EFScriptParser.Ti_basic_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link EFScriptParser#any}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAny(EFScriptParser.AnyContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link EFScriptParser#add_assign_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

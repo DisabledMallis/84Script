@@ -18,7 +18,7 @@ func_params
 	;
 
 statement
-	: OPEN_CURLEY (statement)* CLOSE_CURLEY
+	: OPEN_CURLEY statement* CLOSE_CURLEY
 	| assign_stmt
 	| ti_basic_stmt
 	| add_assign_stmt
@@ -39,9 +39,9 @@ assign_stmt
 	: identifier ASSIGN expression END_STMT
 	;
 ti_basic_stmt
-    : '__tibasic' TI_CODE_BLOCK
+    : '__tibasic' '{' any '}'
     ;
-TI_CODE_BLOCK : '{' ~ [.]* '}';
+any : .+?;
 add_assign_stmt
 	: identifier ADDASSIGN value END_STMT
 	;
