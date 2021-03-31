@@ -2,8 +2,8 @@ package com.efscript.script.blocks.statements;
 
 import com.efscript.antlr.EFScriptParser.Dec_stmtContext;
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
+import com.efscript.script.Context;
 import com.efscript.script.blocks.EFSStatementBlock;
-import com.efscript.script.blocks.EFSVarToken;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
@@ -21,13 +21,13 @@ public class EFSDecBlock extends EFSStatementBlock<Dec_stmtContext> {
 		// Get the identifier
 		IdentifierContext iCtx = decCtx.identifier();
 		// The identifier must be a var, and we can assume this.
-		EFSVarToken vToken = new EFSVarToken(iCtx.getText());
+		TiToken[] accessor = Context.currentContext().genAccessor(iCtx.getText());
 
 		/*
 		 * Should compile to: L1(X)-1->L1(X)
 		 */
 		// Append the accessor
-		miniTiComp.appendInstruction(vToken.compile());
+		miniTiComp.appendInstruction(accessor);
 		// Subtract token
 		miniTiComp.appendInstruction(TiToken.SUBTRACT);
 		// Num 1
@@ -35,7 +35,7 @@ public class EFSDecBlock extends EFSStatementBlock<Dec_stmtContext> {
 		// Store token (->)
 		miniTiComp.appendInstruction(TiToken.STORE);
 		// The accessor
-		miniTiComp.appendInstruction(vToken.compile());
+		miniTiComp.appendInstruction(accessor);
 		return miniTiComp.getTokens();
 	}
 }

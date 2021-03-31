@@ -1,6 +1,6 @@
 package com.efscript.script;
 
-import com.efscript.script.blocks.EFSVarToken;
+import com.efscript.Logger;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
@@ -52,7 +52,7 @@ public class Context {
         String[] vars = getVars();
         String[] total = new String[params.length + vars.length];
         for(int i = 0; i < total.length; i++) {
-            if(i > params.length) {
+            if(i >= params.length) {
                 total[i] = vars[i - params.length];
             }
             else {

@@ -3,8 +3,8 @@ package com.efscript.script.blocks.statements;
 import com.efscript.antlr.EFScriptParser.Assign_stmtContext;
 import com.efscript.antlr.EFScriptParser.ExpressionContext;
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
+import com.efscript.script.Context;
 import com.efscript.script.blocks.EFSStatementBlock;
-import com.efscript.script.blocks.EFSVarToken;
 import com.efscript.script.blocks.expressions.EFSExpressionBlock;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
@@ -37,9 +37,9 @@ public class EFSAssignBlock extends EFSStatementBlock<Assign_stmtContext> {
 		// Get the identifier
 		IdentifierContext iCtx = aCtx.identifier();
 		// Get the var accessor to store the expression into
-		EFSVarToken vTok = new EFSVarToken(iCtx.getText());
+		TiToken[] accessor = Context.currentContext().genAccessor(iCtx.getText());
 		// Compile the accessor
-		minComp.appendInstruction(vTok.compile());
+		minComp.appendInstruction(accessor);
 		// Return the result
 		return minComp.getTokens();
 	}

@@ -3,8 +3,8 @@ package com.efscript.script.blocks.statements;
 import com.efscript.antlr.EFScriptParser.ExpressionContext;
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
 import com.efscript.antlr.EFScriptParser.Var_stmtContext;
+import com.efscript.script.Context;
 import com.efscript.script.blocks.EFSStatementBlock;
-import com.efscript.script.blocks.EFSVarToken;
 import com.efscript.script.blocks.expressions.EFSExpressionBlock;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
@@ -23,8 +23,8 @@ public class EFSVarBlock extends EFSStatementBlock<Var_stmtContext> {
 		IdentifierContext iCtx = this.getCtx().identifier();
 		String varStr = iCtx.getText();
 		// Add the var for later reference
-		EFSVarToken.addVar(varStr);
-		EFSVarToken varToken = new EFSVarToken(varStr);
+		Context.currentContext().addIdentifier(varStr);
+		TiToken[] accessor = Context.currentContext().genAccessor(iCtx.getText());
 
 		// Process the initial value
 		ExpressionContext exprCtx = this.getCtx().expression();
@@ -33,7 +33,7 @@ public class EFSVarBlock extends EFSStatementBlock<Var_stmtContext> {
 		// Generate the storage code
 		comp.appendInstruction(exprBlock.compile());
 		comp.appendInstruction(TiToken.STORE);
-		comp.appendInstruction(varToken.compile());
+		comp.appendInstruction(accessor);
 
 		return comp.getTokens();
 	}

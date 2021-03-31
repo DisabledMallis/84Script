@@ -68,7 +68,7 @@ public enum TiToken {
 	LETTER_X(0x58, "X"),
 	LETTER_Y(0x59, "Y"),
 	LETTER_Z(0x5A, "Z"),
-	LIST(0x5D, "List"),
+	LIST(0x5D, "LIST"),
 	EQUALS(0x6A, "="),
 	LESS_THAN(0x6B, "<"),
 	GREATER_THAN(0x6C, ">"),

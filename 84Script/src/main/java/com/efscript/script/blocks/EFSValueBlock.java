@@ -4,6 +4,7 @@ import com.efscript.antlr.EFScriptParser.IdentifierContext;
 import com.efscript.antlr.EFScriptParser.NumberContext;
 import com.efscript.antlr.EFScriptParser.ValueContext;
 import com.efscript.script.ABlock;
+import com.efscript.script.Context;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiToken;
 
@@ -29,9 +30,9 @@ public class EFSValueBlock extends ABlock<ValueContext> {
 			// Get the identifier context
 			IdentifierContext ictx = vctx.identifier();
 			// Get a var token for the identifier
-			EFSVarToken theVar = new EFSVarToken(ictx.getText());
+			TiToken[] accessor = Context.currentContext().genAccessor(ictx.getText());
 			// Generate & append the reference code
-			compiler.appendInstruction(theVar.compile());
+			compiler.appendInstruction(accessor);
 		}
 		if (isNumber) {
 			NumberContext nctx = vctx.number();

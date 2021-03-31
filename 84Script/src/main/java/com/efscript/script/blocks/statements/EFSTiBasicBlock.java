@@ -15,10 +15,12 @@ public class EFSTiBasicBlock extends EFSStatementBlock<EFScriptParser.Ti_basic_s
 
     @Override
     public TiToken[] compile() throws Exception {
-        String stmtCode = this.getCtx().TI_CODE_BLOCK().getText();
-        Logger.Log("STMTCODE: "+stmtCode);
+        String codeWBrac = this.getCtx().TI_CODE_BLOCK().getText();
+        String stmtCode = codeWBrac.substring(1).substring(0, codeWBrac.length()-2);
         TiPreProcessor preProcessor = new TiPreProcessor(stmtCode);
-        TiCompiler compiler = new TiCompiler(preProcessor.processed());
+        String processed = preProcessor.process();
+        Logger.Log("Processed code: "+processed);
+        TiCompiler compiler = new TiCompiler(processed);
         return compiler.getTokens();
     }
 }
