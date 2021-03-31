@@ -43,7 +43,7 @@ public class EFSVarToken implements IBlock {
 	}
 
 	@Override
-	public TiToken[] compile() {
+	public TiToken[] compile() throws Exception {
 		TiCompiler comp = new TiCompiler();
 		comp.appendInstruction(TiToken.LIST);
 		comp.appendInstruction(TiToken.LIST_SUBSCRIPT_1);

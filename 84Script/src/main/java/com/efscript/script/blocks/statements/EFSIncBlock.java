@@ -14,7 +14,7 @@ public class EFSIncBlock extends EFSStatementBlock<Inc_stmtContext> {
 	}
 
 	@Override
-	public TiToken[] compile() {
+	public TiToken[] compile() throws Exception {
 		TiCompiler miniTiComp = new TiCompiler();
 		// Get the context
 		Inc_stmtContext incCtx = this.getCtx();

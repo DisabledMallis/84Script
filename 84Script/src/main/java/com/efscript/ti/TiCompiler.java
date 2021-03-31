@@ -24,7 +24,9 @@ public class TiCompiler implements TiBasicListener {
 	}
 
 	public TiCompiler(String code) {
+		this();
 		Logger.Log("Reading Ti-Basic code...");
+
 		TiBasicLexer lexer = new TiBasicLexer(CharStreams.fromString(code));
 		TiBasicParser parser = new TiBasicParser(new CommonTokenStream(lexer));
 
@@ -108,7 +110,7 @@ public class TiCompiler implements TiBasicListener {
 
 	@Override
 	public void enterDisp(TiBasicParser.DispContext ctx) {
-
+		appendInstruction(TiToken.DISP);
 	}
 
 	@Override
@@ -118,11 +120,108 @@ public class TiCompiler implements TiBasicListener {
 
 	@Override
 	public void enterInput(TiBasicParser.InputContext ctx) {
-
+		appendInstruction(TiToken.INPUT);
 	}
 
 	@Override
 	public void exitInput(TiBasicParser.InputContext ctx) {
+
+	}
+
+	@Override
+	public void enterLetter(TiBasicParser.LetterContext ctx) {
+		appendInstruction(TiToken.getToken(ctx.getText()));
+	}
+
+	@Override
+	public void exitLetter(TiBasicParser.LetterContext ctx) {
+
+	}
+
+	@Override
+	public void enterColon(TiBasicParser.ColonContext ctx) {
+
+	}
+
+	@Override
+	public void exitColon(TiBasicParser.ColonContext ctx) {
+
+	}
+
+	@Override
+	public void enterComma(TiBasicParser.CommaContext ctx) {
+		appendInstruction(TiToken.COMMA);
+	}
+
+	@Override
+	public void exitComma(TiBasicParser.CommaContext ctx) {
+
+	}
+
+	@Override
+	public void enterNumber(TiBasicParser.NumberContext ctx) {
+		String numStr = ctx.NUMBER().getText();
+		int numI = Integer.parseInt(numStr);
+		try {
+			TiToken[] tokens = TiToken.getNumber(numI);
+			appendInstruction(tokens);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	@Override
+	public void exitNumber(TiBasicParser.NumberContext ctx) {
+
+	}
+
+	@Override
+	public void enterPi(TiBasicParser.PiContext ctx) {
+
+	}
+
+	@Override
+	public void exitPi(TiBasicParser.PiContext ctx) {
+
+	}
+
+	@Override
+	public void enterE(TiBasicParser.EContext ctx) {
+
+	}
+
+	@Override
+	public void exitE(TiBasicParser.EContext ctx) {
+
+	}
+
+	@Override
+	public void enterI(TiBasicParser.IContext ctx) {
+
+	}
+
+	@Override
+	public void exitI(TiBasicParser.IContext ctx) {
+
+	}
+
+	@Override
+	public void enterQuote(TiBasicParser.QuoteContext ctx) {
+		appendInstruction(TiToken.QUOTE);
+	}
+
+	@Override
+	public void exitQuote(TiBasicParser.QuoteContext ctx) {
+
+	}
+
+	@Override
+	public void enterNewline(TiBasicParser.NewlineContext ctx) {
+		appendInstruction(TiToken.NEWLINE);
+	}
+
+	@Override
+	public void exitNewline(TiBasicParser.NewlineContext ctx) {
 
 	}
 

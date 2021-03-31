@@ -86,6 +86,7 @@ public enum TiToken {
 	IF(0xCE, "IF "),
 	THEN(0xCF, "THEN "),
 	END(0xD4, "END "),
+	INPUT(0xDC, "INPUT "),
 	DISP(0xDE, "DISP ");
 
 	public byte length;
@@ -189,7 +190,7 @@ public enum TiToken {
 	};
 
 	// Generate tokens for a number (can be greater than 9)
-	public static TiToken[] getNumber(int num) {
+	public static TiToken[] getNumber(int num) throws Exception {
 		// If the num is more than 9, we gotta deal with that
 		// Also if its less than 0, we cant do anything with that.
 		// Only 0-9 we can actually get a token from
@@ -225,13 +226,8 @@ public enum TiToken {
 			// Return it
 			return token;
 		}
-		// Probably num<0, we cant use it, return null and hope
-		// Everything doesnt crash and burn
-		// Also we cant just throw an exception to stop
-		// execution here because then every function above
-		// will also need to throw it or catch it
-		// BUT null exceptions can be a lazy way to just make
-		// everything burn
-		return null;
+		if(num < 0)
+			throw new Exception("Cannot convert numbers less than 0!");
+		throw new Exception("Couldnt get number as token!");
 	};
 }

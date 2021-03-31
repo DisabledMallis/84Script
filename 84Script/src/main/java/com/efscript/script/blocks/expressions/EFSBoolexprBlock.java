@@ -13,7 +13,7 @@ public class EFSBoolexprBlock extends EFSGenericExpression<BoolexprContext> {
 	}
 
 	@Override
-	public TiToken[] compile() {
+	public TiToken[] compile() throws Exception {
 		TiCompiler compiler = new TiCompiler();
 		BoolexprContext ctx = this.getCtx();
 

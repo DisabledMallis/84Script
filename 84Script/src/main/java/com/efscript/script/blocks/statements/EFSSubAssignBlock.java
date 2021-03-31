@@ -15,7 +15,7 @@ public class EFSSubAssignBlock extends EFSStatementBlock<Sub_assign_stmtContext>
 	}
 
 	@Override
-	public TiToken[] compile() {
+	public TiToken[] compile() throws Exception {
 		TiCompiler comp = new TiCompiler();
 		Sub_assign_stmtContext ctx = this.getCtx();
 

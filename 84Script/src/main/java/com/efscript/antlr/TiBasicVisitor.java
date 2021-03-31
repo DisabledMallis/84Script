@@ -36,4 +36,58 @@ public interface TiBasicVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitInput(TiBasicParser.InputContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#quote}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitQuote(TiBasicParser.QuoteContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#letter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLetter(TiBasicParser.LetterContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#colon}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColon(TiBasicParser.ColonContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#comma}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComma(TiBasicParser.CommaContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#number}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumber(TiBasicParser.NumberContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#pi}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPi(TiBasicParser.PiContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#e}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitE(TiBasicParser.EContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#i}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitI(TiBasicParser.IContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#newline}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNewline(TiBasicParser.NewlineContext ctx);
 }

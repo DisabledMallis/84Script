@@ -15,7 +15,7 @@ public class EFSValueBlock extends ABlock<ValueContext> {
 	}
 
 	@Override
-	public TiToken[] compile() {
+	public TiToken[] compile() throws Exception {
 		TiCompiler compiler = new TiCompiler();
 
 		ValueContext vctx = this.getCtx();

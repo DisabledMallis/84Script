@@ -49,4 +49,94 @@ public interface TiBasicListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInput(TiBasicParser.InputContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#quote}.
+	 * @param ctx the parse tree
+	 */
+	void enterQuote(TiBasicParser.QuoteContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#quote}.
+	 * @param ctx the parse tree
+	 */
+	void exitQuote(TiBasicParser.QuoteContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#letter}.
+	 * @param ctx the parse tree
+	 */
+	void enterLetter(TiBasicParser.LetterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#letter}.
+	 * @param ctx the parse tree
+	 */
+	void exitLetter(TiBasicParser.LetterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#colon}.
+	 * @param ctx the parse tree
+	 */
+	void enterColon(TiBasicParser.ColonContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#colon}.
+	 * @param ctx the parse tree
+	 */
+	void exitColon(TiBasicParser.ColonContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#comma}.
+	 * @param ctx the parse tree
+	 */
+	void enterComma(TiBasicParser.CommaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#comma}.
+	 * @param ctx the parse tree
+	 */
+	void exitComma(TiBasicParser.CommaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumber(TiBasicParser.NumberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumber(TiBasicParser.NumberContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#pi}.
+	 * @param ctx the parse tree
+	 */
+	void enterPi(TiBasicParser.PiContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#pi}.
+	 * @param ctx the parse tree
+	 */
+	void exitPi(TiBasicParser.PiContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#e}.
+	 * @param ctx the parse tree
+	 */
+	void enterE(TiBasicParser.EContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#e}.
+	 * @param ctx the parse tree
+	 */
+	void exitE(TiBasicParser.EContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#i}.
+	 * @param ctx the parse tree
+	 */
+	void enterI(TiBasicParser.IContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#i}.
+	 * @param ctx the parse tree
+	 */
+	void exitI(TiBasicParser.IContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#newline}.
+	 * @param ctx the parse tree
+	 */
+	void enterNewline(TiBasicParser.NewlineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#newline}.
+	 * @param ctx the parse tree
+	 */
+	void exitNewline(TiBasicParser.NewlineContext ctx);
 }

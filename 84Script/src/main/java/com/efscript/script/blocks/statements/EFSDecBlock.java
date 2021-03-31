@@ -14,7 +14,7 @@ public class EFSDecBlock extends EFSStatementBlock<Dec_stmtContext> {
 	}
 
 	@Override
-	public TiToken[] compile() {
+	public TiToken[] compile() throws Exception {
 		TiCompiler miniTiComp = new TiCompiler();
 		// Get the context
 		Dec_stmtContext decCtx = this.getCtx();
