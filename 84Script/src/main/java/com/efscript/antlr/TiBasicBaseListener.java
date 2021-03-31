@@ -114,6 +114,18 @@ public class TiBasicBaseListener implements TiBasicListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterList(TiBasicParser.ListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitList(TiBasicParser.ListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSpace(TiBasicParser.SpaceContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -181,6 +193,30 @@ public class TiBasicBaseListener implements TiBasicListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitPeriod(TiBasicParser.PeriodContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterOpen_bracket(TiBasicParser.Open_bracketContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitOpen_bracket(TiBasicParser.Open_bracketContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterClose_bracket(TiBasicParser.Close_bracketContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitClose_bracket(TiBasicParser.Close_bracketContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

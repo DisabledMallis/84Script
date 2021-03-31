@@ -90,6 +90,16 @@ public interface TiBasicListener extends ParseTreeListener {
 	 */
 	void exitEnd(TiBasicParser.EndContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#list}.
+	 * @param ctx the parse tree
+	 */
+	void enterList(TiBasicParser.ListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#list}.
+	 * @param ctx the parse tree
+	 */
+	void exitList(TiBasicParser.ListContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TiBasicParser#space}.
 	 * @param ctx the parse tree
 	 */
@@ -149,6 +159,26 @@ public interface TiBasicListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPeriod(TiBasicParser.PeriodContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#open_bracket}.
+	 * @param ctx the parse tree
+	 */
+	void enterOpen_bracket(TiBasicParser.Open_bracketContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#open_bracket}.
+	 * @param ctx the parse tree
+	 */
+	void exitOpen_bracket(TiBasicParser.Open_bracketContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#close_bracket}.
+	 * @param ctx the parse tree
+	 */
+	void enterClose_bracket(TiBasicParser.Close_bracketContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#close_bracket}.
+	 * @param ctx the parse tree
+	 */
+	void exitClose_bracket(TiBasicParser.Close_bracketContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link TiBasicParser#equals}.
 	 * @param ctx the parse tree

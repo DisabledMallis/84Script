@@ -28,6 +28,9 @@ token
 	| period
 	| equals
 	| space
+	| list
+	| open_bracket
+	| close_bracket
 	;
 
 //Tokens
@@ -37,6 +40,7 @@ store : '->';
 if_ : 'IF '; //Has an _ because it conflicts with java's 'if' in code generation
 then : 'THEN';
 end : 'END';
+list : 'LIST' number;
 space : ' ';
 
 //Letters (Ti-basic variables & text)
@@ -48,6 +52,8 @@ LETTER : [A-Z];
 colon : ':';
 comma : ',';
 period : '.';
+open_bracket : '(';
+close_bracket : ')';
 
 //Math operations
 equals : '=';

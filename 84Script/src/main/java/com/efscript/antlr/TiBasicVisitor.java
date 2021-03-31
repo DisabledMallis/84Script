@@ -61,6 +61,12 @@ public interface TiBasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEnd(TiBasicParser.EndContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#list}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitList(TiBasicParser.ListContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TiBasicParser#space}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -96,6 +102,18 @@ public interface TiBasicVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPeriod(TiBasicParser.PeriodContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#open_bracket}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOpen_bracket(TiBasicParser.Open_bracketContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#close_bracket}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClose_bracket(TiBasicParser.Close_bracketContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link TiBasicParser#equals}.
 	 * @param ctx the parse tree

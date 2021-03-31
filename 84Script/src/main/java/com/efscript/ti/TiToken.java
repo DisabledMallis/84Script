@@ -181,10 +181,10 @@ public enum TiToken {
 
 	// Get a list subscript byte
 	// Deprecated, 2 byte tokens will be supported soon.
-	public static TiToken getListSubscript(int index) {
+	public static TiToken getListSubscript(int index) throws Exception {
 		TiToken t = TiToken.valueOf("LIST_SUBSCRIPT_" + index);
 		if (t == null) {
-			Logger.Log("No such list " + index);
+			throw new Exception("No such list " + index);
 		}
 		return t;
 	};
