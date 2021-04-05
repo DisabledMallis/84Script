@@ -5,6 +5,9 @@ def display(num) {
     }
     return num+num;
 }
+def awesome() {
+    return 3;
+}
 var x = 0;
 var y = 2;
 var z = display(y);

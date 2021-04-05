@@ -21,74 +21,76 @@ public class EFSExpressionBlock extends EFSGenericExpression<ExpressionContext> 
 
 		ExpressionContext ctx = this.getCtx();
 		if (ctx == null) {
-			throw new Exception("Something went terribly wrong when compiling an expression");
+			throw new Exception("Something went terribly wrong when compiling an expression. (Unknown expression?)");
 		}
 
 		//If its a method call, we want to create that
 		boolean isCall = ctx.methodcall() != null;
 		if(isCall) {
-
+			EFSCallBlock callBlock = new EFSCallBlock(ctx.methodcall());
+			compiler.appendInstruction(callBlock.compile());
 		}
-
-		// If its a value, we want to convert it
-		// to the right format for the calc
-		boolean isValueExpr = ctx.value() != null;
-		if (isValueExpr) {
-			// Epic cool cool
-			EFSValueBlock block = new EFSValueBlock(ctx.value());
-			compiler.appendInstruction(block.compile());
-		} else {
-			// Check if its a bracket expression,
-			// if so, we need to compile the inner expression
-			// and we can do this recursively
-			boolean isBrack = ctx.OPEN_BRACKET() != null;
-			if (isBrack) {
-				// Create a new block on the current expression
-				EFSExpressionBlock block = new EFSExpressionBlock(this.getCtx().expression(0));
-				// Append tokens
-				compiler.appendInstruction(TiToken.OPEN_BRACKET);
+		else {
+			// If its a value, we want to convert it
+			// to the right format for the calc
+			boolean isValueExpr = ctx.value() != null;
+			if (isValueExpr) {
+				// Epic cool cool
+				EFSValueBlock block = new EFSValueBlock(ctx.value());
 				compiler.appendInstruction(block.compile());
-				compiler.appendInstruction(TiToken.CLOSE_BRACKET);
-			}
-			// If its not a bracket expression, we
-			// Can compile it to Ti-Basic
-			else {
-				// If its a bool expression, we want
-				// to compile it before trying anything
-				// else
-				boolean isBoolExpr = ctx.boolexpr() != null;
-				if (isBoolExpr) {
-					// Get the boolexpr context
-					BoolexprContext bectx = ctx.boolexpr();
-					EFSBoolexprBlock bExpr = new EFSBoolexprBlock(bectx);
-					compiler.appendInstruction(bExpr.compile());
-				} else {
-					// Check what type of expression it is
-					boolean isAdd = ctx.ADD() != null;
-					boolean isSub = ctx.SUB() != null;
-					boolean isMul = ctx.MUL() != null;
-					boolean isDiv = ctx.DIV() != null;
-
+			} else {
+				// Check if its a bracket expression,
+				// if so, we need to compile the inner expression
+				// and we can do this recursively
+				boolean isBrack = ctx.OPEN_BRACKET() != null;
+				if (isBrack) {
 					// Create a new block on the current expression
-					// Also compile it so that way operations can be done later
-					EFSExpressionBlock first_block = new EFSExpressionBlock(ctx.expression(0));
-					compiler.appendInstruction(first_block.compile());
-
-					// Basic mathematical operations
-					if (isAdd)
-						compiler.appendInstruction(TiToken.ADD);
-					if (isSub)
-						compiler.appendInstruction(TiToken.SUBTRACT);
-					if (isMul)
-						compiler.appendInstruction(TiToken.MULTIPLY);
-					if (isDiv)
-						compiler.appendInstruction(TiToken.DIVIDE);
-
-					// The second expression block
-					EFSExpressionBlock second_block = new EFSExpressionBlock(ctx.expression(1));
-					compiler.appendInstruction(second_block.compile());
+					EFSExpressionBlock block = new EFSExpressionBlock(this.getCtx().expression(0));
+					// Append tokens
+					compiler.appendInstruction(TiToken.OPEN_BRACKET);
+					compiler.appendInstruction(block.compile());
+					compiler.appendInstruction(TiToken.CLOSE_BRACKET);
 				}
+				// If its not a bracket expression, we
+				// Can compile it to Ti-Basic
+				else {
+					// If its a bool expression, we want
+					// to compile it before trying anything
+					// else
+					boolean isBoolExpr = ctx.boolexpr() != null;
+					if (isBoolExpr) {
+						// Get the boolexpr context
+						BoolexprContext bectx = ctx.boolexpr();
+						EFSBoolexprBlock bExpr = new EFSBoolexprBlock(bectx);
+						compiler.appendInstruction(bExpr.compile());
+					} else {
+						// Check what type of expression it is
+						boolean isAdd = ctx.ADD() != null;
+						boolean isSub = ctx.SUB() != null;
+						boolean isMul = ctx.MUL() != null;
+						boolean isDiv = ctx.DIV() != null;
 
+						// Create a new block on the current expression
+						// Also compile it so that way operations can be done later
+						EFSExpressionBlock first_block = new EFSExpressionBlock(ctx.expression(0));
+						compiler.appendInstruction(first_block.compile());
+
+						// Basic mathematical operations
+						if (isAdd)
+							compiler.appendInstruction(TiToken.ADD);
+						if (isSub)
+							compiler.appendInstruction(TiToken.SUBTRACT);
+						if (isMul)
+							compiler.appendInstruction(TiToken.MULTIPLY);
+						if (isDiv)
+							compiler.appendInstruction(TiToken.DIVIDE);
+
+						// The second expression block
+						EFSExpressionBlock second_block = new EFSExpressionBlock(ctx.expression(1));
+						compiler.appendInstruction(second_block.compile());
+					}
+
+				}
 			}
 		}
 
