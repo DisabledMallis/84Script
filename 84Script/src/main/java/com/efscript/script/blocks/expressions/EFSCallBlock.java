@@ -39,8 +39,10 @@ public class EFSCallBlock extends EFSGenericExpression<MethodcallContext> {
         }
 
         //Set calling values
+        //TODO: add shit to context to get the function's ID
 
         //Call the program again
+        //TODO: Meta stuff to get the program name & add the fucking prgm token already you lazy shit
 
         //The return value
         comp.appendInstruction(TiToken.LETTER_C);
