@@ -85,8 +85,8 @@ public enum TiToken {
 	IF(0xCE, "IF "),
 	THEN(0xCF, "THEN"),
 	END(0xD4, "END"),
-	INPUT(0xDC, "INPUT "),
-	DISP(0xDE, "DISP ");
+	INPUT(0xDC, "INPUT"),
+	DISP(0xDE, "DISP");
 
 	public byte length;
 	public byte hex_high;
@@ -133,16 +133,16 @@ public enum TiToken {
 	}
 
 	// Get a token by its *enum* name
-	public static TiToken getTokenByName(String token) {
+	public static TiToken getTokenByName(String token) throws Exception {
 		for (TiToken t : TiToken.values()) {
 			if (t.toString().equals(token)) {
 				return t;
 			}
 		}
-		return null;
+		throw new Exception("Token not found \""+token+"\"");
 	};
 
-	public static TiToken getList(int id) {
+	public static TiToken getList(int id) throws Exception {
 		return getTokenByName("LIST"+id);
 	}
 

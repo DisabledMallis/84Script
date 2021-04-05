@@ -40,7 +40,7 @@ public class TiBasicParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'DISP '", "'INPUT '", "'->'", "'IF '", "'THEN'", "'END'", "'LIST'", 
+			null, "'DISP'", "'INPUT'", "'->'", "'IF'", "'THEN'", "'END'", "'LIST'", 
 			"' '", "'\"'", "':'", "','", "'.'", "'('", "')'", "'='", "'pi'", "'e'", 
 			"'i'", "'\n'"
 		};

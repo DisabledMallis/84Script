@@ -41,7 +41,7 @@ assign_stmt
 ti_basic_stmt
     : '__tibasic' '{' any '}'
     ;
-any : .+?;
+any : ( . )+?;
 add_assign_stmt
 	: identifier ADDASSIGN value END_STMT
 	;
@@ -192,4 +192,4 @@ QUOTED_TEXT : '"' ~ ["\r\n]* '"';
 //Stuff we wanna ignore
 LINECOMMENT : '//' ~[\r\n]* -> skip;
 BLOCKCOMMENT : '/*' .*? '*/' -> skip;
-WHITESPACE: [ \t\r\n] -> skip;
+WHITESPACE : [ \t\r\n] -> skip;

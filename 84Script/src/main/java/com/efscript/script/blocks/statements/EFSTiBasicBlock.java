@@ -19,7 +19,15 @@ public class EFSTiBasicBlock extends EFSStatementBlock<EFScriptParser.Ti_basic_s
         Logger.Log("STMT CODE "+stmtCode);
         TiPreProcessor preProcessor = new TiPreProcessor(stmtCode);
         String processed = preProcessor.process();
+        Logger.Log("Processed: "+processed);
         TiCompiler compiler = new TiCompiler(processed);
-        return compiler.getTokens();
+        TiToken[] comped = compiler.getTokens();
+        for(TiToken com : comped) {
+            if(com == null){
+                Logger.Log("WHY IS THIS NULL WTF");
+            }
+            Logger.Log(com.str);
+        }
+        return comped;
     }
 }

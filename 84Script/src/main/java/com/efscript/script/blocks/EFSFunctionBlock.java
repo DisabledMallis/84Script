@@ -47,6 +47,11 @@ public class EFSFunctionBlock implements IBlock {
 		if (stmtBlock == null)
 			throw new Exception("Null statement? Very bad");
 		this.blocks.add(stmtBlock);
+	}
+
+	@Override
+	public TiToken[] compile() throws Exception {
+		TiCompiler comp = new TiCompiler();
 
 		// Push a new context
 		Context newCtx = new Context("FUNC: "+this.name);
@@ -56,11 +61,6 @@ public class EFSFunctionBlock implements IBlock {
 		}
 		//Push the context
 		Context.pushContext(newCtx);
-	}
-
-	@Override
-	public TiToken[] compile() throws Exception {
-		TiCompiler comp = new TiCompiler();
 
 		for (EFSStatementBlock<?> block : this.blocks) {
 			if (block == null) {

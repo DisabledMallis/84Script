@@ -34,10 +34,10 @@ token
 	;
 
 //Tokens
-disp : 'DISP ';
-input : 'INPUT ';
+disp : 'DISP';
+input : 'INPUT';
 store : '->';
-if_ : 'IF '; //Has an _ because it conflicts with java's 'if' in code generation
+if_ : 'IF'; //Has an _ because it conflicts with java's 'if' in code generation
 then : 'THEN';
 end : 'END';
 list : 'LIST' number;
