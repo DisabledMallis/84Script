@@ -80,4 +80,4 @@ newline : '\n';
 //Stuff we wanna ignore
 LINECOMMENT : '//' ~[\r\n]* -> skip;
 BLOCKCOMMENT : '/*' .*? '*/' -> skip;
-WHITESPACE: [\t\r] -> skip;
+WHITESPACE : [ \t\r\n] -> skip;

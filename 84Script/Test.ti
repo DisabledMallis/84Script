@@ -1,1 +1,2 @@
-LIST1(1)
+DISP LIST1(1);
+DISP "HEY";

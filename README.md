@@ -31,8 +31,8 @@ Key:
 		❌ - Include other files
 		🔄 - Functions
 			✅ - Function parsing
-			🔄 - Function defining
-			❌ - Function compiling
+			✅ - Function defining
+			🔄 - Function compiling
 			❌ - Function calling
 		🔄 - Expressions
 			✅ - Bracket expressions "(<expression>)"
@@ -65,11 +65,11 @@ Key:
 			❌ - If statement
 			❌ - While statement
 			✅ - Var statement
-			❌ - Return statement
-			❌ - TiBasic statement
-				❌ - TiBasic grammar
-				❌ - TiBasic parser & lexer
-				❌ - TiBasic compiler
+			✅ - Return statement
+			🔄 - TiBasic statement
+				🔄 - TiBasic grammar
+				✅ - TiBasic parser & lexer
+				🔄 - TiBasic compiler
 	❌ - STIL (Standard TI Library)
 	🔄 - 8xp from 84Script generation
 ```
@@ -102,7 +102,7 @@ This feature will not be well supported though, and will mostly be used for crea
 def display(myText)
 {
 	__tibasic {
-		Disp myText
+		Disp myText;
 	}
 }
 ```
