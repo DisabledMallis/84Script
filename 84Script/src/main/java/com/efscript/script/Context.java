@@ -102,12 +102,4 @@ public class Context {
         comp.appendInstruction(TiToken.CLOSE_BRACKET);
         return comp.getTokens();
     }
-    /*public EFSVarToken[] getAsTokens() {
-        EFSVarToken[] tokens = new EFSVarToken[identifiers.size()];
-        for(int i = 0; i < tokens.length; i++) {
-            String id = identifiers.get(i);
-            tokens[i] = new EFSVarToken(id);
-        }
-        return tokens;
-    }*/
 }

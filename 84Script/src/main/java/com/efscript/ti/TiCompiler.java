@@ -2,15 +2,13 @@ package com.efscript.ti;
 
 import java.util.ArrayList;
 
-import com.efscript.antlr.*;
-
 import com.efscript.Logger;
+import com.efscript.antlr.TiBasicBaseListener;
+import com.efscript.antlr.TiBasicLexer;
+import com.efscript.antlr.TiBasicParser;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import org.antlr.v4.runtime.tree.TerminalNode;
 
 public class TiCompiler extends TiBasicBaseListener {
 	// List for tokens
@@ -100,6 +98,10 @@ public class TiCompiler extends TiBasicBaseListener {
 			return;
 		}
 		String text = ctx.getText();
+		if(text.equals(";")) {
+			appendInstruction(TiToken.NEWLINE);
+			return;
+		}
 		TiToken token = TiToken.getToken(text);
 		appendInstruction(token);
 	}

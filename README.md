@@ -115,7 +115,7 @@ STIL (Standard TI Library) is an 84Script source file you can include in your co
 Considering the compiler isnt really done yet, don't expect much here to stay as is. Many compiler features are required for this lib to even be written.
 
 ## Variables
-All variables are global in code executed after their initialization. They may be accessed and modified after their declaration, but not deleted. Keep this in mind when initializing them with repeating code. Variables are always numerical, other types of data, such as strings, are not possible for use with variables. Their numerical abilities are determined by the calculator's settings. If the calculator is in "Real" mode, only real numbers can be stored.
+All variables are only available in their given scope. They may be accessed and modified after their declaration, but not deleted. Keep this in mind when initializing them with repeating code. Variables are always numerical, other types of data, such as strings, are not possible for use with variables. Their numerical abilities are determined by the calculator's settings. If the calculator is in "Real" mode, only real numbers can be stored. Function calls create copies of the variables in each call, meaning recursive calls could fill the parameter stack (``L2``) with multiple of the same variables potentially taking up more memory than needed. In many cases, loops will be preferable to recursive calls.
 Variables can be defined using the ``var`` keyword.
 Example:
 ```

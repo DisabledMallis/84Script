@@ -174,6 +174,18 @@ public class TiBasicBaseListener implements TiBasicListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSemicolon(TiBasicParser.SemicolonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSemicolon(TiBasicParser.SemicolonContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterComma(TiBasicParser.CommaContext ctx) { }
 	/**
 	 * {@inheritDoc}

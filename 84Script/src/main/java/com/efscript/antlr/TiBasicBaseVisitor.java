@@ -110,6 +110,13 @@ public class TiBasicBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitSemicolon(TiBasicParser.SemicolonContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitComma(TiBasicParser.CommaContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

@@ -31,6 +31,7 @@ token
 	| list
 	| open_bracket
 	| close_bracket
+	| semicolon
 	;
 
 //Tokens
@@ -50,6 +51,7 @@ LETTER : [A-Z];
 
 //Symbols
 colon : ':';
+semicolon : ';';
 comma : ',';
 period : '.';
 open_bracket : '(';

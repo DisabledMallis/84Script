@@ -91,6 +91,12 @@ public interface TiBasicVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitColon(TiBasicParser.ColonContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link TiBasicParser#semicolon}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSemicolon(TiBasicParser.SemicolonContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link TiBasicParser#comma}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

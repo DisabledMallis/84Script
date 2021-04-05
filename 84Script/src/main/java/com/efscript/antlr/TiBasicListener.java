@@ -140,6 +140,16 @@ public interface TiBasicListener extends ParseTreeListener {
 	 */
 	void exitColon(TiBasicParser.ColonContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link TiBasicParser#semicolon}.
+	 * @param ctx the parse tree
+	 */
+	void enterSemicolon(TiBasicParser.SemicolonContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link TiBasicParser#semicolon}.
+	 * @param ctx the parse tree
+	 */
+	void exitSemicolon(TiBasicParser.SemicolonContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link TiBasicParser#comma}.
 	 * @param ctx the parse tree
 	 */

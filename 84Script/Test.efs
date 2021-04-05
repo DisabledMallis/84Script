@@ -1,7 +1,10 @@
 def display(num) {
     __tibasic {
-        DISP num
+        DISP num;
+        DISP "2";
     }
+    return num+num;
 }
 var x = 0;
 var y = 2;
+//var z = display(y);
