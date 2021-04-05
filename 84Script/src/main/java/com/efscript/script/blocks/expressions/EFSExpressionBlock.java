@@ -24,6 +24,12 @@ public class EFSExpressionBlock extends EFSGenericExpression<ExpressionContext> 
 			throw new Exception("Something went terribly wrong when compiling an expression");
 		}
 
+		//If its a method call, we want to create that
+		boolean isCall = ctx.methodcall() != null;
+		if(isCall) {
+
+		}
+
 		// If its a value, we want to convert it
 		// to the right format for the calc
 		boolean isValueExpr = ctx.value() != null;

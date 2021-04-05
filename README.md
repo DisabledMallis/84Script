@@ -53,7 +53,7 @@ Key:
 			✅ - Subtract expression
 			✅ - Multiplication expression
 			✅ - Division expression
-			❌ - Method call expression
+			🔄 - Method call expression
 		🔄 - Statements
 			✅ - Assign statement
 			✅ - Add assign statement

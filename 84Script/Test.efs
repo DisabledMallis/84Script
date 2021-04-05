@@ -7,4 +7,4 @@ def display(num) {
 }
 var x = 0;
 var y = 2;
-//var z = display(y);
+var z = display(y);
