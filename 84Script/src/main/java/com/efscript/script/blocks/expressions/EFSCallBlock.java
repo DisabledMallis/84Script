@@ -39,7 +39,17 @@ public class EFSCallBlock extends EFSGenericExpression<MethodcallContext> {
         }
 
         //Set calling values
-        //TODO: add shit to context to get the function's ID
+        comp.appendInstruction(TiToken.NUM_1);
+        comp.appendInstruction(TiToken.STORE);
+        comp.appendInstruction(TiToken.LETTER_G);
+        comp.appendInstruction(TiToken.NEWLINE);
+
+        String funcName = ctx.identifier().getText();
+        int funcId = Context.scriptContext().getFuncID(funcName);
+        comp.appendInstruction(TiToken.getNumber(funcId));
+        comp.appendInstruction(TiToken.STORE);
+        comp.appendInstruction(TiToken.LETTER_F);
+        comp.appendInstruction(TiToken.NEWLINE);
 
         //Call the program again
         //TODO: Meta stuff to get the program name & add the fucking prgm token already you lazy shit

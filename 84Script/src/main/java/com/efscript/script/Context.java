@@ -13,6 +13,9 @@ public class Context {
     public static Context currentContext() {
         return contexts.getFirst();
     }
+    public static Context scriptContext() {
+        return contexts.getLast();
+    }
     public static Context popContext() {
         return contexts.removeFirst();
     }
@@ -21,6 +24,7 @@ public class Context {
     }
 
     String ctxName;
+    ArrayList<String> functions = new ArrayList<>(); // Only the 'SCRIPT' context is allowed to have functions
     ArrayList<String> identifiers = new ArrayList<>();
     ArrayList<String> parameters = new ArrayList<>();
     public Context(String name) {
@@ -101,5 +105,16 @@ public class Context {
         comp.appendInstruction(TiToken.getNumber(refIndex));
         comp.appendInstruction(TiToken.CLOSE_BRACKET);
         return comp.getTokens();
+    }
+    public int getFuncID(String function) {
+        Context scriptCtx = scriptContext();
+        int id = 0;
+        for(String func : scriptCtx.functions) {
+            if(func.equals(function)) {
+                break;
+            }
+            id++;
+        }
+        return id;
     }
 }
