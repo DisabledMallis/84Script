@@ -106,6 +106,7 @@ public class Context {
         comp.appendInstruction(TiToken.CLOSE_BRACKET);
         return comp.getTokens();
     }
+
     public int getFuncID(String function) {
         Context scriptCtx = scriptContext();
         int id = 0;
@@ -116,5 +117,8 @@ public class Context {
             id++;
         }
         return id;
+    }
+    public void addFunction(String name, int funcId) {
+        functions.add(funcId, name);
     }
 }

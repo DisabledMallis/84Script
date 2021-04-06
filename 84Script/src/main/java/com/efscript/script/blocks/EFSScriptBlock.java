@@ -101,6 +101,8 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 
 				comp.appendInstruction(TiToken.END);
 				comp.appendInstruction(TiToken.NEWLINE);
+
+				Context.scriptContext().addFunction(code.identifier().getText(), funcId);
 			}
 		}
 		comp.appendInstruction(TiToken.END);

@@ -108,7 +108,7 @@ methodcall
 	;
 
 methodparams
-	: expression (',' expression)*
+	: expression* (',' expression)*
 	;
 
 //Syntax operators
