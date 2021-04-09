@@ -28,12 +28,12 @@ Key:
 		🔄 - EFSCompiler.java
 		✅ - EFS Statement Block
 		🔄 - EFS Script Block
-		❌ - Include other files
+		🔄 - Include other files
 		🔄 - Functions
 			✅ - Function parsing
 			✅ - Function defining
-			🔄 - Function compiling
-			❌ - Function calling
+			✅ - Function compiling
+			✅ - Function calling
 		🔄 - Expressions
 			✅ - Bracket expressions "(<expression>)"
 			✅ - Identifier expression
@@ -53,7 +53,7 @@ Key:
 			✅ - Subtract expression
 			✅ - Multiplication expression
 			✅ - Division expression
-			🔄 - Method call expression
+			✅ - Method call expression
 		🔄 - Statements
 			✅ - Assign statement
 			✅ - Add assign statement
