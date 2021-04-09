@@ -68,6 +68,7 @@ public enum TiToken {
 	LIST4(0x5D, 0x3, "LIST4"),
 	LIST5(0x5D, 0x4, "LIST5"),
 	LIST6(0x5D, 0x5, "LIST6"),
+	PRGM(0x5F, "prgm"),
 	EQUALS(0x6A, "="),
 	LESS_THAN(0x6B, "<"),
 	GREATER_THAN(0x6C, ">"),
@@ -181,6 +182,25 @@ public enum TiToken {
 		}
 		return null;
 	};
+
+	//WARNING: Ascii only!!!
+	public static TiToken[] convertText(String text) {
+		ArrayList<TiToken> tokens = new ArrayList<>();
+
+		//Loop the ASCII characters for the respective token
+		for(char c : text.toCharArray()) {
+			tokens.add(TiToken.getToken(""+c));
+		}
+
+		// Create a native array
+		TiToken[] arr = new TiToken[tokens.size()];
+		// Add tokens from the ArrayList to the returning array
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = tokens.get(i);
+		}
+		// Return the final array
+		return arr;
+	}
 
 	// Generate tokens for a number (can be greater than 9)
 	public static TiToken[] getNumber(int num) throws Exception {

@@ -20,6 +20,46 @@ public interface EFScriptListener extends ParseTreeListener {
 	 */
 	void exitScript(EFScriptParser.ScriptContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link EFScriptParser#header}.
+	 * @param ctx the parse tree
+	 */
+	void enterHeader(EFScriptParser.HeaderContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EFScriptParser#header}.
+	 * @param ctx the parse tree
+	 */
+	void exitHeader(EFScriptParser.HeaderContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link EFScriptParser#meta}.
+	 * @param ctx the parse tree
+	 */
+	void enterMeta(EFScriptParser.MetaContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EFScriptParser#meta}.
+	 * @param ctx the parse tree
+	 */
+	void exitMeta(EFScriptParser.MetaContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link EFScriptParser#scriptName}.
+	 * @param ctx the parse tree
+	 */
+	void enterScriptName(EFScriptParser.ScriptNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EFScriptParser#scriptName}.
+	 * @param ctx the parse tree
+	 */
+	void exitScriptName(EFScriptParser.ScriptNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link EFScriptParser#include}.
+	 * @param ctx the parse tree
+	 */
+	void enterInclude(EFScriptParser.IncludeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link EFScriptParser#include}.
+	 * @param ctx the parse tree
+	 */
+	void exitInclude(EFScriptParser.IncludeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link EFScriptParser#function}.
 	 * @param ctx the parse tree
 	 */

@@ -31,6 +31,9 @@ public class Context {
         this.ctxName = name;
     }
 
+	public String getName() {
+		return this.ctxName;
+	}
     public void addParameter(String param) {
         parameters.add(param);
     }

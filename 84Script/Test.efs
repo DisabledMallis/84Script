@@ -1,3 +1,11 @@
+/*
+Script metadata
+*/
+name: EPIC;
+
+/*
+Script part
+*/
 def display(num) {
     __tibasic {
         DISP num;

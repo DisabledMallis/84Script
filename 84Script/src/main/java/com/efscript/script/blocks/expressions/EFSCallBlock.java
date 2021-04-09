@@ -52,7 +52,11 @@ public class EFSCallBlock extends EFSGenericExpression<MethodcallContext> {
         comp.appendInstruction(TiToken.NEWLINE);
 
         //Call the program again
-        //TODO: Meta stuff to get the program name & add the fucking prgm token already you lazy shit
+        String scriptName = Context.scriptContext().getName();
+		TiToken[] scriptText = TiToken.convertText(scriptName);
+		comp.appendInstruction(TiToken.PRGM);
+		comp.appendInstruction(scriptText);
+		comp.appendInstruction(TiToken.NEWLINE);
 
         //The return value
         comp.appendInstruction(TiToken.LETTER_C);

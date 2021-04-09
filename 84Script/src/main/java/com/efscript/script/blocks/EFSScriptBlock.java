@@ -19,7 +19,8 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 	public TiToken[] compile() throws Exception {
 		TiCompiler comp = new TiCompiler();
 		ScriptContext ctx = this.getCtx();
-		Context.pushContext(new Context("SCRIPT"));
+		String scriptMetaName = ctx.header().meta().scriptName().identifier().getText();
+		Context.pushContext(new Context(scriptMetaName));
 
 		// Initialization section
 		// Basically just reset the registers

@@ -6,8 +6,24 @@ package com.efscript.antlr;
 
 
 script
-	: function* statement*
+	: header function* statement*
 	| EOF
+	;
+
+header
+	: meta include*
+	;
+
+meta
+	: scriptName
+	;
+
+scriptName
+	: 'name:' identifier END_STMT
+	;
+
+include
+	: 'include:' identifier END_STMT
 	;
 
 function
