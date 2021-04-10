@@ -70,4 +70,8 @@ public class EFSCompiler {
 		Logger.Log("Compiled!");
 		return compTokens.compile();
 	}
+
+	public String getMetaScriptName() {
+		return parsed.header().meta().scriptName().identifier().getText();
+	}
 }

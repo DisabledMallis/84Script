@@ -46,7 +46,7 @@ public class Main {
 	//Default option values
 	public static String prgmName = "ESFG"; //84Script Generated
 	public static String inputFile = "Source.efs";
-	public static String outputFile = "Output.8xp";
+	public static String outputFile;
 	public static Lang targetLang = Lang.EFS;
 
 	// Entry function
@@ -110,6 +110,11 @@ public class Main {
 		}
 		else {
 			EFSCompiler compiler = new EFSCompiler(code);
+			if(outputFile == null) {
+				String scriptName = compiler.getMetaScriptName();
+				outputFile = scriptName + ".8xp";
+				prgmName = scriptName;
+			}
 			programCode = compiler.compile();
 		}
 
