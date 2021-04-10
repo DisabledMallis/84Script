@@ -16,6 +16,18 @@ public class Main {
 
 	// Entry function
 	public static void main(String[] args) throws Exception {
+		//If args dont exist
+		if(args == null || args.length == 0) {
+			Logger.Log("No args provided! Use -h for help.");
+		}
+		String first = args[0];
+		if(first.equals("-h")) {
+			Logger.Log("84Script compiler");
+			Logger.Log("-f <filename> | compile an 'efs' file");
+			Logger.Log("-ti <filename> | Compile a 'ti' file (TiBasic)");
+			Logger.Log("-o <filename> | The output file. Should end with '.8xp'");
+		}
+		/*
 		// Compile "Test.ti"
 		if (testCompileTI()) {
 			Logger.Log("Successfully compiled Ti-Basic!");
@@ -24,6 +36,7 @@ public class Main {
 		if (testCompileEF()) {
 			Logger.Log("Successfully compiled EFS!");
 		}
+		*/
 	}
 
 	static boolean testCompileEF() {
