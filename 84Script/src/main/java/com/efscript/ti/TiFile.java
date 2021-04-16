@@ -1,6 +1,7 @@
 package com.efscript.ti;
 
 import java.io.FileInputStream;
+import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
@@ -15,14 +16,13 @@ public class TiFile {
 	/* 3 Bytes */
 	byte[] nameMeta; // 4 bytes
 	private final int META_SIZE = 4;
-	byte[] queryBytes = { 0x0, 0x5 };
 	byte[] programName; // 9 bytes
 	private final int PROG_NAME_SIZE = 9;
 	byte[] codeMeta; // 4 bytes
 	/* 1 Byte */
 	byte[] programCode; // Flexible
-	/* 1 Byte */
-	byte lines; // 1 byte
+	/* 2 Bytes */
+	byte[] checksum; // 2 byte
 	/* EOF */
 
 	// Generate a new file
@@ -55,7 +55,7 @@ public class TiFile {
 		byte len = codeMeta[3];
 		programCode = fileStream.readNBytes(len);
 		fileStream.skip(1);
-		lines = fileStream.readNBytes(1)[0];
+		checksum = fileStream.readNBytes(2);
 		fileStream.close();
 	}
 
@@ -99,24 +99,39 @@ public class TiFile {
 		codeMeta[3] = (byte) byteCode.length;
 
 		programCode = byteCode;
+	}
 
-		// Count new lines
-		byte lineCt = 1;
-		for (byte b : byteCode) {
-			if (b == TiToken.NEWLINE.hex_high) // newline is 1 byte, so hex_high has that byte
-			{
-				lineCt++;
-			}
+	public byte[] getChecksum() {
+
+		long sum = 0;
+
+		sum += 0x0D;
+		sum += (programCode.length+2)*2;
+		sum += (programCode.length+2 >> 8)*2;
+		sum += 0x05;
+		sum += 0x04;
+		for(byte b : programName) {
+			sum += b;
 		}
-		lines = lineCt;
+
+		byte[] code = getProgramCode();
+		for(byte b : code) {
+			sum += b;
+		}
+
+		short value = (short)(sum & 0xFFFF);
+		ByteBuffer buffer = ByteBuffer.allocate(Short.BYTES);
+		buffer.putShort(value);
+		return buffer.array();
 	}
 
-	public int getLines() {
-		return lines;
-	}
+
 
 	public byte[] generateNew() {
 		Logger.Log("Generating new .8xp file");
+
+		checksum = getChecksum();
+
 		ArrayList<Byte> bytes = new ArrayList<>();
 		// Add file header
 		for (int i = 0; i < FILE_HEADER_SIZE; i++) {
@@ -147,10 +162,10 @@ public class TiFile {
 			else
 				bytes.add(this.nameMeta[i]);
 		}
-		// Add query bytes
-		for (byte b : queryBytes) {
-			bytes.add(b);
-		}
+
+		bytes.add((byte)(programCode.length >> 8));
+		bytes.add((byte)0x5);
+
 		// Add program name
 		for (int i = 0; i < PROG_NAME_SIZE; i++) {
 			if (this.programName.length <= i)
@@ -170,12 +185,10 @@ public class TiFile {
 		for (byte b : programCode) {
 			bytes.add(b);
 		}
-		// Pad 1 byte
-		for (byte b = 0; b < 1; b++) {
-			bytes.add((byte) 0);
+		// Add checksum
+		for (byte b : checksum) {
+			bytes.add(b);
 		}
-		// Add line count byte
-		bytes.add(lines);
 
 		// Get array from arraylist
 		byte[] prim = new byte[bytes.size()];
@@ -219,8 +232,8 @@ public class TiFile {
 			build.append(b + " ");
 		}
 		build.append("], ");
-		build.append("Lines:[");
-		build.append("" + lines);
+		build.append("Checksum:[");
+		build.append("" + checksum);
 		build.append("]");
 		build.append("}");
 		return build.toString();
