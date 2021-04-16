@@ -77,17 +77,18 @@ public enum TiToken {
 	NOT_EQUAL(0x6F, "!="),
 	ADD(0x70, "+"),
 	SUBTRACT(0x71, "-"),
-	MULTIPLY(0x80, "*"),
-	DIVIDE(0x81, "/"),
+	MULTIPLY(0x82, "*"),
+	DIVIDE(0x83, "/"),
 	CONST_PI(0xAC, "pi"),
 	NEGATE(0xB0, "-"),
 	CONST_E(0xBB, 0x31, "e"),
 	AND(0xBB, 0xD4, "&"),
-	IF(0xCE, "IF "),
+	IF(0xCE, "IF"),
 	THEN(0xCF, "THEN"),
 	END(0xD4, "END"),
 	INPUT(0xDC, "INPUT"),
-	DISP(0xDE, "DISP");
+	DISP(0xDE, "DISP"),
+	CLR_LIST(0xFA, "CLR_LIST");
 
 	public byte length;
 	public byte hex_high;

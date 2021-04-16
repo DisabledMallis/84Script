@@ -38,7 +38,12 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 		comp.appendInstruction(TiToken.THEN);
 		comp.appendInstruction(TiToken.NEWLINE);
 		/*
-		 * 0→G 0→F 0→C 1→I
+		 * 0→G
+		 * 0→F
+		 * 0→C
+		 * ClrList L1
+		 * ClrList L2
+		 * 1→I 
 		 */
 		// 0→G
 		comp.appendInstruction(TiToken.NUM_0);
@@ -54,6 +59,14 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 		comp.appendInstruction(TiToken.NUM_0);
 		comp.appendInstruction(TiToken.STORE);
 		comp.appendInstruction(TiToken.LETTER_C);
+		comp.appendInstruction(TiToken.NEWLINE);
+		//ClrList L1
+		comp.appendInstruction(TiToken.CLR_LIST);
+		comp.appendInstruction(TiToken.LIST1);
+		comp.appendInstruction(TiToken.NEWLINE);
+		//ClrList L2
+		comp.appendInstruction(TiToken.CLR_LIST);
+		comp.appendInstruction(TiToken.LIST2);
 		comp.appendInstruction(TiToken.NEWLINE);
 		// 1→I
 		comp.appendInstruction(TiToken.NUM_1);
@@ -109,12 +122,21 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 		comp.appendInstruction(TiToken.END);
 		comp.appendInstruction(TiToken.NEWLINE);
 
+		comp.appendInstruction(TiToken.IF);
+		comp.appendInstruction(TiToken.LETTER_G);
+		comp.appendInstruction(TiToken.EQUALS);
+		comp.appendInstruction(TiToken.NUM_0);
+		comp.appendInstruction(TiToken.NEWLINE);
+		comp.appendInstruction(TiToken.THEN);
+		comp.appendInstruction(TiToken.NEWLINE);
 		for (StatementContext stmt : ctx.statement()) {
 			EFSStatementBlock<?> stmtBlock = EFSStatementBlock.getAppropriate(stmt);
 			comp.appendInstruction(stmtBlock.compile());
 			comp.appendInstruction(TiToken.NEWLINE);
 		}
 
+		comp.appendInstruction(TiToken.END);
+		comp.appendInstruction(TiToken.NEWLINE);
 		comp.appendInstruction(TiToken.NUM_0);
 		comp.appendInstruction(TiToken.STORE);
 		comp.appendInstruction(TiToken.LETTER_I);

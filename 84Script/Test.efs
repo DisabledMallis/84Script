@@ -9,9 +9,8 @@ Script part
 def display(num) {
     __tibasic {
         DISP num;
-        DISP "2";
     }
-    return num+num;
+	return 0;
 }
 def awesome() {
     return 3;
@@ -19,3 +18,5 @@ def awesome() {
 var x = 0;
 var y = 2;
 var z = awesome();
+
+display(y*y);
