@@ -58,8 +58,8 @@ Key:
 			✅ - Assign statement
 			✅ - Add assign statement
 			✅ - Subtract assign statement
-			❌ - Multiply assign statement
-			❌ - Divide assign statement
+			✅ - Multiply assign statement
+			✅ - Divide assign statement
 			✅ - Increment statement
 			✅ - Decrement statement
 			❌ - If statement
@@ -72,6 +72,7 @@ Key:
 				🔄 - TiBasic compiler
 	❌ - STIL (Standard TI Library)
 	🔄 - 8xp from 84Script generation
+		❌ - File checksum
 ```
 
 # Using 84Script

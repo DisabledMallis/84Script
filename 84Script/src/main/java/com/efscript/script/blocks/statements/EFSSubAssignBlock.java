@@ -25,7 +25,7 @@ public class EFSSubAssignBlock extends EFSStatementBlock<Sub_assign_stmtContext>
 		TiToken[] accessor = Context.currentContext().genAccessor(iCtx.getText());
 		EFSValueBlock vBlock = new EFSValueBlock(vCtx);
 
-		// L(X)+VALUE->L(X)
+		// L(X)-VALUE->L(X)
 		comp.appendInstruction(accessor);
 		comp.appendInstruction(TiToken.SUBTRACT);
 		comp.appendInstruction(vBlock.compile());
