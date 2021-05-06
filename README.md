@@ -68,7 +68,7 @@ Key:
 			✅ - Return statement
 			🔄 - TiBasic statement
 				🔄 - TiBasic grammar
-				✅ - TiBasic parser & lexer
+				✅ - TiBasic parser & lexer (Antlr generated)
 				🔄 - TiBasic compiler
 	❌ - STIL (Standard TI Library)
 	🔄 - 8xp from 84Script generation

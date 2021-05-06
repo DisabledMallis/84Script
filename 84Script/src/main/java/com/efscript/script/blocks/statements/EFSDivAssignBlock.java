@@ -3,6 +3,7 @@ package com.efscript.script.blocks.statements;
 import com.efscript.antlr.EFScriptParser.Div_assign_stmtContext;
 import com.efscript.antlr.EFScriptParser.IdentifierContext;
 import com.efscript.antlr.EFScriptParser.ValueContext;
+import com.efscript.script.Context;
 import com.efscript.script.blocks.EFSStatementBlock;
 import com.efscript.script.blocks.EFSValueBlock;
 import com.efscript.ti.TiCompiler;
@@ -15,7 +16,7 @@ public class EFSDivAssignBlock extends EFSStatementBlock<Div_assign_stmtContext>
 	}
 
 	@Override
-	public TiToken[] compile() {
+	public TiToken[] compile() throws Exception {
 		TiCompiler comp = new TiCompiler();
 		Div_assign_stmtContext ctx = this.getCtx();
 
