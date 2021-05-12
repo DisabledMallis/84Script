@@ -19,4 +19,8 @@ var x = 0;
 var y = 2;
 var z = awesome();
 
+if(x > z) {
+	display(10);
+}
+
 display(y*y);

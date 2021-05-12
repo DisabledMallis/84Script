@@ -17,6 +17,11 @@ public class EFSBoolexprBlock extends EFSGenericExpression<BoolexprContext> {
 		TiCompiler compiler = new TiCompiler();
 		BoolexprContext ctx = this.getCtx();
 
+		// Non lo so perche questo non vuole funzionare
+		if(ctx == null) {
+			throw new Exception("Null bool ctx (WTF LOOOL)");
+		}
+
 		// Check for value
 		boolean isValueExpr = ctx.value() != null;
 		if (isValueExpr) {
@@ -79,8 +84,11 @@ public class EFSBoolexprBlock extends EFSGenericExpression<BoolexprContext> {
 			}
 
 			// The right hand must be another expression
-			EFSBoolexprBlock recBlock = new EFSBoolexprBlock(ctx.boolexpr());
-			compiler.appendInstruction(recBlock.compile());
+			BoolexprContext bCtx = ctx.boolexpr();
+			if(bCtx != null) {
+				EFSBoolexprBlock recBlock = new EFSBoolexprBlock(bCtx);
+				compiler.appendInstruction(recBlock.compile());
+			}
 		}
 
 		return compiler.getTokens();
