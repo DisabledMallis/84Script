@@ -24,6 +24,7 @@ public abstract class EFSStatementBlock<T extends ParserRuleContext> extends ABl
 	// Create the appropriate block
 	public static EFSStatementBlock<?> getAppropriate(StatementContext ctx) throws Exception {
 		// Check what kind of context it is
+		boolean isBrack = ctx.OPEN_CURLEY() != null;
 		boolean isIf = ctx.if_stmt() != null;
 		boolean isDec = ctx.dec_stmt() != null;
 		boolean isInc = ctx.inc_stmt() != null;
@@ -77,6 +78,9 @@ public abstract class EFSStatementBlock<T extends ParserRuleContext> extends ABl
 		}
 		if(isTIB) {
 			return new EFSTiBasicBlock(ctx.ti_basic_stmt());
+		}
+		if(isBrack) {
+			return new EFSBracketBlock(ctx);
 		}
 		throw new Exception("Unknown statement! Very bad");
 	}
