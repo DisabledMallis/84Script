@@ -62,7 +62,7 @@ Key:
 			✅ - Divide assign statement
 			✅ - Increment statement
 			✅ - Decrement statement
-			❌ - If statement
+			✅ - If statement
 			❌ - While statement
 			✅ - Var statement
 			✅ - Return statement
