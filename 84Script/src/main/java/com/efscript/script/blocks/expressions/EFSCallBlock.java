@@ -1,7 +1,6 @@
 package com.efscript.script.blocks.expressions;
 
 import com.efscript.antlr.EFScriptParser.ExpressionContext;
-import com.efscript.antlr.EFScriptParser.IdentifierContext;
 import com.efscript.antlr.EFScriptParser.MethodcallContext;
 import com.efscript.antlr.EFScriptParser.MethodparamsContext;
 import com.efscript.script.Context;
