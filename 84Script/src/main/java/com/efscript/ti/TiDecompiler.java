@@ -8,10 +8,13 @@ public class TiDecompiler {
 	// Bytes for the bytecode
 	byte[] code;
 
-	// Decompile a TiFile
+	// DEPRECATED Decompile a TiFile
+	//Cant be done with new TiFile format
+	/*
 	public TiDecompiler(TiFile source) {
 		this(source.getProgramCode());
 	}
+	*/
 
 	// Decompile bytecode directly
 	public TiDecompiler(byte[] code) {

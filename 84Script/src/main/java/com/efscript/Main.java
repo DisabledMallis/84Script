@@ -9,6 +9,7 @@ import com.efscript.script.EFSCompiler;
 import com.efscript.ti.TiCompiler;
 import com.efscript.ti.TiDecompiler;
 import com.efscript.ti.TiFile;
+import com.efscript.ti.TiToken;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -103,10 +104,10 @@ public class Main {
 		String code = Files.readString(Paths.get(inputFile));
 
 		//Compile code
-		byte[] programCode;
+		TiToken[] programCode;
 		if(targetLang == Lang.TIB) {
 			TiCompiler compiler = new TiCompiler(code);
-			programCode = compiler.compile();
+			programCode = compiler.getTokens();
 		}
 		else {
 			EFSCompiler compiler = new EFSCompiler(code);
@@ -115,12 +116,12 @@ public class Main {
 				outputFile = scriptName + ".8xp";
 				prgmName = scriptName;
 			}
-			programCode = compiler.compile();
+			programCode = compiler.getTokens();
 		}
 
 		//Generate the output file
-		TiFile outFile = new TiFile(fileDesc, prgmName, programCode);
-		byte[] fileData = outFile.generateNew();
+		TiFile outFile = new TiFile(prgmName, programCode);
+		byte[] fileData = outFile.pack();
 
 		//Output file creation
 		File jFile = new File(outputFile);
@@ -141,8 +142,8 @@ public class Main {
 			Logger.Log("EFS TEST RESULTS");
 			Logger.Log(decomp.getCode());
 
-			TiFile newFile = new TiFile(fileDesc, "Test", compiled);
-			byte[] fileBytes = newFile.generateNew();
+			TiFile newFile = new TiFile("Test", decomp.decompile());
+			byte[] fileBytes = newFile.pack();
 			File jFile = new File("Gen.8xp");
 			if (!jFile.exists()) {
 				jFile.createNewFile();

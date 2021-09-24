@@ -32,15 +32,17 @@ public class TiCompiler extends TiBasicBaseListener {
 	}
 
 	// Append a collection of tokens
-	public void appendInstruction(TiToken[] tokens) {
+	public TiCompiler appendInstruction(TiToken[] tokens) {
 		for (TiToken token : tokens) {
 			appendInstruction(token);
 		}
+		return this;
 	}
 
 	// Append a single token
-	public void appendInstruction(TiToken token) {
+	public TiCompiler appendInstruction(TiToken token) {
 		tokens.add(token);
+		return this;
 	}
 
 	// Get the tokens (not compiled)

@@ -28,6 +28,7 @@ import com.efscript.antlr.EFScriptParser.Var_stmtContext;
 import com.efscript.antlr.EFScriptParser.While_stmtContext;
 import com.efscript.script.blocks.EFSScriptBlock;
 import com.efscript.ti.TiCompiler;
+import com.efscript.ti.TiToken;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -53,9 +54,7 @@ public class EFSCompiler {
 	// The func that will compile the script start to finish
 	private ScriptContext parsed;
 
-	public byte[] compile() throws Exception {
-		Logger.Log("Compiling...");
-
+	public TiToken[] getTokens() throws Exception {
 		if (parsed == null) {
 			Logger.Log("You must parse the script first!");
 			return null;
@@ -67,8 +66,13 @@ public class EFSCompiler {
 		EFSScriptBlock script = new EFSScriptBlock(parsed);
 		compTokens.appendInstruction(script.compile());
 
+		return compTokens.getTokens();
+	}
+	public byte[] compile() throws Exception {
+		Logger.Log("Compiling...");
+		byte[] compiled = new TiCompiler().appendInstruction(getTokens()).compile();
 		Logger.Log("Compiled!");
-		return compTokens.compile();
+		return compiled;
 	}
 
 	public String getMetaScriptName() {
