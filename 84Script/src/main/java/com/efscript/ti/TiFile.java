@@ -16,26 +16,27 @@ import com.efscript.ti.VariableData;
 public class TiFile {
 
 	byte[] fileSignature = {'*', '*', 'T', 'I', '8', '3', 'F', '*', 0x1A, 0xA, 0xA};
-	byte[] comment = {'C', 'o', 'm', 'p', 'i', 'l', 'e', 'd', ' ', 'w', 'i', 't', 'h', ' ', 'D', 'i', 's', 'a', 'b', 'l', 'e', 'd', 'M', 'a', 'l', 'l', 'i', 's', '/', '8', '4', 'S', 'c', 'r', 'i', 'p', 't', 0x0, 0x0, 0x0, 0x0, 0x0};
-	short dataLength = 0;
+	String comment = "Compiled with DisabledMallis/84Script";
+	short dataLength = 0xAA;
 	VariableEntry[] dataSection = {};
 	short checksum = 0;
 
 	public TiFile() {
 		dataLength = -0x39;
 		dataLength += fileSignature.length;
-		dataLength += comment.length;
+		dataLength += comment.length();
 		dataLength += 2; //Include itself in the filesize
 
 		dataSection = new VariableEntry[0];
 	}
-	public TiFile(String name, TiToken[] tokens) throws IOException {
+	public TiFile(String name, TiToken[] tokens) {
+		this();
 		VariableData data = new VariableData(tokens);
-		VariableEntry entry = new VariableEntry(name.getBytes(StandardCharsets.US_ASCII), data);
+		VariableEntry entry = new VariableEntry(name, data);
 		this.pushVariableEntry(entry);
 	}
 
-	public void pushVariableEntry(VariableEntry newEntry) throws IOException {
+	public void pushVariableEntry(VariableEntry newEntry) {
 		VariableEntry[] entries = new VariableEntry[dataSection.length+1];
 		for(int i = 0; i < dataSection.length; i++) {
 			dataLength += dataSection[i].pack().length;
@@ -45,30 +46,25 @@ public class TiFile {
 		dataSection = entries;
 	}
 
-	public byte[] pack() throws IOException {
-		assert(dataSection != null);
-		assert(dataSection.length != 0);
-
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		DataOutputStream finalBytes = new DataOutputStream(baos);
-		finalBytes.write(this.fileSignature);
-		finalBytes.write(this.comment);
-		finalBytes.writeShort(dataLength);
+	public byte[] pack() {
+		ByteArray array = new ByteArray();
+		array.add(this.fileSignature);
+		array.add(this.comment, 42);
+		array.add(dataLength);
 		
-		ByteArrayOutputStream data_baos = new ByteArrayOutputStream();
-		DataOutputStream dataBytes = new DataOutputStream(data_baos);
+		ByteArray varEntryArray = new ByteArray();
 		for(VariableEntry entry : dataSection) {
-			dataBytes.write(entry.pack());
+			varEntryArray.add(entry.pack());
 		}
 		long l_checksum = 0;
-		for(byte b : data_baos.toByteArray()){
+		for(byte b : varEntryArray.toPrimitiveArray()){
 			l_checksum += b;
 		}
 		short checksum = (short)l_checksum;
 
-		finalBytes.write(data_baos.toByteArray());
-		finalBytes.writeShort(checksum);
+		array.add(varEntryArray.toPrimitiveArray());
+		array.add(checksum);
 
-		return baos.toByteArray();
+		return array.toPrimitiveArray();
 	}
 }

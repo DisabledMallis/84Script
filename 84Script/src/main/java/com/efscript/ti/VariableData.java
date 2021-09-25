@@ -22,15 +22,14 @@ public class VariableData {
 		this.data = comp.compile();
 	}
 
-	public byte[] pack() throws IOException {
+	public byte[] pack() {
 		assert(data != null);
 
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		DataOutputStream finalBytes = new DataOutputStream(baos);
+		ByteArray array = new ByteArray();
 
-		finalBytes.writeShort(tokenCount);
-		finalBytes.write(data);
+		array.add(tokenCount);
+		array.add(data);
 
-		return baos.toByteArray();
+		return array.toPrimitiveArray();
 	}
 }
