@@ -65,6 +65,15 @@ public class TiFile {
 		array.add(varEntryArray.toPrimitiveArray());
 		array.add(checksum);
 
-		return array.toPrimitiveArray();
+		//We need to adjust the size, my previous size calculations are wrong.
+		byte[] preFinal = array.toPrimitiveArray();
+		short fullSize = (short)preFinal.length;
+		fullSize -= 0x39;
+		ByteArray converter = new ByteArray();
+		converter.add(fullSize);
+		preFinal[0x35] = converter.toPrimitiveArray()[1];
+		preFinal[0x36] = converter.toPrimitiveArray()[0];
+
+		return preFinal;
 	}
 }
