@@ -17,14 +17,14 @@ public class VariableEntry {
 	byte[] offset_0 = {0x0, 0xD};
 	short varLength = 0x0;
 	byte varType = 0x5;
-	String name = "FFFFFFFF";
+	String name = "";
 	byte version = 0x0;
 	byte archived = 0x0;
 	VariableData varData;
 
 	public VariableEntry(String name, VariableData varData) {
 		this.varLength = (short)varData.pack().length;
-		//this.name = name;
+		this.name = name;
 		this.varData = varData;
 
 	}
