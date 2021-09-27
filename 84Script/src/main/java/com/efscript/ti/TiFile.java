@@ -17,7 +17,7 @@ public class TiFile {
 
 	byte[] fileSignature = {'*', '*', 'T', 'I', '8', '3', 'F', '*', 0x1A, 0xA, 0xA};
 	String comment = "Compiled with DisabledMallis/84Script";
-	short dataLength = 0xAA;
+	short dataLength = 0;
 	VariableEntry[] dataSection = {};
 	short checksum = 0;
 

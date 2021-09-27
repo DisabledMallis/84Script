@@ -19,16 +19,20 @@ public class ByteArray extends ArrayList<Byte> {
 
 	public void add(byte[] bytes) {
 		for(byte b : bytes) {
-			super.add(b);
+			this.addByte(b);
 		}
 	}
 
+	public void addByte(byte value) {
+		super.add(value);
+	}
 	public void add(short value) {
 		ByteBuffer buffer = ByteBuffer.allocate(2);
 		buffer.putShort(value);
 		byte[] bytes = new byte[2];
-		bytes[0] = buffer.array()[0];
-		bytes[1] = buffer.array()[1];
+		//Swap the edianess
+		bytes[1] = buffer.array()[0];
+		bytes[0] = buffer.array()[1];
 		this.add(bytes);
 	}
 
@@ -36,7 +40,7 @@ public class ByteArray extends ArrayList<Byte> {
 		this.add(text, StandardCharsets.US_ASCII, text.length());
 	}
 	public void add(String text, int expectedLength) {
-		expectedLength--; //Cuz shit starts at 0 and whatever
+		//expectedLength--; //Cuz shit starts at 0 and whatever
 		this.add(text, StandardCharsets.US_ASCII, expectedLength);
 	}
 	public void add(String text, Charset charSet, int expectedLength) {
