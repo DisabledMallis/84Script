@@ -71,8 +71,8 @@ public class TiFile {
 		fullSize -= 0x39;
 		ByteArray converter = new ByteArray();
 		converter.add(fullSize);
-		preFinal[0x35] = converter.toPrimitiveArray()[1];
-		preFinal[0x36] = converter.toPrimitiveArray()[0];
+		preFinal[0x35] = converter.toPrimitiveArray()[0];
+		preFinal[0x36] = converter.toPrimitiveArray()[1];
 
 		return preFinal;
 	}

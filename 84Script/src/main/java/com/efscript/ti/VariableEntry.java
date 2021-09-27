@@ -14,7 +14,7 @@ import com.efscript.ti.VariableData;
 public class VariableEntry {
 	
 
-	byte[] offset_0 = {0x0, 0xD};
+	byte[] offset_0 = {0xD,0x0};
 	short varLength = 0x0;
 	byte varType = 0x5;
 	String name = "";
