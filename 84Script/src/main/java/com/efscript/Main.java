@@ -52,7 +52,6 @@ public class Main {
 
 	// Entry function
 	public static void main(String[] args) throws Exception {
-		testCompileTI();
 		//Apache commons-cli options
 		Options options = new Options();
 		Option help = Option.builder("h").longOpt("help").desc("Help menu").required(false).build();
@@ -143,7 +142,7 @@ public class Main {
 			Logger.Log("EFS TEST RESULTS");
 			Logger.Log(decomp.getCode());
 
-			TiFile newFile = new TiFile("Test", decomp.decompile());
+			TiFile newFile = new TiFile("TEST", decomp.decompile());
 			byte[] fileBytes = newFile.pack();
 			File jFile = new File("Gen.8xp");
 			if (!jFile.exists()) {
@@ -164,7 +163,7 @@ public class Main {
 			// Compile "Test.efs"
 			String code = Files.readString(Paths.get("Test.ti"));
 			TiCompiler comp = new TiCompiler(code);
-			TiFile tiFile = new TiFile("Test", comp.getTokens());
+			TiFile tiFile = new TiFile("TEST", comp.getTokens());
 			byte[] fileContent = tiFile.pack();
 			File jFile = new File("Gen.8xp");
 			if (!jFile.exists()) {

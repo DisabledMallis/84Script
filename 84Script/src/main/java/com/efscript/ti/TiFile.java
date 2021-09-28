@@ -56,7 +56,7 @@ public class TiFile {
 		for(VariableEntry entry : dataSection) {
 			varEntryArray.add(entry.pack());
 		}
-		long l_checksum = 0x100;
+		long l_checksum = 0;//0x100;
 		for(byte b : varEntryArray.toPrimitiveArray()){
 			l_checksum += b;
 		}

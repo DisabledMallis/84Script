@@ -23,8 +23,6 @@ public class VariableData {
 	}
 
 	public byte[] pack() {
-		assert(data != null);
-
 		ByteArray array = new ByteArray();
 
 		array.add(tokenCount);

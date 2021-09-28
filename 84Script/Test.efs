@@ -6,6 +6,10 @@ name: EPIC;
 /*
 Script part
 */
+__tibasic {
+	DISP"HEY"
+}
+/*
 def display(num) {
     __tibasic {
         DISP num;
@@ -24,3 +28,4 @@ if(x > z) {
 }
 
 display(y*y);
+*/
