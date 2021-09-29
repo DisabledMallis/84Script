@@ -4,9 +4,8 @@ Script metadata
 name: EPIC;
 
 /*
-Script part
+Script code
 */
-
 def multiply(numA, numB) {
 	return numA * numB;
 }
