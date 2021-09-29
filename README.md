@@ -136,8 +136,8 @@ Going forward, use of the A-Z & List variables will be replaced in favor of the 
 The ``1`` column is reserved for the purposes mentioned above. ``2`` and onward will be used for variables starting from the top script scope. A new scope will be pushed on the matrix each function call.
 
 ## Variables
-* The list ``L1`` is the variable stack. This is sized as variables are created and destroyed via the call stack.
-* The list ``L2`` is used as a parameter stack for function calls. This is sized based on function calls, added to when a call begins, and removed once one completes. 
+Since lists are no longer used, the ``[J]`` matrix will hold everything the program needs.
+* ``[J](2->?, ?)`` - Holds all variables, starting with the main script scope at ``2``. Function calls create a new scope, push the arguments and execute the function.
 
 ## Visualization
 
