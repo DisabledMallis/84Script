@@ -127,10 +127,13 @@ var awesomeVariable = 2.33;
 This section is about how the generated .8xp file(s) are structured programatically, and how they work. This is important for debugging your code when either you or the compiler makes a mistake.
 
 ## Program registers
-* ``I`` - The initialization register. Used for program initialization. Set to true after its used and reset to 0 once program execution has completed.
-* ``F`` - The function register. Used to determine which function is being invoked.
-* ``G`` - Calling register. Used to determine if a function is meant to be invoked.
-* ``C`` - Return register. The value a function returns.
+Going forward, use of the A-Z & List variables will be replaced in favor of the [J] matrix. The matrix will store all of the "memory" for the entire program.
+* ``[J](1,1)`` - The initialization register. Used for program initialization. Set to true after its used and reset to 0 once program execution has completed.
+* ``[J](1,2)`` - The function register. Used to determine which function is being invoked.
+* ``[J](1,3)`` - Calling register. Used to determine if a function is meant to be invoked.
+* ``[J](1,4)`` - Return register. The value a function returns.
+
+The ``1`` column is reserved for the purposes mentioned above. ``2`` and onward will be used for variables starting from the top script scope. A new scope will be pushed on the matrix each function call.
 
 ## Variables
 * The list ``L1`` is the variable stack. This is sized as variables are created and destroyed via the call stack.
