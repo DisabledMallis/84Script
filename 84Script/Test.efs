@@ -6,26 +6,12 @@ name: EPIC;
 /*
 Script part
 */
+
+def multiply(numA, numB) {
+	return numA * numB;
+}
+
+var z = multiply(10, 10);
 __tibasic {
-	DISP "HEY"
+	DISP z
 }
-/*
-def display(num) {
-    __tibasic {
-        DISP num;
-    }
-	return 0;
-}
-def awesome() {
-    return 3;
-}
-var x = 0;
-var y = 2;
-var z = awesome();
-
-if(x > z) {
-	display(10);
-}
-
-display(y*y);
-*/

@@ -12,20 +12,20 @@ import java.util.ArrayList;
 import com.efscript.ti.VariableEntry;
 
 public class VariableData {
-	short tokenCount = 0;
+	short dataSize = 0;
 	byte[] data;
 
 	public VariableData(TiToken[] tokens) {
 		TiCompiler comp = new TiCompiler();
 		comp.appendInstruction(tokens);
-		this.tokenCount = (short)comp.getTokens().length;
+		this.dataSize = (short)comp.compile().length;
 		this.data = comp.compile();
 	}
 
 	public byte[] pack() {
 		ByteArray array = new ByteArray();
 
-		array.add(tokenCount);
+		array.add(dataSize);
 		array.add(data);
 
 		return array.toPrimitiveArray();

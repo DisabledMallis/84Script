@@ -236,7 +236,11 @@ public enum TiToken {
 		// If its less than 10 & greater than 0, we can get a token
 		if (num < 10 && num > -1) {
 			// Create a token array to return the single num
-			TiToken[] token = new TiToken[] { TiToken.valueOf("NUM_" + num) };
+			TiToken singleToken = TiToken.valueOf("NUM_" + num);
+			if(singleToken == null) {
+				throw new Exception("Cannot find single number \""+num+"\"?");
+			}
+			TiToken[] token = new TiToken[] { singleToken };
 			// Return it
 			return token;
 		}
