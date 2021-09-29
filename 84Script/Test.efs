@@ -6,11 +6,15 @@ name: EPIC;
 /*
 Script code
 */
-def multiply(numA, numB) {
-	return numA * numB;
+
+def recursive(i) {
+	if(i < 100) {
+		return i + recursive(i+1);
+	}
+	return i;
 }
 
-var z = multiply(10, 10);
+var z = recursive(1);
 __tibasic {
 	DISP z
 }
