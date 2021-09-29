@@ -52,6 +52,7 @@ public class Main {
 
 	// Entry function
 	public static void main(String[] args) throws Exception {
+		//testCompileTI();
 		//Apache commons-cli options
 		Options options = new Options();
 		Option help = Option.builder("h").longOpt("help").desc("Help menu").required(false).build();
@@ -163,7 +164,7 @@ public class Main {
 			// Compile "Test.efs"
 			String code = Files.readString(Paths.get("Test.ti"));
 			TiCompiler comp = new TiCompiler(code);
-			TiFile tiFile = new TiFile("TEST", comp.getTokens());
+			TiFile tiFile = new TiFile("PROG02", comp.getTokens());
 			byte[] fileContent = tiFile.pack();
 			File jFile = new File("Gen.8xp");
 			if (!jFile.exists()) {

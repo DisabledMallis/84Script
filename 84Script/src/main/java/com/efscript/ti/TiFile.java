@@ -58,9 +58,10 @@ public class TiFile {
 		}
 		long l_checksum = 0;//0x100;
 		for(byte b : varEntryArray.toPrimitiveArray()){
-			l_checksum += b;
+			//System.out.println("Adding "+(b&0xFF));
+			l_checksum += (b&0xFF);
 		}
-		short checksum = (short)l_checksum;
+		short checksum = (short)(l_checksum);
 
 		array.add(varEntryArray.toPrimitiveArray());
 		array.add(checksum);

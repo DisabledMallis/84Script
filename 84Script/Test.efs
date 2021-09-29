@@ -7,7 +7,7 @@ name: EPIC;
 Script part
 */
 __tibasic {
-	DISP"HEY"
+	DISP "HEY"
 }
 /*
 def display(num) {
