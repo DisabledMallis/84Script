@@ -9,7 +9,8 @@ Script code
 
 def recursive(i) {
 	if(i < 100) {
-		return i + recursive(i+1);
+		var x = recursive(i+1);
+		return i + x;
 	}
 	return i;
 }

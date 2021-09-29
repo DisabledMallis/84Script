@@ -19,7 +19,7 @@ public class EFSBoolexprBlock extends EFSGenericExpression<BoolexprContext> {
 
 		// Non lo so perche questo non vuole funzionare
 		if(ctx == null) {
-			throw new Exception("Null bool ctx (WTF LOOOL)");
+			throw new Exception("Null bool ctx");
 		}
 
 		// Check for value
@@ -45,8 +45,8 @@ public class EFSBoolexprBlock extends EFSGenericExpression<BoolexprContext> {
 		// If isnt just true or false, it must start with a value.
 		if (!isTrue && !isFalse) {
 			// Value shit
-			EFSValueBlock valBlock = new EFSValueBlock(ctx.value());
-			compiler.appendInstruction(valBlock.compile());
+			//EFSValueBlock valBlock = new EFSValueBlock(ctx.value());
+			//compiler.appendInstruction(valBlock.compile());
 			// Someone come up with a cooler way to do this, please, thanks
 			boolean isGT = ctx.GREATER_THAN() != null;
 			boolean isLT = ctx.LESS_THAN() != null;

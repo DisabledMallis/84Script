@@ -34,6 +34,7 @@ public class EFSVarBlock extends EFSStatementBlock<Var_stmtContext> {
 		comp.appendInstruction(exprBlock.compile());
 		comp.appendInstruction(TiToken.STORE);
 		comp.appendInstruction(accessor);
+		comp.appendInstruction(TiToken.NEWLINE);
 
 		return comp.getTokens();
 	}

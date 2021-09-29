@@ -17,7 +17,7 @@ public class EFSReturnBlock extends EFSStatementBlock<Return_stmtContext> {
 	public TiToken[] compile() throws Exception {
 		TiCompiler miniComp = new TiCompiler();
 		Return_stmtContext ctx = this.getCtx();
-
+		
 		ExpressionContext expr = ctx.expression();
 		if(expr != null) {
 			EFSExpressionBlock expBlock = new EFSExpressionBlock(expr);

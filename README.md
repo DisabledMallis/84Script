@@ -71,8 +71,8 @@ Key:
 				✅ - TiBasic parser & lexer (Antlr generated)
 				🔄 - TiBasic compiler
 	❌ - STIL (Standard TI Library)
-	🔄 - 8xp from 84Script generation
-		❌ - File checksum
+	✅ - 8xp from 84Script generation
+		✅ - File checksum
 ```
 
 # Using 84Script

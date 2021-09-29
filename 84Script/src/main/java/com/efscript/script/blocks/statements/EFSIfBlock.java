@@ -32,8 +32,8 @@ public class EFSIfBlock extends EFSStatementBlock<If_stmtContext> {
 		EFSStatementBlock<?> sBlock = EFSStatementBlock.getAppropriate(sCtx);
 		comp.appendInstruction(sBlock.compile());
 
-		comp.appendInstruction(TiToken.NEWLINE);
 		comp.appendInstruction(TiToken.END);
+		comp.appendInstruction(TiToken.NEWLINE);
 
 		return comp.getTokens();
 	}
