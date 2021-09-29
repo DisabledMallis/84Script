@@ -68,7 +68,7 @@ public class TiFile {
 		//We need to adjust the size, my previous size calculations are wrong.
 		byte[] preFinal = array.toPrimitiveArray();
 		short fullSize = (short)preFinal.length;
-		fullSize -= 0x39;
+		fullSize -= 0x39; //The docs said to do this, dont ask me
 		ByteArray converter = new ByteArray();
 		converter.add(fullSize);
 		preFinal[0x35] = converter.toPrimitiveArray()[0];
