@@ -103,8 +103,16 @@ public class Context {
 
         //Compile the reference
         TiCompiler comp = new TiCompiler();
-        comp.appendInstruction(TiToken.getList(list));
+		//Compiles to [J]([J](1,5), INDEX)
+        comp.appendInstruction(TiToken.MATRIX_J);
         comp.appendInstruction(TiToken.OPEN_BRACKET);
+		comp.appendInstruction(TiToken.MATRIX_J);
+        comp.appendInstruction(TiToken.OPEN_BRACKET);
+        comp.appendInstruction(TiToken.NUM_1);
+        comp.appendInstruction(TiToken.COMMA);
+        comp.appendInstruction(TiToken.NUM_5);
+        comp.appendInstruction(TiToken.CLOSE_BRACKET);
+        comp.appendInstruction(TiToken.COMMA);
         comp.appendInstruction(TiToken.getNumber(refIndex));
         comp.appendInstruction(TiToken.CLOSE_BRACKET);
         return comp.getTokens();

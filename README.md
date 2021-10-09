@@ -132,6 +132,7 @@ Going forward, use of the A-Z & List variables will be replaced in favor of the 
 * ``[J](1,2)`` - The function register. Used to determine which function is being invoked.
 * ``[J](1,3)`` - Calling register. Used to determine if a function is meant to be invoked.
 * ``[J](1,4)`` - Return register. The value a function returns.
+* ``[J](1,5)`` - The current stack "pointer", tells which column of ``[J]`` contains variables for the current context
 
 The ``1`` column is reserved for the purposes mentioned above. ``2`` and onward will be used for variables starting from the top script scope. A new scope will be pushed on the matrix each function call.
 
