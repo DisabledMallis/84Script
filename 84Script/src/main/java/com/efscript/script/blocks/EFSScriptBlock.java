@@ -129,14 +129,20 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 		 * If [J](1,3)>0
 		 * //Funcs must be defined at the top of the script
 		 * Then
-		 * //F is which function If F=0 Then
-		 * //L₂ is the parameter stack L₂(1)+L₂(2)→C
+		 * //[J](1,2) is which function
+		 * If [J](1,2)=0
+		 * Then
+		 * [J]([J](1,5), 1)+[J]([J](1,5), 2)→C
 		 * End
 		 * End
 		 */
-		//TODO: Finish updating this file
 		comp.appendInstruction(TiToken.IF);
-		comp.appendInstruction(TiToken.LETTER_G);
+		comp.appendInstruction(TiToken.MATRIX_J);
+		comp.appendInstruction(TiToken.OPEN_BRACKET);
+		comp.appendInstruction(TiToken.NUM_1);
+		comp.appendInstruction(TiToken.COMMA);
+		comp.appendInstruction(TiToken.NUM_3);
+		comp.appendInstruction(TiToken.CLOSE_BRACKET);
 		comp.appendInstruction(TiToken.GREATER_THAN);
 		comp.appendInstruction(TiToken.NUM_0);
 		comp.appendInstruction(TiToken.NEWLINE);
@@ -147,10 +153,19 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 		if (hasFunc) {
 			for (int funcId = 0; funcId < ctx.function().size(); funcId++) {
 				/*
-				 * Compiles to: If F=funcId Then <funcCode>
+				 * Compiles to:
+				 * If [J](1,2)=funcId
+				 * Then
+				 * <funcCode>
+				 * End
 				 */
 				comp.appendInstruction(TiToken.IF);
-				comp.appendInstruction(TiToken.LETTER_F);
+				comp.appendInstruction(TiToken.MATRIX_J);
+				comp.appendInstruction(TiToken.OPEN_BRACKET);
+				comp.appendInstruction(TiToken.NUM_1);
+				comp.appendInstruction(TiToken.COMMA);
+				comp.appendInstruction(TiToken.NUM_2);
+				comp.appendInstruction(TiToken.CLOSE_BRACKET);
 				comp.appendInstruction(TiToken.EQUALS);
 				comp.appendInstruction(TiToken.getNumber(funcId));
 				comp.appendInstruction(TiToken.NEWLINE);
@@ -170,6 +185,7 @@ public class EFSScriptBlock extends ABlock<ScriptContext> {
 		comp.appendInstruction(TiToken.END);
 		comp.appendInstruction(TiToken.NEWLINE);
 
+		//TODO: Finish updating this file
 		comp.appendInstruction(TiToken.IF);
 		comp.appendInstruction(TiToken.LETTER_G);
 		comp.appendInstruction(TiToken.EQUALS);
