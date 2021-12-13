@@ -49,6 +49,7 @@ public class Main {
 	public static String inputFile = "Source.efs";
 	public static String outputFile;
 	public static Lang targetLang = Lang.EFS;
+	public static boolean printResult = false;
 
 	// Entry function
 	public static void main(String[] args) throws Exception {
@@ -67,6 +68,8 @@ public class Main {
 		options.addOption(useTib);
 		Option useEfs = Option.builder("efs").desc("Compile just 84Script. Shorter alternative to -l EFS").required(false).build();
 		options.addOption(useEfs);
+		Option printRes = Option.builder("p").longOpt("print").desc("Print the compiled bytecode in Ti-Basic form to the console").required(false).build();
+		options.addOption(printRes);
 
 		//Command arg parser stuff
 		CommandLineParser parser = new DefaultParser();
@@ -100,6 +103,9 @@ public class Main {
 		if(cmd.hasOption("efs")) {
 			targetLang = Lang.EFS;
 		}
+		if(cmd.hasOption("p")) {
+			printResult = true;
+		}
 
 		//Read input file
 		String code = Files.readString(Paths.get(inputFile));
@@ -121,6 +127,11 @@ public class Main {
 		}
 
 		//Generate the output file
+		if(printResult) {
+			for(TiToken token : programCode) {
+				System.out.print(token.str);
+			}
+		}
 		TiFile outFile = new TiFile(prgmName, programCode);
 		byte[] fileData = outFile.pack();
 
